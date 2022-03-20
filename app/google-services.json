@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "438132776529",
+    "project_id": "rota-manager-8d4ae",
+    "storage_bucket": "rota-manager-8d4ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438132776529:android:17b96fa896564337bbe270",
+        "android_client_info": {
+          "package_name": "com.deeppatel.rotamanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438132776529-am1q4es5oijtrc1l7chfb5754k3uv0jm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMaIoblwRiRUwTeown3GPpXukZIeIie9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438132776529-am1q4es5oijtrc1l7chfb5754k3uv0jm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
