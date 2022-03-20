@@ -44,6 +44,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
+                app:hintTextColor="@color/light_blue"
+                app:boxStrokeColor="@color/light_blue"
                 android:hint="Email"
                 tools:background="#FFFFFF">
 
@@ -67,6 +69,8 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="20dp"
                 android:hint="Invite Code"
+                app:hintTextColor="@color/light_blue"
+                app:boxStrokeColor="@color/light_blue"
                 tools:background="#FFFFFF">
 
                 <com.google.android.material.textfield.TextInputEditText
