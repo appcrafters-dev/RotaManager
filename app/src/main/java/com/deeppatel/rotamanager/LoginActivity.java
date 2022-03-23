@@ -46,17 +46,17 @@ public class LoginActivity extends AppCompatActivity {
         Button loginBtn = findViewById(R.id.activity_login_btn_login);
         EditText emailEt = findViewById(R.id.activity_login_et_email);
         EditText inviteCodeEt = findViewById(R.id.activity_login_et_invite_code);
-        loginBtn.setOnClickListener(view -> performLogin(emailEt.getText().toString(), inviteCodeEt.getText().toString()));
+        loginBtn.setOnClickListener(view -> performLogin(emailEt.getText().toString(), inviteCodeEt.getText().toString(), false));
 
         admin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityAfterFinish(LoginActivity.this, AdminDashboard.class);
+                performLogin(emailEt.getText().toString(), inviteCodeEt.getText().toString(), true);
             }
         });
     }
 
-    private void performLogin(String email, String inviteCode) {
+    private void performLogin(String email, String inviteCode, Boolean admin) {
         String errorMessage = validateForm(email, inviteCode);
         if (!errorMessage.isEmpty()) {
             showErrorMessage(errorMessage);
@@ -72,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginActivity.this, "Done", Toast.LENGTH_LONG).show();
+                            if(admin){
+                                new RedirectToActivity().redirectActivityAfterFinish(LoginActivity.this, AdminDashboard.class);
+                            }
 //                          TODO: redirect
                         } else {
                             // If sign in fails, display a message to the user.
