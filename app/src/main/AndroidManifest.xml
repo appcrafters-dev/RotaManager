@@ -8,15 +8,45 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.RotaManager">
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity
+            android:name=".admin.EditStaffMember"
+            android:exported="true" />
+        <activity
+            android:name=".admin.NewStaffMember"
+            android:exported="true" />
+        <activity
+            android:name=".admin.NewTimeEntry"
+            android:exported="true" />
+        <activity
+            android:name=".admin.TimeChangeRequest"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".admin.AdminScheduler"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".admin.AdminProfile"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".admin.StaffMemberList"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".admin.AdminDashboard"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>

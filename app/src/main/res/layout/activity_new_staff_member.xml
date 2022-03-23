@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".admin.AdminProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        app:titleMarginStart="@android:dimen/app_icon_size"
+        android:theme="?attr/actionBarTheme" >
+        <ImageView
+            android:id="@+id/backButtonToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/textViewToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="New Member"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+      </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/uploadDP"
+            android:layout_width="168dp"
+            android:layout_height="161dp"
+            android:src="@drawable/memberdp"
+            app:civ_border_color="@color/light_blue"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.322" />
+
+
+        <EditText
+            android:id="@+id/member_name"
+            android:layout_width="318dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="@color/light_blue"
+            android:hint="Name"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/member_email"
+            android:layout_width="318dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/light_blue"
+            android:hint="Email"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/member_phoneNum"
+            android:layout_width="318dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/light_blue"
+            android:hint="Phone"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:inputType="phone"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/member_designation"
+            android:layout_width="318dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/light_blue"
+            android:hint="Designation"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:inputType="textShortMessage"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:checkedButton="@+id/radio_button_1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_button_1"
+                android:layout_width="105dp"
+                android:padding="10dp"
+                android:buttonTint="@color/light_blue"
+                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/radio_button_2"
+                android:layout_width="105dp"
+                android:padding="10dp"
+                android:buttonTint="@color/light_blue"
+                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/radio_button_3"
+                android:layout_width="105dp"
+                android:padding="10dp"
+                android:buttonTint="@color/light_blue"
+                android:textColor="@color/black"
+                android:layout_height="match_parent"
+                android:text="Other" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/member_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:height="60dp"
+            android:padding="10dp"
+            android:text="SUBMIT"
+            android:textSize="15sp"
+            app:backgroundTint="@color/light_blue" />
+
+    </LinearLayout>
+</FrameLayout>
