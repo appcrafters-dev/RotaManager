@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.15683760683760684" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_admin_dashboard.xml" value="0.2" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_admin_profile.xml" value="0.176" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_admin_scheduler.xml" value="0.20512820512820512" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_edit_staff_member.xml" value="0.14358974358974358" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_login.xml" value="0.176" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_main.xml" value="0.136" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_new_staff_member.xml" value="0.14358974358974358" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_new_time_entry.xml" value="0.14358974358974358" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_staff_member_list.xml" value="0.20512820512820512" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/activity_time_change_request.xml" value="0.20512820512820512" />
+        <entry key="..\:/Users/ashwi/Desktop/git/TheRotaApp/app/src/main/res/layout/staff_members_listview.xml" value="0.176" />
         <entry key="..\:/projects/the_rota_app/TheRotaApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/projects/the_rota_app/TheRotaApp/app/src/main/res/layout/activity_main.xml" value="0.23854166666666668" />
         <entry key="..\:/projects/the_rota_app/TheRotaApp/app/src/main/res/layout/activity_splash.xml" value="0.1375" />
@@ -15,5 +27,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.20512820512820512" />
+      </ProjectState>
+    </option>
   </component>
 </project>

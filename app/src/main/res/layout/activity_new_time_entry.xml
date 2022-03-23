@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".admin.AdminProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        app:titleMarginStart="@android:dimen/app_icon_size"
+        android:theme="?attr/actionBarTheme" >
+        <ImageView
+            android:id="@+id/backButtonToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/textViewToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Add Time Entry: "
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDateToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Date"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+  </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/member_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:height="60dp"
+            android:padding="10dp"
+            android:text="SUBMIT"
+            android:textSize="15sp"
+            app:backgroundTint="@color/light_blue" />
+
+    </LinearLayout>
+
+</FrameLayout>

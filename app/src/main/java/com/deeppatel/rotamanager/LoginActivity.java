@@ -2,6 +2,7 @@ package com.deeppatel.rotamanager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.deeppatel.rotamanager.admin.AdminDashboard;
+import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,11 +28,14 @@ public class LoginActivity extends AppCompatActivity {
     private final String TAG = "LoginActivity";
     Toast errorToast;
     private FirebaseAuth mAuth;
+    private Button admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        admin = findViewById(R.id.adminDashboardRedirect);
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -41,6 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         EditText emailEt = findViewById(R.id.activity_login_et_email);
         EditText inviteCodeEt = findViewById(R.id.activity_login_et_invite_code);
         loginBtn.setOnClickListener(view -> performLogin(emailEt.getText().toString(), inviteCodeEt.getText().toString()));
+
+        admin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                new RedirectToActivity().redirectActivityAfterFinish(LoginActivity.this, AdminDashboard.class);
+            }
+        });
     }
 
     private void performLogin(String email, String inviteCode) {
