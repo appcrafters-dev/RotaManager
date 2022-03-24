@@ -32,6 +32,7 @@ public class StaffMemberList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staff_member_list);
+        getData();
         back = findViewById(R.id.backButtonToolbar);
         mFab = findViewById(R.id.staff_members_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
@@ -59,8 +60,7 @@ public class StaffMemberList extends AppCompatActivity {
                     List<QueryDocumentSnapshot> list = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         list.add(document);
-                        staffList.add(new StaffMemberDataModel(document.getId().toString(), document.get("name").toString(), document.get("email").toString(), "https://firebasestorage.googleapis.com/v0/b/inertia-28428.appspot.com/o/images%2F5Hto4ApUgzdZCqyRYXjB3XOTm3Y2%2FprofilePic.jpg?alt=media&token=da713f7a-f7c1-46ac-874d-718cfc6a03cd"));
-//                        Log.d("FireStore", document.getId().toString());
+                        staffList.add(new StaffMemberDataModel(document.getId(), document.get("name").toString(), document.get("email").toString(), "https://firebasestorage.googleapis.com/v0/b/inertia-28428.appspot.com/o/images%2F5Hto4ApUgzdZCqyRYXjB3XOTm3Y2%2FprofilePic.jpg?alt=media&token=da713f7a-f7c1-46ac-874d-718cfc6a03cd"));
                     }
 
                     // Load UI
