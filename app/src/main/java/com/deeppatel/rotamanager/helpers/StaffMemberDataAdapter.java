@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.admin.AdminDashboard;
+import com.deeppatel.rotamanager.admin.EditStaffMember;
 import com.deeppatel.rotamanager.admin.NewStaffMember;
 import com.deeppatel.rotamanager.admin.StaffMemberList;
 import com.squareup.picasso.Picasso;
@@ -39,10 +40,11 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
         holder.email.setText(listdata[position].getEmail());
 //        holder.memberImage.setImageResource(listdata[position].getPhotoURI());
         Picasso.get().load(listdata[position].getPhotoURI()).into(holder.memberImage);
+        holder.forwardButton.setImageResource(R.drawable.ic_baseline_chevron_right_24);
         holder.staffMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityAfterFinish(currentActivity, NewStaffMember.class);
+                new RedirectToActivity().redirectActivityOnly(currentActivity, EditStaffMember.class);
             }
         });
     }
@@ -55,6 +57,7 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView memberImage;
+        public ImageView forwardButton;
         public TextView name;
         public TextView email;
 
@@ -62,6 +65,7 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
         public ViewHolder(View itemView) {
             super(itemView);
             this.memberImage = (ImageView) itemView.findViewById(R.id.photoId);
+            this.forwardButton = (ImageView) itemView.findViewById(R.id.forward_button);
             this.name = (TextView) itemView.findViewById(R.id.member_name);
             this.email = (TextView) itemView.findViewById(R.id.member_email);
             staffMembers = (GridLayout) itemView.findViewById(R.id.staff_members_list);
