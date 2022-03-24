@@ -9,14 +9,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RotaManager">
         <activity
+            android:name=".admin.MemberTimeTable"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
             android:name=".admin.EditStaffMember"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".admin.NewStaffMember"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".admin.NewTimeEntry"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".admin.TimeChangeRequest"
             android:exported="true"

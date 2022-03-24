@@ -44,6 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
+            android:divider="@color/dark_blue"
+            android:dividerHeight="1px">
             android:layout_gravity="center_horizontal">
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

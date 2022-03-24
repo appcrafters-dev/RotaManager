@@ -9,21 +9,20 @@ import android.widget.ImageView;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 
-public class NewStaffMember extends AppCompatActivity {
+public class MemberTimeTable extends AppCompatActivity {
     private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_staff_member);
+        setContentView(R.layout.activity_member_time_table);
 
         back = findViewById(R.id.backButtonToolbar);
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityOnly(NewStaffMember.this, StaffMemberList.class);
+                new RedirectToActivity().redirectActivityOnly(MemberTimeTable.this, EditStaffMember.class);
             }
         });
-
     }
 }
