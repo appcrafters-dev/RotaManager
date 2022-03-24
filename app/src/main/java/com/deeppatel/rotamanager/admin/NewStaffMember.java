@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.deeppatel.rotamanager.LoginActivity;
@@ -33,7 +34,7 @@ public class NewStaffMember extends AppCompatActivity {
 
     private Button submit;
     private EditText memberNameView, emailView, phoneView, designationView;
-    private RadioButton gender;
+    private RadioGroup genderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,30 +45,37 @@ public class NewStaffMember extends AppCompatActivity {
         emailView = findViewById(R.id.member_email);
         phoneView = findViewById(R.id.member_phoneNum);
         designationView = findViewById(R.id.member_designation);
+        genderView = findViewById(R.id.radioGroup);
         submit = findViewById(R.id.member_submit);
-
-
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Staff", "hereeeee");
+
+//              Get All Strings here from UI
                 String memberName = memberNameView.getText().toString();
                 String email = emailView.getText().toString();
                 String phone = phoneView.getText().toString();
                 String designation = designationView.getText().toString();
+                RadioButton genderButton = (RadioButton) findViewById(genderView.getCheckedRadioButtonId());
+                String gender = genderButton.getText().toString();
                 FirebaseAuth mAuth;
                 mAuth = FirebaseAuth.getInstance();
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 String inviteCode = Long.toString(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()).getLong(), Character.MAX_RADIX);
+
+//              Hash Map to be sent directly as user
                 Map<String, Object> user = new HashMap<>();
                 user.put("name", memberName);
                 user.put("email", email);
                 user.put("phone", phone);
-                user.put("gender", designation);
+                user.put("gender", gender);
+                user.put("designation", designation);
                 user.put("inviteCode", inviteCode);
                 Log.d("member name", user.toString());
+
+//              Create new user from email and inviteCode
                 mAuth.createUserWithEmailAndPassword(email, inviteCode)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override

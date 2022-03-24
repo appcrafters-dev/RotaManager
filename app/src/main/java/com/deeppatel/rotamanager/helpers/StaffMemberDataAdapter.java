@@ -16,12 +16,14 @@ import com.squareup.picasso.Picasso;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 
 public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberDataAdapter.ViewHolder>{
-    private StaffMemberDataModel[] listdata;
+    private List<StaffMemberDataModel> listdata;
     private Activity currentActivity;
 
-    public StaffMemberDataAdapter(StaffMemberDataModel[] listdata, Activity currentActivity) {
+    public StaffMemberDataAdapter(List<StaffMemberDataModel> listdata, Activity currentActivity) {
         this.listdata = listdata;
         this.currentActivity = currentActivity;
     }
@@ -35,11 +37,11 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final StaffMemberDataModel myListData = listdata[position];
-        holder.name.setText(listdata[position].getName());
-        holder.email.setText(listdata[position].getEmail());
+        final StaffMemberDataModel myListData = listdata.get(position);
+        holder.name.setText(listdata.get(position).getName());
+        holder.email.setText(listdata.get(position).getEmail());
 //        holder.memberImage.setImageResource(listdata[position].getPhotoURI());
-        Picasso.get().load(listdata[position].getPhotoURI()).into(holder.memberImage);
+        Picasso.get().load(listdata.get(position).getPhotoURI()).into(holder.memberImage);
         holder.forwardButton.setImageResource(R.drawable.ic_baseline_chevron_right_24);
         holder.staffMembers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +54,7 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

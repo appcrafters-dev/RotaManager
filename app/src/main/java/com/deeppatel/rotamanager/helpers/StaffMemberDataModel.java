@@ -1,6 +1,6 @@
 package com.deeppatel.rotamanager.helpers;
 
-public class StaffMemberDataModel {
+public class StaffMemberDataModel{
     public String uid;
     public String name;
     public String email;
