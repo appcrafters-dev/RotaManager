@@ -31,6 +31,14 @@ public class LoginActivity extends AppCompatActivity {
     private Button admin;
 
     @Override
+    protected void onStart(){
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            new RedirectToActivity().redirectActivityAfterFinish(LoginActivity.this, AdminDashboard.class);
+        }
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
