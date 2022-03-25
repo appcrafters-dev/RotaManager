@@ -55,15 +55,20 @@
 
         <TextView
             android:id="@+id/Date"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="30dp"
             android:layout_marginBottom="20dp"
             android:height="60dp"
+            style="@style/Widget.MaterialComponents.MaterialCalendar"
             android:gravity="center_vertical"
             android:padding="10dp"
-            android:text="Date"
+            android:text="Pick a Date♦"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />

@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,17 +21,23 @@ import android.widget.TimePicker;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.ContactChip;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.pchmn.materialchips.ChipsInput;
 import com.pchmn.materialchips.model.ChipInterface;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class NewTimeEntry extends AppCompatActivity {
     private ImageView back;
-    private TextView fromTime,toTime;
+    private TextView fromTime,toTime, dateView;
     private Button submit;
+    final Calendar myCalendar= Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,24 @@ public class NewTimeEntry extends AppCompatActivity {
         chipsInput.setFilterableList(contactList);
         List<ContactChip> contactsSelected = (List<ContactChip>) chipsInput.getSelectedChipList();
 
+        dateView = findViewById(R.id.Date);
+
+        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH,month);
+                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                updateLabel();
+            }
+        };
+
+        dateView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                new DatePickerDialog(NewTimeEntry.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
         fromTime = findViewById(R.id.fromTime);
         fromTime.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +130,9 @@ public class NewTimeEntry extends AppCompatActivity {
             }
         });
     }
-
+    private void updateLabel(){
+        String myFormat="MM/dd/yy";
+        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+        dateView.setText(dateFormat.format(myCalendar.getTime()));
+    }
 }
-
