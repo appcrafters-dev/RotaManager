@@ -60,7 +60,7 @@ public class StaffMemberList extends AppCompatActivity {
                     List<QueryDocumentSnapshot> list = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         list.add(document);
-                        staffList.add(new StaffMemberDataModel(document.getId(), document.get("name").toString(), document.get("email").toString(), "https://firebasestorage.googleapis.com/v0/b/inertia-28428.appspot.com/o/images%2F5Hto4ApUgzdZCqyRYXjB3XOTm3Y2%2FprofilePic.jpg?alt=media&token=da713f7a-f7c1-46ac-874d-718cfc6a03cd"));
+                        staffList.add(new StaffMemberDataModel(document.getId(), document.get("name").toString(), document.get("email").toString(), "https://firebasestorage.googleapis.com/v0/b/inertia-28428.appspot.com/o/images%2F5Hto4ApUgzdZCqyRYXjB3XOTm3Y2%2FprofilePic.jpg?alt=media&token=da713f7a-f7c1-46ac-874d-718cfc6a03cd", document.get("phone").toString(), document.get("designation").toString(), document.get("gender").toString()));
                     }
 
                     // Load UI
