@@ -1,5 +1,6 @@
 package com.deeppatel.rotamanager.helpers;
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,7 +48,8 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
         holder.staffMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityOnly(currentActivity, EditStaffMember.class);
+                Log.d("holder data", listdata.get(position).getName());
+                new RedirectToActivity().redirectWithProps(currentActivity, EditStaffMember.class, listdata, position);
             }
         });
     }
