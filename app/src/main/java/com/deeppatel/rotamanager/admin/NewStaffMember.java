@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.deeppatel.rotamanager.LoginActivity;
+import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +35,8 @@ import com.deeppatel.rotamanager.R;
 public class NewStaffMember extends AppCompatActivity {
 
     private Button submit;
+    private ImageView back;
+
     private EditText memberNameView, emailView, phoneView, designationView;
     private RadioGroup genderView;
 
@@ -108,6 +112,14 @@ public class NewStaffMember extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+
+        back = findViewById(R.id.backButtonToolbar);
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                new RedirectToActivity().redirectActivityAfterFinish(NewStaffMember.this, StaffMemberList.class);
             }
         });
     }

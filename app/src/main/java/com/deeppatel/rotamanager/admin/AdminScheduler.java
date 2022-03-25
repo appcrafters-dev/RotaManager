@@ -23,7 +23,7 @@ public class AdminScheduler extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                new RedirectToActivity().redirectActivityOnly(AdminScheduler.this, NewTimeEntry.class);
+                new RedirectToActivity().redirectActivityAfterFinish(AdminScheduler.this, NewTimeEntry.class);
             }
         });
         back.setOnClickListener(new View.OnClickListener(){

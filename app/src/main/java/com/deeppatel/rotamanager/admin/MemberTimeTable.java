@@ -21,7 +21,7 @@ public class MemberTimeTable extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityOnly(MemberTimeTable.this, EditStaffMember.class);
+                new RedirectToActivity().redirectActivityAfterFinish(MemberTimeTable.this, EditStaffMember.class);
             }
         });
     }

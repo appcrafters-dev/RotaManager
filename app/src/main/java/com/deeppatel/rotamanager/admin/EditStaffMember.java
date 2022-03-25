@@ -23,13 +23,13 @@ public class EditStaffMember extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityOnly(EditStaffMember.this, StaffMemberList.class);
+                new RedirectToActivity().redirectActivityAfterFinish(EditStaffMember.this, StaffMemberList.class);
             }
         });
         share.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityOnly(EditStaffMember.this, MemberTimeTable.class);
+                new RedirectToActivity().redirectActivityAfterFinish(EditStaffMember.this, MemberTimeTable.class);
             }
         });
 

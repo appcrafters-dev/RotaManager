@@ -9,6 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RotaManager">
         <activity
+            android:name=".members.RequestTimeChangeRequest"
+            android:exported="true" />
+        <activity
+            android:name=".admin.ViewTimeChangeRequest"
+            android:exported="true" />
+        <activity
+            android:name=".members.MemberHomePage"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
             android:name=".admin.MemberTimeTable"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -23,7 +33,8 @@
         <activity
             android:name=".admin.NewTimeEntry"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".admin.TimeChangeRequest"
             android:exported="true"

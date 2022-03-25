@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dark_blue"
+        android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@color/white"
         app:titleMarginStart="@android:dimen/app_icon_size"
