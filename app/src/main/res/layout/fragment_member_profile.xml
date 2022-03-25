@@ -5,43 +5,30 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.AdminProfile">
+    tools:context=".members.MemberProfileFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:elevation="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dark_blue"
+        android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@color/white"
         app:titleMarginStart="@android:dimen/app_icon_size"
         android:theme="?attr/actionBarTheme" >
-        <ImageView
-            android:id="@+id/backButtonToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:paddingLeft="7dp"
-            android:paddingRight="5dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
 
         <TextView
             android:id="@+id/textViewToolbar"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:paddingLeft="10dp"
             android:gravity="center"
             android:text="New Member"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/memberSchedule"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_gravity="right"
-            android:src="@drawable/ic_outline_calendar_today_24" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -64,24 +51,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.322" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Name">
 
-            <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/member_name"
             android:layout_width="318dp"
             android:layout_height="55dp"
             android:layout_marginTop="25dp"
             android:backgroundTint="@color/light_blue"
             android:hint="Name"
-            style="@style/Widget.AppCompat.TextView"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:id="@+id/member_email"
@@ -158,18 +140,8 @@
                 android:text="Other" />
         </RadioGroup>
 
-        <Button
-            android:id="@+id/member_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
-            android:height="60dp"
-            android:padding="10dp"
-            android:text="SUBMIT"
-            android:textSize="15sp"
-            app:backgroundTint="@color/light_blue" />
+
 
     </LinearLayout>
+
 </FrameLayout>

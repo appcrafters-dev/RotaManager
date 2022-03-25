@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.deeppatel.rotamanager.LoginActivity;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.members.MemberHomePage;
 
 public class AdminDashboard extends AppCompatActivity {
 
@@ -49,7 +50,7 @@ public class AdminDashboard extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, AdminProfile.class);
+                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, MemberHomePage.class);
             }
         });
     }

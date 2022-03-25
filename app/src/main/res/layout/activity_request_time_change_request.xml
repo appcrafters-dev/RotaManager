@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.AdminProfile">
+    tools:context=".members.RequestTimeChangeRequest">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -30,20 +30,12 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="Add Time Entry: "
+            android:text="Request for Time Change"
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewDateToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="Date"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-  </androidx.appcompat.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="300dp"
@@ -59,14 +51,25 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginBottom="20dp"
-            android:height="60dp"
             android:gravity="center_vertical"
-            android:padding="10dp"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="2dp"
             android:text="Date"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="70dp"
+            android:gravity="center_vertical"
+            android:text="Time"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/fromTime"
@@ -82,11 +85,12 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:textColor="@color/black"
             android:textColorHint="@color/black"/>
+
         <TextView
             android:id="@+id/toTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:height="60dp"
             android:padding="10dp"
             android:gravity="center_vertical"
@@ -97,32 +101,21 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"/>
 
-        <com.pchmn.materialchips.ChipsInput
-            android:id="@+id/chips_input"
-            android:layout_width="300dp"
-            android:layout_height="176dp"
+        <TextView
+            android:id="@+id/reason"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
             android:layout_marginBottom="20dp"
-            android:paddingHorizontal="10dp"
             android:height="60dp"
-            android:background="@color/black"
-            android:backgroundTint="#DFDFDF"
-            android:gravity="center_vertical"
-            app:hint="Select Members"
-            app:hintColor="@color/black"
-            app:textColor="@color/dark_blue"
-            app:maxRows="4"
-            app:chip_hasAvatarIcon="true"
-            app:chip_deletable="true"
-            app:chip_labelColor="@color/black"
-            app:chip_backgroundColor="@color/browser_actions_bg_grey"
-            app:chip_deleteIconColor="@color/dark_blue"
-            app:chip_detailed_textColor="@color/black"
-            app:chip_detailed_backgroundColor="@color/black"
-            app:chip_detailed_deleteIconColor="@color/light_blue"
-            app:filterable_list_backgroundColor="#DCDCDC"
-            app:filterable_list_textColor="@color/black"
-            />
-
+            android:padding="10dp"
+            android:gravity="top"
+            android:text="Reason (Optional): "
+            android:inputType="textMultiLine"
+            android:textSize="18sp"
+            android:backgroundTint="@color/light_blue"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
         <Button
             android:id="@+id/member_submit"
             android:layout_width="match_parent"

@@ -56,7 +56,7 @@ public class StaffMemberList extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                new RedirectToActivity().redirectActivityOnly(StaffMemberList.this, NewStaffMember.class);
+                new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, NewStaffMember.class);
             }
         });
         back.setOnClickListener(new View.OnClickListener(){

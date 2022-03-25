@@ -23,4 +23,16 @@
         <item name="android:textStyle">normal</item>
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
+
+    <style name="ChipStyle.Readable" parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="android:textAppearance">@style/ChipTextAppearance.Readable</item>
+        <item name="chipBackgroundColor">@android:color/holo_orange_dark</item>
+    </style>
+
+    <style name="ChipTextAppearance.Readable" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

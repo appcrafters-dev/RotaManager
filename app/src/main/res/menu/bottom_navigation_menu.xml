@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/schedule"
+        android:enabled="true"
+        app:theme="@style/MyNavigationViewItemStyle"
+        android:icon="@drawable/ic_outline_calendar_today_24"
+        android:title="My Schedule"/>
+    <item
+        android:id="@+id/requests"
+        android:enabled="true"
+        app:theme="@style/MyNavigationViewItemStyle"
+        android:icon="@drawable/ic_outline_edit_note_24"
+        android:title="Requests"/>
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        app:theme="@style/MyNavigationViewItemStyle"
+        android:icon="@drawable/ic_outline_account_circle_24"
+        android:title="Profile"/>
+</menu>
