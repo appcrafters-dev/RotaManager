@@ -6,13 +6,15 @@ public class MemberTimeChangeRequestModel {
     public String day;
     public String status;
     public String time;
+    public String month;
 
-    public MemberTimeChangeRequestModel(String uid, String day, String status, String date, String time){
+    public MemberTimeChangeRequestModel(String uid, String day, String status, String date, String time,String month){
         this.uid = uid;
         this.date = date;
         this.day = day;
         this.status = status;
         this.time = time;
+        this.month = month;
     }
 
     public String getUid() {
@@ -33,5 +35,9 @@ public class MemberTimeChangeRequestModel {
 
     public String getTime() {
         return time;
+    }
+
+    public String getMonth() {
+        return month;
     }
 }

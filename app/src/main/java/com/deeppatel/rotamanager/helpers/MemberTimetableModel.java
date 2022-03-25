@@ -6,13 +6,15 @@ public class MemberTimetableModel {
     public String day;
     public String from;
     public String to;
+    public String month;
 
-    public MemberTimetableModel(String uid, String day, String date, String from, String to){
+    public MemberTimetableModel(String uid, String day, String date, String from, String to,String month){
         this.uid = uid;
         this.date = date;
         this.day = day;
         this.to = to;
         this.from = from;
+        this.month = month;
     }
 
     public String getUid() {
@@ -33,6 +35,10 @@ public class MemberTimetableModel {
 
     public String getTo() {
         return to;
+    }
+
+    public String getMonth() {
+        return month;
     }
 }
 

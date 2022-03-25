@@ -40,18 +40,14 @@ public class MemberRequestsFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
         MemberTimeChangeRequestModel[] myListData = new MemberTimeChangeRequestModel[]{
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM"),
-                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM")
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month"),
+                new MemberTimeChangeRequestModel("12","Tue","Approved","12","9:30 AM to 1:00 PM","month")
         };
 
         MemberTimeChangeRequestAdapter adapter = new MemberTimeChangeRequestAdapter(myListData, getActivity());

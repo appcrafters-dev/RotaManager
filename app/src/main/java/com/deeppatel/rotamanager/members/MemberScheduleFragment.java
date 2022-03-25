@@ -39,15 +39,15 @@ public class MemberScheduleFragment extends Fragment {
 
 
         MemberTimetableModel[] myListData = new MemberTimetableModel[]{
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM"),
-                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM")
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March"),
+                new MemberTimetableModel("12","Tue","12","9:00 AM","1:00 PM","March")
         };
 
         MemberTimetableAdapter adapter = new MemberTimetableAdapter(myListData, getActivity());
