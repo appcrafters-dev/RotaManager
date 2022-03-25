@@ -8,18 +8,50 @@
     android:background="#FFF"
     tools:context=".members.MemberScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/firstFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Schedule Fragment"
-        android:textSize="40sp"
-        android:textColor="@color/dark_blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="60dp"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="3dp"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@color/white"
+            app:titleMarginStart="@android:dimen/app_icon_size"
+            android:theme="?attr/actionBarTheme" >
+
+            <TextView
+                android:id="@+id/textViewToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="Date, Year"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/backButtonToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_marginTop="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:divider="@color/dark_blue"
+            android:layout_gravity="center_horizontal">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

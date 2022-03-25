@@ -52,18 +52,18 @@ public class StaffMemberList extends AppCompatActivity {
 
 
     back = findViewById(R.id.backButtonToolbar);
-        mFab = findViewById(R.id.staff_members_fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, NewStaffMember.class);
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, AdminDashboard.class);
-            }
-        });
+    mFab = findViewById(R.id.staff_members_fab);
+    mFab.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+            new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, NewStaffMember.class);
+        }
+    });
+    back.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, AdminDashboard.class);
+        }
+    });
     }
 }

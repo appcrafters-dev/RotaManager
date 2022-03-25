@@ -10,11 +10,5 @@
     <style name="MyNavigationViewItemStyle" parent="AppTheme">
         <item name="android:height">10dp</item>
     </style>
-    <style name="Widget.App.MaterialDivider" parent="Widget.MaterialComponents.MaterialDivider">
-        <item name="dividerColor">@color/colorAccent</item>
-    </style>
 
-    <style name="Widget.AppCompat.TextView." parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="backgroundTint">@color/colorAccent</item>
-    </style>
 </resources>

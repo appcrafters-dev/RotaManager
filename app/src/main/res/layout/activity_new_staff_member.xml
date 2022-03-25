@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.AdminProfile">
+    tools:context=".admin.EditStaffMember">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -56,6 +56,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.322" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Test me">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <EditText
             android:id="@+id/member_name"
@@ -64,11 +75,12 @@
             android:layout_marginTop="25dp"
             android:backgroundTint="@color/light_blue"
             android:hint="Name"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black" />
+
+
 
         <EditText
             android:id="@+id/member_email"
@@ -77,7 +89,8 @@
             android:layout_marginTop="12dp"
             android:backgroundTint="@color/light_blue"
             android:hint="Email"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/light_blue"
+            app:hintTextColor="@color/light_blue"
             android:inputType="textEmailAddress"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
