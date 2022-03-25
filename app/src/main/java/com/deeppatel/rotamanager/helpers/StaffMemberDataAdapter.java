@@ -66,14 +66,14 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
         public TextView name;
         public TextView email;
 
-        public RecyclerView staffMembers;
+        public GridLayout staffMembers;
         public ViewHolder(View itemView) {
             super(itemView);
             this.memberImage = (ImageView) itemView.findViewById(R.id.photoId);
             this.forwardButton = (ImageView) itemView.findViewById(R.id.forward_button);
             this.name = (TextView) itemView.findViewById(R.id.member_name);
             this.email = (TextView) itemView.findViewById(R.id.member_email);
-            staffMembers = (RecyclerView) itemView.findViewById(R.id.recyclerView);
+            staffMembers = (GridLayout) itemView.findViewById(R.id.staff_members_list);
         }
     }
 }
