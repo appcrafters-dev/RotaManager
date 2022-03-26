@@ -50,7 +50,7 @@ public class AdminDashboard extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, AdminProfile.class);
+                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, MemberHomePage.class);
             }
         });
     }

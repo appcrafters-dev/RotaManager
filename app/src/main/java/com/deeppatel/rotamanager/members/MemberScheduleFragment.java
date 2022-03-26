@@ -28,7 +28,9 @@ import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class MemberScheduleFragment extends Fragment {
@@ -38,8 +40,7 @@ public class MemberScheduleFragment extends Fragment {
     final Calendar myCalendar= Calendar.getInstance();
     private TextView dateView;
 
-    public MemberScheduleFragment() {
-    }
+    public MemberScheduleFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,13 +55,19 @@ public class MemberScheduleFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
         dateView = rootView.findViewById(R.id.textViewToolbar);
-
         dateView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateLabel();
             }
         });
+
+        List<MemberTimetableModel> myListData = new ArrayList<>();
+
+        MemberTimetableAdapter adapter = new MemberTimetableAdapter(myListData, getActivity());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Week 1"));
@@ -74,50 +81,41 @@ public class MemberScheduleFragment extends Fragment {
                 switch (tab.getPosition()) {
                     case 0:
                         Log.e("!!!!!!!!","0");
+                        myListData.clear();
+                        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "March"));
+                        adapter.notifyDataSetChanged();
+
                         break;
                     case 1:
                         Log.e("!!!!!!!!","1");
+                        myListData.clear();
+                        myListData.add(new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"));
+                        adapter.notifyDataSetChanged();
                         break;
 
                     case 2:
                         Log.e("!!!!!!!!","2");
+                        myListData.clear();
+                        myListData.add(new MemberTimetableModel("12", "Tue", "23", "9:00 AM", "1:00 PM", "March"));
+                        adapter.notifyDataSetChanged();
                         break;
 
                     case 3:
                         Log.e("!!!!!!!!","3");
+                        myListData.clear();
+                        adapter.notifyDataSetChanged();
                         break;
-
                 }
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) { }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) { }
         });
 
 
-        MemberTimetableModel[] myListData = new MemberTimetableModel[]{
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March"),
-                new MemberTimetableModel("12", "Tue", "12", "9:00 AM", "1:00 PM", "March")
-        };
-
-        MemberTimetableAdapter adapter = new MemberTimetableAdapter(myListData, getActivity());
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override

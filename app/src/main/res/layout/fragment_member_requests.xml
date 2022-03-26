@@ -31,7 +31,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:text="Date, Year"
+                android:text="Month, Year"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <ImageView

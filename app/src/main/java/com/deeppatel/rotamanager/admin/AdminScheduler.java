@@ -1,6 +1,7 @@
 package com.deeppatel.rotamanager.admin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +14,18 @@ import com.deeppatel.rotamanager.helpers.TimeEntryListAdapter;
 import com.deeppatel.rotamanager.helpers.TimeEntryListModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class AdminScheduler extends AppCompatActivity {
     private ImageView back;
@@ -45,33 +53,45 @@ public class AdminScheduler extends AppCompatActivity {
             }
         });
 
+        List<TimeEntryListModel> myListData = new ArrayList<>();
+        List<TimeEntryListModel> myListData2 = new ArrayList<>();
+//        myListData2 = myListData;
+
+        myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
+        myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
+        myListData.add(new TimeEntryListModel("12", "Tue", "13", "John Doe", "9:00 AM to 1:00 PM", "March"));
+        myListData.add(new TimeEntryListModel("12", "Tue", "14", "John Doe", "9:00 AM to 1:00 PM", "March"));
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        TimeEntryListAdapter adapter = new TimeEntryListAdapter(myListData2, AdminScheduler.this);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(AdminScheduler.this));
+        recyclerView.setAdapter(adapter);
+
         calendar = (CalendarView) findViewById(R.id.calendar);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view,
                     int year,
                     int month,
                     int dayOfMonth)
             {
-                String Date = dayOfMonth + "-" + (month + 1) + "-" + year;
-//                date_view.setText(Date);
+                String Date = dayOfMonth + "-" + Month.of(month + 1).name().toUpperCase();
+
+                myListData2.clear();
+                for (TimeEntryListModel x : myListData){
+                    String fu = x.getDate() + "-" + x.getMonth().toUpperCase();
+                    if (fu.equals(Date)){
+                        myListData2.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
+                    }
+                }
+                adapter.notifyDataSetChanged();
             }
         });
 
-        TimeEntryListModel[] myListData = new TimeEntryListModel[]{
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-                new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"),
-        };
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        TimeEntryListAdapter adapter = new TimeEntryListAdapter(myListData, AdminScheduler.this);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(AdminScheduler.this));
-        recyclerView.setAdapter(adapter);
+
+
     }
 }
