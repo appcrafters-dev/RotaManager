@@ -12,6 +12,14 @@ public class ContactChip implements ChipInterface {
     private String name;
     private String email;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public ContactChip(String id, String name, String email) {
         this.id = id;
 //        this.avatarUri = avatarUri;
