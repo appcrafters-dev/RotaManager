@@ -34,4 +34,15 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/parent_recyclerview"
+        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:divider="@color/dark_blue"
+        android:layout_gravity="center_horizontal">
+    </androidx.recyclerview.widget.RecyclerView>
+
 </FrameLayout>
