@@ -102,7 +102,7 @@ public class MemberScheduleFragment extends Fragment {
 
 
     private void updateLabel() {
-        String myFormat = "MMMM,yyyy";
+        String myFormat = "MMMM, yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
         dateView.setText(dateFormat.format(myCalendar.getTime()));
     }

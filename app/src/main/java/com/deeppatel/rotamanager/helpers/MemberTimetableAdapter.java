@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.admin.EditStaffMember;
+import com.deeppatel.rotamanager.admin.TimeChangeRequest;
+import com.deeppatel.rotamanager.members.RequestTimeChangeRequest;
 
 public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetableAdapter.ViewHolder> {
     private MemberTimetableModel[] listdata;
@@ -45,6 +47,7 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
             @Override
             public void onClick(View v) {
                 Log.e("!!!!!!!!!","aaaaaa");
+                new RedirectToActivity().redirectActivityAfterFinish(currentActivity, RequestTimeChangeRequest.class);
             }
         });
     }
