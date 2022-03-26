@@ -59,12 +59,9 @@ public class TimeChangeRequest extends AppCompatActivity {
         Dictionary idkidk = new Hashtable();
 
         for (TimeChangeRequestChildModel x : ChildItemList()){
-
             String key = x.getDate()+"-"+ x.getMonth().toUpperCase();
 
-
             List<TimeChangeRequestChildModel> lmao = new ArrayList<>();
-            Log.e("!!!!!!!!!!aaaaaaaaaaaaaa",key);
             if(idkidk.get(key) == null){
                 lmao.add(x);
                 idkidk.put(key,lmao);
@@ -75,7 +72,6 @@ public class TimeChangeRequest extends AppCompatActivity {
                 idkidk.put(key,lmao);
             }
         }
-        Log.e("!!!!!!!!!!aaaaaaaaaaaaaa",idkidk.toString());
 
         List<TimeChangeRequestParentModel> itemList = new ArrayList<>();
 
