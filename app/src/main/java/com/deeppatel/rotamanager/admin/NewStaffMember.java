@@ -112,6 +112,7 @@ public class NewStaffMember extends AppCompatActivity {
                                 }
                             }
                         });
+                new RedirectToActivity().redirectActivityAfterFinish(NewStaffMember.this, StaffMemberList.class);
             }
         });
 
