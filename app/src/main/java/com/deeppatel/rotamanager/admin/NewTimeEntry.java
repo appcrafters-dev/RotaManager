@@ -77,17 +77,20 @@ public class NewTimeEntry extends AppCompatActivity {
                         contactList.add(new ContactChip(document.getId(), document.get("name").toString(), document.get("email").toString()));
                     }
                     Log.d("FireStore Data", list.toString());
-                    Log.i("Chips Loader", contactList.toString());
+                    Log.e("Chips Loader", contactList.toString());
+
                     chipsInput.setFilterableList(contactList);
+                    chipsInput.requestLayout();
                     contactsSelected = (List<ContactChip>) chipsInput.getSelectedChipList();
+
 
                 } else {
                     Log.d("FireStore Data", "Error getting documents: ", task.getException());
                 }
             }
         });
-        dateView = findViewById(R.id.Date);
 
+        dateView = findViewById(R.id.Date);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -97,7 +100,6 @@ public class NewTimeEntry extends AppCompatActivity {
                 updateLabel();
             }
         };
-
         dateView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -43,15 +43,14 @@
         <CalendarView
             android:id="@+id/calendar"
             android:layout_gravity="center|top"
-            android:weekDayTextAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-            android:dateTextAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:weekDayTextAppearance="@font/roboto_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </CalendarView>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="30dp"
             app:dividerColor="@color/light_blue"
             android:layout_height="wrap_content"/>
 

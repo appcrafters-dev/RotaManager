@@ -124,8 +124,8 @@
             android:paddingHorizontal="15dp"
             android:layout_marginBottom="20dp"
             android:height="60dp"
-            android:background="@color/black"
-            android:backgroundTint="#DFDFDF"
+            android:background="@drawable/rounded_corners_top"
+            android:backgroundTint="#CFCFCF"
             android:gravity="center_vertical"
             app:hint="Select Members"
             app:hintColor="@color/black"
@@ -139,7 +139,7 @@
             app:chip_detailed_textColor="@color/black"
             app:chip_detailed_backgroundColor="@color/black"
             app:chip_detailed_deleteIconColor="@color/light_blue"
-            app:filterable_list_backgroundColor="#DCDCDC"
+            app:filterable_list_backgroundColor="#EDEDED"
             app:filterable_list_textColor="@color/black"
             />
 
