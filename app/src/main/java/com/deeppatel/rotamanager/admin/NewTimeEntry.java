@@ -1,8 +1,11 @@
 package com.deeppatel.rotamanager.admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -21,8 +24,15 @@ import android.widget.TimePicker;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.ContactChip;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.helpers.StaffMemberDataAdapter;
+import com.deeppatel.rotamanager.helpers.StaffMemberDataModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pchmn.materialchips.ChipsInput;
 import com.pchmn.materialchips.model.ChipInterface;
 
@@ -37,6 +47,16 @@ public class NewTimeEntry extends AppCompatActivity {
     private TextView fromTime,toTime, dateView;
     private Button submit;
     final Calendar myCalendar= Calendar.getInstance();
+    List<ContactChip> contactList = new ArrayList<>();
+    List<String> names = new ArrayList<>();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<ContactChip> contactsSelected;
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +64,28 @@ public class NewTimeEntry extends AppCompatActivity {
         setContentView(R.layout.activity_new_time_entry);
 
 
-        ChipsInput chipsInput = (ChipsInput) findViewById(R.id.chips_input);
-        List<ContactChip> contactList = new ArrayList<>();
-        contactList.add(new ContactChip("AAAAAAAAAAAAA","John Doe","AAAA"));
-        contactList.add(new ContactChip("AABB","AABBBBBBBBBBBB","AABB"));
-        contactList.add(new ContactChip("AACC","AACC","AACC"));
-        contactList.add(new ContactChip("BBBB","BBBB","BBBB"));
-        contactList.add(new ContactChip("CCCC","CCCC","CCCC"));
-        contactList.add(new ContactChip("DDDD","DDDD","DDDD"));
+        ChipsInput chipsInput = findViewById(R.id.chips_input);
+        db.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<QueryDocumentSnapshot> list = new ArrayList<>();
 
-        chipsInput.setFilterableList(contactList);
-        List<ContactChip> contactsSelected = (List<ContactChip>) chipsInput.getSelectedChipList();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(document);
+                        names.add(document.get("name").toString());
+                        contactList.add(new ContactChip(document.getId(), document.get("name").toString(), document.get("email").toString()));
+                    }
+                    Log.d("FireStore Data", list.toString());
+                    Log.i("Chips Loader", contactList.toString());
+                    chipsInput.setFilterableList(contactList);
+                    contactsSelected = (List<ContactChip>) chipsInput.getSelectedChipList();
 
+                } else {
+                    Log.d("FireStore Data", "Error getting documents: ", task.getException());
+                }
+            }
+        });
         dateView = findViewById(R.id.Date);
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -126,6 +156,23 @@ public class NewTimeEntry extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                names.add("asd2");
+                names.add("testttt12");
+                db.collection("users").whereEqualTo("name", names)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d("New Entry Names", document.getId() + " => " + document.getData());
+                                    }
+                                } else {
+                                    Log.d("New Entry Names", "Error getting documents: ", task.getException());
+                                }
+
+                            }
+                        });
                 Log.e("AAAAAe!!!!!!!!!!", contactsSelected.toString());
             }
         });
