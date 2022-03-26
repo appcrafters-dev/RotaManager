@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.deeppatel.rotamanager.helpers.MemberTimeChangeRequestModel;
 import com.deeppatel.rotamanager.helpers.MemberTimetableAdapter;
 import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,6 +59,45 @@ public class MemberScheduleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 updateLabel();
+            }
+        });
+
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Week 1"));
+        tabLayout.addTab(tabLayout.newTab().setText("Week 2"));
+        tabLayout.addTab(tabLayout.newTab().setText("Week 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Week 4"));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                switch (tab.getPosition()) {
+                    case 0:
+                        Log.e("!!!!!!!!","0");
+                        break;
+                    case 1:
+                        Log.e("!!!!!!!!","1");
+                        break;
+
+                    case 2:
+                        Log.e("!!!!!!!!","2");
+                        break;
+
+                    case 3:
+                        Log.e("!!!!!!!!","3");
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 

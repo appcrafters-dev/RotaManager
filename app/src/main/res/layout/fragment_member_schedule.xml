@@ -44,19 +44,22 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context=".fragments.FragmentViewPagerActivity">
-
-        </LinearLayout>
+            android:layout_height="105dp"
+            app:tabSelectedTextColor="@color/white"
+            android:background="@drawable/rounded_corners_top"
+            app:menu="@menu/selected_nav"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_marginTop="200dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:scrollbars="vertical"
             android:divider="@color/dark_blue"
             android:layout_gravity="center_horizontal">
