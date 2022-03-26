@@ -31,7 +31,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:text="Date, Year"
+                android:text="Month, Year"
                 android:textSize="18sp"
                 android:textStyle="bold" />
             <ImageView
@@ -47,7 +47,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:divider="@color/dark_blue"
             android:layout_gravity="center_horizontal">

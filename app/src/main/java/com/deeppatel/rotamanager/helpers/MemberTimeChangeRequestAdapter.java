@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
 
+import java.util.List;
+
 public class MemberTimeChangeRequestAdapter extends RecyclerView.Adapter<MemberTimeChangeRequestAdapter.ViewHolder>{
-    private MemberTimeChangeRequestModel[] listdata;
+    private List<MemberTimeChangeRequestModel> listdata;
     private Activity currentActivity;
 
-    public MemberTimeChangeRequestAdapter(MemberTimeChangeRequestModel[] listdata, Activity currentActivity) {
+    public MemberTimeChangeRequestAdapter(List<MemberTimeChangeRequestModel> listdata, Activity currentActivity) {
         this.listdata = listdata;
         this.currentActivity = currentActivity;
     }
@@ -28,17 +30,17 @@ public class MemberTimeChangeRequestAdapter extends RecyclerView.Adapter<MemberT
 
     @Override
     public void onBindViewHolder(MemberTimeChangeRequestAdapter.ViewHolder holder, int position) {
-        final MemberTimeChangeRequestModel myListData = listdata[position];
-        holder.date.setText(listdata[position].getDate());
-        holder.day.setText(listdata[position].getDay());
-        holder.status.setText(listdata[position].getStatus());
-        holder.time.setText(listdata[position].getTime());
+        final MemberTimeChangeRequestModel myListData = listdata.get(position);
+        holder.date.setText(listdata.get(position).getDate());
+        holder.day.setText(listdata.get(position).getDay());
+        holder.status.setText(listdata.get(position).getStatus());
+        holder.time.setText(listdata.get(position).getTime());
     }
 
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

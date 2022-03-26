@@ -17,11 +17,13 @@ import com.deeppatel.rotamanager.admin.EditStaffMember;
 import com.deeppatel.rotamanager.admin.TimeChangeRequest;
 import com.deeppatel.rotamanager.members.RequestTimeChangeRequest;
 
+import java.util.List;
+
 public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetableAdapter.ViewHolder> {
-    private MemberTimetableModel[] listdata;
+    private List<MemberTimetableModel> listdata;
     private Activity currentActivity;
 
-    public MemberTimetableAdapter(MemberTimetableModel[] listdata, Activity currentActivity) {
+    public MemberTimetableAdapter(List<MemberTimetableModel> listdata, Activity currentActivity) {
         this.listdata = listdata;
         this.currentActivity = currentActivity;
     }
@@ -35,11 +37,11 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
 
     @Override
     public void onBindViewHolder(MemberTimetableAdapter.ViewHolder holder, int position) {
-        final MemberTimetableModel myListData = listdata[position];
-        holder.date.setText(listdata[position].getDate());
-        holder.day.setText(listdata[position].getDay());
-        holder.from.setText(listdata[position].getFrom());
-        holder.to.setText(listdata[position].getTo());
+        final MemberTimetableModel myListData = listdata.get(position);
+        holder.date.setText(listdata.get(position).getDate());
+        holder.day.setText(listdata.get(position).getDay());
+        holder.from.setText(listdata.get(position).getFrom());
+        holder.to.setText(listdata.get(position).getTo());
 
         holder.more.setVisibility(View.VISIBLE);
         holder.more.setClickable(true);
@@ -55,7 +57,7 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -19,10 +19,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class TimeEntryListAdapter extends RecyclerView.Adapter<TimeEntryListAdapter.ViewHolder>{
-    private TimeEntryListModel[] listdata;
+    private List<TimeEntryListModel> listdata;
     private Activity currentActivity;
 
-    public TimeEntryListAdapter(TimeEntryListModel[] listdata, Activity currentActivity) {
+    public TimeEntryListAdapter(List<TimeEntryListModel> listdata, Activity currentActivity) {
         this.listdata = listdata;
         this.currentActivity = currentActivity;
     }
@@ -36,11 +36,11 @@ public class TimeEntryListAdapter extends RecyclerView.Adapter<TimeEntryListAdap
 
     @Override
     public void onBindViewHolder(TimeEntryListAdapter.ViewHolder holder, int position) {
-        final TimeEntryListModel myListData = listdata[position];
-        holder.name.setText(listdata[position].getName());
-        holder.day.setText(listdata[position].getDay());
-        holder.date.setText(listdata[position].getDate());
-        holder.time.setText(listdata[position].getTime());
+        final TimeEntryListModel myListData = listdata.get(position);
+        holder.name.setText(listdata.get(position).getName());
+        holder.day.setText(listdata.get(position).getDay());
+        holder.date.setText(listdata.get(position).getDate());
+        holder.time.setText(listdata.get(position).getTime());
 
         holder.time_entry_list_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class TimeEntryListAdapter extends RecyclerView.Adapter<TimeEntryListAdap
 
     @Override
     public int getItemCount() {
-        return listdata.length;
+        return listdata.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
