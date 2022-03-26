@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.deeppatel.rotamanager.LoginActivity;
+import com.deeppatel.rotamanager.helpers.AdminUser;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -66,6 +67,7 @@ public class NewStaffMember extends AppCompatActivity {
                 String gender = genderButton.getText().toString();
                 FirebaseAuth mAuth;
                 mAuth = FirebaseAuth.getInstance();
+                FirebaseUser FirebaseUserLoggedIn = mAuth.getCurrentUser();
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 String inviteCode = Long.toString(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()).getLong(), Character.MAX_RADIX);
 
@@ -94,6 +96,8 @@ public class NewStaffMember extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void unused) {
                                                     Log.d("FireStore", "DocumentSnapshot successfully written!");
+                                                    mAuth.signOut();
+                                                    mAuth.signInWithEmailAndPassword(AdminUser.email_, AdminUser.password_);
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {

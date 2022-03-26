@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="New Member"
+                android:text="Admin Profile"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -171,7 +171,7 @@
             android:layout_marginBottom="10dp"
             android:height="60dp"
             android:padding="10dp"
-            android:text="SUBMIT"
+            android:text="Update"
             android:textSize="15sp"
             app:backgroundTint="@color/light_blue" />
         <Button

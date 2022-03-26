@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.admin.AdminDashboard;
+import com.deeppatel.rotamanager.helpers.AdminUser;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
+                            new AdminUser(email,inviteCode);
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginActivity.this, "Done", Toast.LENGTH_LONG).show();
                             if(admin){

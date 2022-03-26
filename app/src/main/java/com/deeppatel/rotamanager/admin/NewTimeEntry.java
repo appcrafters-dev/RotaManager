@@ -217,9 +217,15 @@ public class NewTimeEntry extends AppCompatActivity {
                         });
                 Log.e("AAAAAe!!!!!!!!!!", contactsSelected.get(0).getName());
                 Toast.makeText(NewTimeEntry.this, "weeeeeee", Toast.LENGTH_SHORT).show();
+                new RedirectToActivity().redirectActivityAfterFinish(NewTimeEntry.this, AdminScheduler.class);
             }
         });
     }
+
+    private void checkScheduleTime(){
+        Log.i("TO DO", "Check if the time slot exists");
+    }
+
     private void updateLabel(){
         String myFormat="MM/dd/yy";
         SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
