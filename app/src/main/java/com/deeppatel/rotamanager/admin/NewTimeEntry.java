@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.ContactChip;
@@ -27,9 +28,12 @@ import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.deeppatel.rotamanager.helpers.StaffMemberDataAdapter;
 import com.deeppatel.rotamanager.helpers.StaffMemberDataModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,18 +43,25 @@ import com.pchmn.materialchips.model.ChipInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class NewTimeEntry extends AppCompatActivity {
     private ImageView back;
     private TextView fromTime,toTime, dateView;
     private Button submit;
-    final Calendar myCalendar= Calendar.getInstance();
+    Calendar myCalendar= Calendar.getInstance();
+    Calendar mcurrentTime = Calendar.getInstance();
+    Calendar mcurrentTimeTo = Calendar.getInstance();
     List<ContactChip> contactList = new ArrayList<>();
     List<String> names = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     List<ContactChip> contactsSelected;
+    Timestamp dateTime;
+    Timestamp fromTimeStamp;
+    Timestamp toTimeStamp;
 
 
     @Override
@@ -73,7 +84,6 @@ public class NewTimeEntry extends AppCompatActivity {
 
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         list.add(document);
-                        names.add(document.get("name").toString());
                         contactList.add(new ContactChip(document.getId(), document.get("name").toString(), document.get("email").toString()));
                     }
                     Log.d("FireStore Data", list.toString());
@@ -97,6 +107,7 @@ public class NewTimeEntry extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH,month);
                 myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                dateTime = new Timestamp(myCalendar.getTime());
                 updateLabel();
             }
         };
@@ -111,15 +122,16 @@ public class NewTimeEntry extends AppCompatActivity {
         fromTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
+                mcurrentTime.set(myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DATE));
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mcurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-
                 mTimePicker = new TimePickerDialog(NewTimeEntry.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         fromTime.setText("From : " + selectedHour + ":" + selectedMinute);
+                        mcurrentTime.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        mcurrentTime.set(Calendar.MINUTE, selectedMinute);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Select Time");
@@ -131,14 +143,18 @@ public class NewTimeEntry extends AppCompatActivity {
         toTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
+                mcurrentTimeTo.set(myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DATE));
+
+                int hour = mcurrentTimeTo.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTimeTo.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
+                toTimeStamp = new Timestamp(mcurrentTimeTo.getTime());
                 mTimePicker = new TimePickerDialog(NewTimeEntry.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         toTime.setText("To : " + selectedHour + ":" + selectedMinute);
+                        mcurrentTimeTo.set(Calendar.HOUR_OF_DAY, selectedHour);
+                        mcurrentTimeTo.set(Calendar.MINUTE, selectedMinute);
                     }
                 }, hour, minute, false);
                 mTimePicker.setTitle("Select Time");
@@ -158,24 +174,49 @@ public class NewTimeEntry extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                names.add("asd2");
-                names.add("testttt12");
-                db.collection("users").whereEqualTo("name", names)
+                for (int i = 0; i < contactsSelected.size(); i++) {
+                    names.add(contactsSelected.get(i).getName());
+                }
+                fromTimeStamp = new Timestamp(mcurrentTime.getTime());
+                toTimeStamp = new Timestamp(mcurrentTimeTo.getTime());
+                Map<String, Object> schedule = new HashMap<>();
+                schedule.put("date", dateTime);
+                schedule.put("from", fromTimeStamp);
+                schedule.put("to", toTimeStamp);
+
+                db.collection("users").whereIn("name", names)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                Log.i("names", names.toString());
                                 if (task.isSuccessful()) {
+                                    Log.i("Inside", "Query Snapshot " + task.getResult().size());
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Log.d("New Entry Names", document.getId() + " => " + document.getData());
+                                        db.collection("users").document(document.getId()).collection("Schedule").document()
+                                                .set(schedule)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Log.d("FireStore", "DocumentSnapshot successfully written!");
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.d("Staff", "Error adding document", e);
+                                                    }
+                                                });
+                                        Log.i("New Entry Names", document.getId() + " => " + document.getData());
                                     }
                                 } else {
-                                    Log.d("New Entry Names", "Error getting documents: ", task.getException());
+                                    Log.i("New Entry Names", "Error getting documents: ", task.getException());
                                 }
 
                             }
                         });
-                Log.e("AAAAAe!!!!!!!!!!", contactsSelected.toString());
+                Log.e("AAAAAe!!!!!!!!!!", contactsSelected.get(0).getName());
+                Toast.makeText(NewTimeEntry.this, "weeeeeee", Toast.LENGTH_SHORT).show();
             }
         });
     }
