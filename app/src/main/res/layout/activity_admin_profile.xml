@@ -7,48 +7,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".admin.AdminProfile">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:elevation="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_blue"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/white"
-        app:titleMarginStart="@android:dimen/app_icon_size"
-        android:theme="?attr/actionBarTheme" >
-        <ImageView
-            android:id="@+id/backButtonToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:paddingLeft="7dp"
-            android:paddingRight="5dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
-
-        <TextView
-            android:id="@+id/textViewToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="New Member"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/memberSchedule"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_gravity="right"
-            android:src="@drawable/ic_outline_calendar_today_24" />
-    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
+        android:gravity="top|center"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:elevation="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_marginBottom="20dp"
+            app:titleTextColor="@color/white"
+            app:titleMarginStart="@android:dimen/app_icon_size"
+            android:theme="?attr/actionBarTheme" >
+            <ImageView
+                android:id="@+id/backButtonToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:paddingLeft="7dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+            <TextView
+                android:id="@+id/textViewToolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="New Member"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            </androidx.appcompat.widget.Toolbar>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/uploadDP"
@@ -72,7 +66,7 @@
             style="@style/LoginTextInputLayoutStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_name"
+                android:id="@+id/admin_name"
                 android:layout_width="318dp"
                 android:layout_height="55dp"
                 android:hint="Name"
@@ -90,7 +84,7 @@
             style="@style/LoginTextInputLayoutStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_email"
+                android:id="@+id/admin_email"
                 android:layout_width="318dp"
                 android:layout_height="55dp"
                 android:hint="Email"
@@ -106,7 +100,7 @@
             android:layout_height="wrap_content"
             style="@style/LoginTextInputLayoutStyle">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_phoneNum"
+                android:id="@+id/admin_phoneNum"
                 android:layout_width="318dp"
                 android:layout_height="55dp"
                 android:hint="Phone"
@@ -123,7 +117,7 @@
             style="@style/LoginTextInputLayoutStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/member_designation"
+                android:id="@+id/admin_designation"
                 android:layout_width="318dp"
                 android:layout_height="55dp"
                 android:hint="Designation"
@@ -170,17 +164,27 @@
         </RadioGroup>
 
         <Button
-            android:id="@+id/member_submit"
+            android:id="@+id/admin_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:height="60dp"
             android:padding="10dp"
             android:text="SUBMIT"
             android:textSize="15sp"
             app:backgroundTint="@color/light_blue" />
+        <Button
+            android:id="@+id/admin_logout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="20dp"
+            android:height="60dp"
+            android:padding="10dp"
+            android:text="Log out"
+            android:textSize="15sp"
+            app:backgroundTint="#FF4343" />
 
     </LinearLayout>
 </FrameLayout>
