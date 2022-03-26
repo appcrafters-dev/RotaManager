@@ -38,7 +38,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:id="@+id/line1"
         android:gravity="top"
         android:layout_gravity="center"
@@ -71,51 +71,60 @@
             android:textColor="@color/black"
             android:textSize="18sp"/>
 
-        <TextView
-            android:id="@+id/fromTime"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:height="60dp"
-            android:padding="10dp"
-            android:gravity="center_vertical"
-            android:text="From : "
-            android:textSize="18sp"
-            android:backgroundTint="@color/light_blue"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            style="@style/LoginTextInputLayoutStyle">
 
-        <TextView
-            android:id="@+id/toTime"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fromTime"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:hint="From: "
+                android:inputType="textShortMessage"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:height="60dp"
-            android:padding="10dp"
-            android:gravity="center_vertical"
-            android:text="To : "
-            android:textSize="18sp"
-            android:backgroundTint="@color/light_blue"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            style="@style/LoginTextInputLayoutStyle">
 
-        <TextView
-            android:id="@+id/reason"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:layout_marginBottom="20dp"
-            android:height="60dp"
-            android:padding="10dp"
-            android:gravity="top"
-            android:text="Reason (Optional): "
-            android:inputType="textMultiLine"
-            android:textSize="18sp"
-            android:backgroundTint="@color/light_blue"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/toTime"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:hint="To: "
+                android:inputType="textShortMessage"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            style="@style/LoginTextInputLayoutStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/reason"
+                android:layout_width="318dp"
+                android:gravity="top"
+
+                android:layout_height="135dp"
+                android:hint="Reason (Optional): "
+                android:inputType="textMultiLine"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="18sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/member_submit"
             android:layout_width="match_parent"

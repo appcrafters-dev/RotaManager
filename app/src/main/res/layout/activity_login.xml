@@ -26,14 +26,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailTextInput"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:hint="Email"
-            app:boxStrokeColor="@color/light_blue"
-            app:hintTextColor="@color/light_blue">
+            android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/activity_login_et_email"
@@ -44,14 +42,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/InviteCodeTextInput"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:hint="Invite Code"
-            app:boxStrokeColor="@color/light_blue"
-            app:hintTextColor="@color/light_blue">
+            android:hint="Invite Code">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/activity_login_et_invite_code"

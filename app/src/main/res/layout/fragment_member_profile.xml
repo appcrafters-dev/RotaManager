@@ -50,59 +50,74 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.322" />
-
-
-        <EditText
-            android:id="@+id/member_name"
-            android:layout_width="318dp"
-            android:layout_height="55dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:backgroundTint="@color/light_blue"
-            android:hint="Name"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            style="@style/LoginTextInputLayoutStyle">
 
-        <EditText
-            android:id="@+id/member_email"
-            android:layout_width="318dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/light_blue"
-            android:hint="Email"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_name"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
 
-        <EditText
-            android:id="@+id/member_phoneNum"
-            android:layout_width="318dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="@color/light_blue"
-            android:hint="Phone"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:inputType="phone"
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/member_designation"
-            android:layout_width="318dp"
-            android:layout_height="55dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
             android:layout_marginTop="12dp"
-            android:backgroundTint="@color/light_blue"
-            android:hint="Designation"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:inputType="textShortMessage"
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:layout_height="wrap_content"
+            style="@style/LoginTextInputLayoutStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_email"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            style="@style/LoginTextInputLayoutStyle">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_phoneNum"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            style="@style/LoginTextInputLayoutStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/member_designation"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:hint="Designation"
+                android:inputType="textShortMessage"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <RadioGroup
             android:id="@+id/radioGroup"
