@@ -65,6 +65,7 @@ public class StaffMemberList extends AppCompatActivity {
                     staffMembersRecyclerView.setHasFixedSize(true);
                     staffMembersRecyclerView.setLayoutManager(new LinearLayoutManager(StaffMemberList.this));
                     staffMembersRecyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 } else if (errorMessage != null) {
                     Utils.showToastMessage(StaffMemberList.this, errorMessage);
                 }

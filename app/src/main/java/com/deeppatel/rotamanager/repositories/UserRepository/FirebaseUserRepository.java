@@ -28,7 +28,7 @@ public class FirebaseUserRepository extends FirebaseRepository implements UserRe
                 getCollectionReference("users").whereNotEqualTo("role","admin"),
                 User.class,
                 onCompleteListener
-        );
+        )   ;
     }
 
     public void getTimeEntries(String uid, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener) {

@@ -31,6 +31,4 @@ public class RepositoryResult<T> {
         this.errorMessage = null;
         this.result = result;
     }
-
-
 }
