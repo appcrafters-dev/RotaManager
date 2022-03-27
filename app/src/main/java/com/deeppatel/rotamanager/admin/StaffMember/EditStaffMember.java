@@ -28,6 +28,7 @@ import java.util.Map;
 public class EditStaffMember extends AppCompatActivity {
     private ImageView back, memberDpView;
     private ImageView share;
+
     private TextView nameView, emailView, designationView, phoneView;
     private Button update;
 
@@ -37,7 +38,7 @@ public class EditStaffMember extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_staff_member);
-        Intent intent = getIntent();
+            Intent intent = getIntent();
         User user = intent.getExtras().getParcelable("member");
         String name = user.getName();
         String email = user.getEmail();
@@ -109,7 +110,7 @@ public class EditStaffMember extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Navigate.to(EditStaffMember.this, MemberTimeTable.class);
+               Navigate.to(EditStaffMember.this, MemberTimeTable.class, "user", user);
             }
         });
 

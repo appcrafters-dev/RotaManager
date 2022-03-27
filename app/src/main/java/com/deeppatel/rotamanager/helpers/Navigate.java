@@ -10,7 +10,7 @@ import com.deeppatel.rotamanager.member.MemberHomePage;
 import com.deeppatel.rotamanager.models.User;
 
 public class Navigate {
-    public static void to(Activity fromContext, Class toContext, String key, User value) {
+    public static<T extends Parcelable> void to(Activity fromContext, Class toContext, String key, T value) {
         Intent intent = new Intent(fromContext, toContext);
         intent.putExtra(key, value);
         fromContext.startActivity(intent);

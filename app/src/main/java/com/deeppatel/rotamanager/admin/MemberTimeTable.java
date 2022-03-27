@@ -1,13 +1,17 @@
 package com.deeppatel.rotamanager.admin;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -18,19 +22,30 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.MemberTimetableAdapter;
 import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
+import com.deeppatel.rotamanager.models.TimeEntry;
+import com.deeppatel.rotamanager.models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import com.deeppatel.rotamanager.admin.StaffMember.EditStaffMember;
 import com.deeppatel.rotamanager.helpers.Navigate;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MemberTimeTable extends AppCompatActivity {
     private ImageView back;
+    private TextView memberNameNavbar;
     String myFormat = "MMMM, yyyy", monthFormatt = "MMMM";
     SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US), monthFormat = new SimpleDateFormat(monthFormatt, Locale.US);
     final Calendar myCalendar = Calendar.getInstance(Locale.US);
@@ -46,23 +61,41 @@ public class MemberTimeTable extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_time_table);
-
+        Intent intent = getIntent();
+        User user = intent.getExtras().getParcelable("user");
+        String Uid = user.getUid();
+        String name = user.getName();
+        memberNameNavbar = findViewById(R.id.memberNameViewToolbar);
+        memberNameNavbar.setText(name);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        List<MemberTimetableModel> Schedule = new ArrayList<MemberTimetableModel>();
+        db.collection("users").document(Uid).collection("Schedule").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SimpleDateFormat")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()){
+                                Timestamp from, to;
+                                from = (Timestamp) doc.get("from");
+                                to = (Timestamp) doc.get("to");
+                                Date x = from.toDate();
+                                Date y = to.toDate();
+                                Calendar cal = Calendar.getInstance(Locale.US);
+                                Calendar cal2 = Calendar.getInstance(Locale.US);
+                                cal.setTime(x);
+                                cal2.setTime(y);
+                                String day = new SimpleDateFormat("EE").format(x);
+                                Log.i("Timestamp", Uid + " " + day +" " + String.valueOf(cal.get(Calendar.DATE)) +" " + String.valueOf(cal.get(Calendar.HOUR)) +" " + String.valueOf(cal.get(Calendar.MINUTE)) +" " + String.valueOf(cal2.get(Calendar.HOUR)) +" " + String.valueOf(cal2.get(Calendar.MINUTE)) +" " + Month.of(cal2.MONTH + 1).name());
+                                myListData.add(new MemberTimetableModel(Uid, day, String.valueOf(cal.get(Calendar.DATE)), String.valueOf(cal.get(Calendar.HOUR)) + String.valueOf(cal.get(Calendar.MINUTE)), String.valueOf(cal2.get(Calendar.HOUR))+ String.valueOf(cal2.get(Calendar.MINUTE)), Month.of(cal2.MONTH + 1).name()));
+                            }
+                        }
+                    }
+                });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         adapter = new MemberTimetableAdapter(myListData2, MemberTimeTable.this);
 
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "January"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "February"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "May"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "June"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "July"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "August"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "September"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "October"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "31", "9:00 AM", "1:00 PM", "October"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "November"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "December"));
+//        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "January"));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MemberTimeTable.this));
