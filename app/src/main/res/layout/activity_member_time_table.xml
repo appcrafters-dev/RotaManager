@@ -99,8 +99,9 @@
             android:layout_width="match_parent"
             android:layout_height="105dp"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/light_blue"
-            android:background="@drawable/rounded_corners_top"
+            app:tabTextColor="@color/dark_blue"
+            app:tabIndicatorHeight="0dp"
+            app:tabBackground="@drawable/tab_color_selector"
             app:menu="@menu/selected_nav"
             />
 

@@ -51,12 +51,11 @@ public class AdminScheduler extends AppCompatActivity {
 
         List<TimeEntryListModel> myListData = new ArrayList<>();
         List<TimeEntryListModel> myListData2 = new ArrayList<>();
-//        myListData2 = myListData;
 
         myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
-        myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
-        myListData.add(new TimeEntryListModel("12", "Tue", "13", "John Doe", "9:00 AM to 1:00 PM", "March"));
-        myListData.add(new TimeEntryListModel("12", "Tue", "14", "John Doe", "9:00 AM to 1:00 PM", "March"));
+        myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 12:00 PM", "March"));
+        myListData.add(new TimeEntryListModel("12", "Tue", "13", "John Doe", "9:00 AM to 14:00 PM", "March"));
+        myListData.add(new TimeEntryListModel("12", "Tue", "14", "John Doe", "9:00 AM to 15:00 PM", "March"));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         TimeEntryListAdapter adapter = new TimeEntryListAdapter(myListData2, AdminScheduler.this);
@@ -78,13 +77,11 @@ public class AdminScheduler extends AppCompatActivity {
                 for (TimeEntryListModel x : myListData) {
                     String fu = x.getDate() + "-" + x.getMonth().toUpperCase();
                     if (fu.equals(Date)) {
-                        myListData2.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
+                        myListData2.add(new TimeEntryListModel(x.uid,x.day, x.date, x.name, x.time, x.month));
                     }
                 }
                 adapter.notifyDataSetChanged();
             }
         });
-
-
     }
 }

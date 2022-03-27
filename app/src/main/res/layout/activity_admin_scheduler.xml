@@ -76,11 +76,12 @@
         android:layout_height="wrap_content"
         android:elevation="120dp"
         android:backgroundTint="@color/white"
-        android:backgroundTintMode="@color/light_blue"
+        app:tint = "@color/dark_blue"
         android:layout_margin="30dp"
-        android:layout_gravity="bottom|right"
+        app:borderWidth="0dp"
+        android:layout_gravity="bottom|end"
         android:src="@drawable/ic_baseline_add_circle_24"
         app:fabCustomSize="65dp"
-        app:maxImageSize="75dp"
+        app:maxImageSize="70dp"
         app:rippleColor="@color/dark_blue" />
 </FrameLayout>

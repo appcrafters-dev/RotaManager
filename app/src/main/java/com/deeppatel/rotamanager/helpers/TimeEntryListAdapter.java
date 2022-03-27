@@ -1,7 +1,6 @@
 package com.deeppatel.rotamanager.helpers;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,14 +37,7 @@ public class TimeEntryListAdapter extends RecyclerView.Adapter<TimeEntryListAdap
         holder.date.setText(listdata.get(position).getDate());
         holder.time.setText(listdata.get(position).getTime());
 
-        holder.time_entry_list_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("holder data", "!!!!!!!!!!!!!!!!!!!!!!!!");
-            }
-        });
     }
-
 
     @Override
     public int getItemCount() {
@@ -54,7 +46,6 @@ public class TimeEntryListAdapter extends RecyclerView.Adapter<TimeEntryListAdap
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView name,day,date,time;
-
         public LinearLayout time_entry_list_card;
         public ViewHolder(View itemView) {
             super(itemView);

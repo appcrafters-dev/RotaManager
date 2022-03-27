@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.models.ContactChip;
-import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -88,6 +87,8 @@ public class NewTimeEntry extends AppCompatActivity {
         });
 
         dateView = findViewById(R.id.Date);
+        dateView.setFocusable(false);
+        dateView.setClickable(false);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -106,6 +107,8 @@ public class NewTimeEntry extends AppCompatActivity {
         });
 
         fromTime = findViewById(R.id.fromTime);
+        fromTime.setClickable(false);
+        fromTime.setFocusable(false);
         fromTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +119,8 @@ public class NewTimeEntry extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(NewTimeEntry.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        fromTime.setText("From : " + selectedHour + ":" + selectedMinute);
+                        boolean isPM = (selectedHour >= 12);
+                        fromTime.setText(String.format("%02d:%02d %s", (selectedHour == 12 || selectedHour == 0) ? 12 : selectedHour % 12, minute, isPM ? "PM" : "AM"));
                         mcurrentTime.set(Calendar.HOUR_OF_DAY, selectedHour);
                         mcurrentTime.set(Calendar.MINUTE, selectedMinute);
                     }
@@ -127,6 +131,8 @@ public class NewTimeEntry extends AppCompatActivity {
         });
 
         toTime = findViewById(R.id.toTime);
+        toTime.setClickable(false);
+        toTime.setFocusable(false);
         toTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +145,8 @@ public class NewTimeEntry extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(NewTimeEntry.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        toTime.setText("To : " + selectedHour + ":" + selectedMinute);
+                        boolean isPM = (selectedHour >= 12);
+                        toTime.setText(String.format("%02d:%02d %s", (selectedHour == 12 || selectedHour == 0) ? 12 : selectedHour % 12, minute, isPM ? "PM" : "AM"));
                         mcurrentTimeTo.set(Calendar.HOUR_OF_DAY, selectedHour);
                         mcurrentTimeTo.set(Calendar.MINUTE, selectedMinute);
                     }
@@ -214,7 +221,7 @@ public class NewTimeEntry extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yy";
+        String myFormat = "dd/MMMM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
         dateView.setText(dateFormat.format(myCalendar.getTime()));
     }

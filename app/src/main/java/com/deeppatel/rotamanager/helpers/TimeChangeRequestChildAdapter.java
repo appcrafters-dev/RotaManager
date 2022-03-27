@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +39,6 @@ public class TimeChangeRequestChildAdapter extends RecyclerView.Adapter<TimeChan
         childViewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("!!!!!!!!!","aaaaaa");
                 new Navigate().replace(currentActivity, ViewTimeChangeRequest.class);
             }
         });

@@ -154,7 +154,17 @@
                 android:text="Other" />
         </RadioGroup>
 
-
+        <Button
+            android:id="@+id/member_logout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="20dp"
+            android:height="60dp"
+            android:padding="10dp"
+            android:text="Log out"
+            android:textSize="15sp"
+            app:backgroundTint="#FF4343" />
 
     </LinearLayout>
 

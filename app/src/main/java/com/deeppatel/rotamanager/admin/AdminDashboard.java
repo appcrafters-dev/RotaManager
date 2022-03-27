@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.admin.StaffMember.StaffMemberList;
 import com.deeppatel.rotamanager.helpers.Navigate;
-import com.deeppatel.rotamanager.member.MemberHomePage;
 
 public class AdminDashboard extends AppCompatActivity {
 
