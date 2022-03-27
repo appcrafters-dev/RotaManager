@@ -1,9 +1,11 @@
 package com.deeppatel.rotamanager.member;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,12 +21,20 @@ import android.widget.TextView;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.MemberTimetableAdapter;
 import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,22 +63,48 @@ public class MemberScheduleFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_member_schedule, container, false);
         currentActivityFragment = getActivity().getSupportFragmentManager();
+
+        String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        List<MemberTimetableModel> Schedule = new ArrayList<MemberTimetableModel>();
+        db.collection("users").document(Uid).collection("Schedule").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("SimpleDateFormat")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for (QueryDocumentSnapshot doc : task.getResult()){
+                                Timestamp from, to;
+                                from = (Timestamp) doc.get("from");
+                                to = (Timestamp) doc.get("to");
+                                Date x = from.toDate();
+                                Date y = to.toDate();
+                                Calendar cal = Calendar.getInstance(Locale.US);
+                                Calendar cal2 = Calendar.getInstance(Locale.US);
+                                cal.setTime(x);
+                                cal2.setTime(y);
+
+                                String day = new SimpleDateFormat("EE").format(x);
+                                String calenderDate = String.valueOf(cal.get(Calendar.DATE));
+                                int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
+                                int calenderFromMinute = cal.get(Calendar.MINUTE);
+                                int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
+                                int calenderToMinute = cal2.get(Calendar.MINUTE);
+                                String calenderMonth = Month.of(cal2.MONTH + 1).name();
+
+                                boolean isPM = (calenderFromHour >= 12);
+                                String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
+                                boolean isPM2 = (calenderToHour >= 12);
+                                String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
+
+                                myListData.add(new MemberTimetableModel(Uid,day,calenderDate,calenderFrom,calenderTo ,calenderMonth));
+                            }
+                        }
+                    }
+                });
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         adapter = new MemberTimetableAdapter(myListData2, getActivity());
-
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "January"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "February"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "May"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "June"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "July"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "August"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "September"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "October"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "31", "9:00 AM", "1:00 PM", "October"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "November"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "December"));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

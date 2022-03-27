@@ -85,9 +85,21 @@ public class MemberTimeTable extends AppCompatActivity {
                                 Calendar cal2 = Calendar.getInstance(Locale.US);
                                 cal.setTime(x);
                                 cal2.setTime(y);
+
                                 String day = new SimpleDateFormat("EE").format(x);
-                                Log.i("Timestamp", Uid + " " + day +" " + String.valueOf(cal.get(Calendar.DATE)) +" " + String.valueOf(cal.get(Calendar.HOUR)) +" " + String.valueOf(cal.get(Calendar.MINUTE)) +" " + String.valueOf(cal2.get(Calendar.HOUR)) +" " + String.valueOf(cal2.get(Calendar.MINUTE)) +" " + Month.of(cal2.MONTH + 1).name());
-                                myListData.add(new MemberTimetableModel(Uid, day, String.valueOf(cal.get(Calendar.DATE)), String.valueOf(cal.get(Calendar.HOUR)) + String.valueOf(cal.get(Calendar.MINUTE)), String.valueOf(cal2.get(Calendar.HOUR))+ String.valueOf(cal2.get(Calendar.MINUTE)), Month.of(cal2.MONTH + 1).name()));
+                                String calenderDate = String.valueOf(cal.get(Calendar.DATE));
+                                int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
+                                int calenderFromMinute = cal.get(Calendar.MINUTE);
+                                int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
+                                int calenderToMinute = cal2.get(Calendar.MINUTE);
+                                String calenderMonth = Month.of(cal2.MONTH + 1).name();
+
+                                boolean isPM = (calenderFromHour >= 12);
+                                String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
+                                boolean isPM2 = (calenderToHour >= 12);
+                                String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
+
+                                myListData.add(new MemberTimetableModel(Uid,day,calenderDate,calenderFrom,calenderTo ,calenderMonth));
                             }
                         }
                     }
