@@ -54,7 +54,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/activity_login_et_invite_code"
                 android:layout_width="match_parent"
-                android:inputType="textShortMessage"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_blue" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -72,16 +72,6 @@
             android:textSize="15sp"
             app:backgroundTint="@color/light_blue" />
 
-        <Button
-            android:id="@+id/adminDashboardRedirect"
-            android:layout_width="185dp"
-            android:layout_height="wrap_content"
-            android:height="60dp"
-            android:padding="10dp"
-            android:layout_gravity="center_horizontal"
-            android:text="Admin"
-            android:textSize="15sp"
-            app:backgroundTint="@color/light_blue" />
 
 </LinearLayout>
 

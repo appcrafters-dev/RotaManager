@@ -1,13 +1,5 @@
 package com.deeppatel.rotamanager.admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -15,30 +7,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.ContactChip;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
-import com.deeppatel.rotamanager.helpers.StaffMemberDataAdapter;
-import com.deeppatel.rotamanager.helpers.StaffMemberDataModel;
+import com.deeppatel.rotamanager.models.ContactChip;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pchmn.materialchips.ChipsInput;
-import com.pchmn.materialchips.model.ChipInterface;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,10 +37,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class NewTimeEntry extends AppCompatActivity {
-    private ImageView back;
-    private TextView fromTime,toTime, dateView;
-    private Button submit;
-    Calendar myCalendar= Calendar.getInstance();
+    Calendar myCalendar = Calendar.getInstance();
     Calendar mcurrentTime = Calendar.getInstance();
     Calendar mcurrentTimeTo = Calendar.getInstance();
     List<ContactChip> contactList = new ArrayList<>();
@@ -62,7 +47,9 @@ public class NewTimeEntry extends AppCompatActivity {
     Timestamp dateTime;
     Timestamp fromTimeStamp;
     Timestamp toTimeStamp;
-
+    private ImageView back;
+    private TextView fromTime, toTime, dateView;
+    private Button submit;
 
     @Override
     protected void onStart() {
@@ -105,16 +92,16 @@ public class NewTimeEntry extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH,month);
-                myCalendar.set(Calendar.DAY_OF_MONTH,day);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
                 dateTime = new Timestamp(myCalendar.getTime());
                 updateLabel();
             }
         };
         dateView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                new DatePickerDialog(NewTimeEntry.this,date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(NewTimeEntry.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -163,17 +150,17 @@ public class NewTimeEntry extends AppCompatActivity {
         });
 
         back = findViewById(R.id.backButtonToolbar);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                new RedirectToActivity().redirectActivityAfterFinish(NewTimeEntry.this, AdminScheduler.class);
+            public void onClick(View view) {
+               finish();
             }
         });
 
         submit = findViewById(R.id.member_submit);
-        submit.setOnClickListener(new View.OnClickListener(){
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 for (int i = 0; i < contactsSelected.size(); i++) {
                     names.add(contactsSelected.get(i).getName());
                 }
@@ -217,12 +204,18 @@ public class NewTimeEntry extends AppCompatActivity {
                         });
                 Log.e("AAAAAe!!!!!!!!!!", contactsSelected.get(0).getName());
                 Toast.makeText(NewTimeEntry.this, "weeeeeee", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
-    private void updateLabel(){
-        String myFormat="MM/dd/yy";
-        SimpleDateFormat dateFormat=new SimpleDateFormat(myFormat, Locale.US);
+
+    private void checkScheduleTime() {
+        Log.i("TO DO", "Check if the time slot exists");
+    }
+
+    private void updateLabel() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
         dateView.setText(dateFormat.format(myCalendar.getTime()));
     }
 }

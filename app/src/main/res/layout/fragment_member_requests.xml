@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context=".members.MemberRequestsFragment">
+    tools:context=".member.MemberRequestsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

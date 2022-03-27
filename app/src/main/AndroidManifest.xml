@@ -9,22 +9,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".members.RequestTimeChangeRequest"
+            android:name=".member.RequestTimeChangeRequest"
             android:exported="true" />
         <activity
             android:name=".admin.ViewTimeChangeRequest"
             android:exported="true" />
         <activity
-            android:name=".members.MemberHomePage"
+            android:name=".member.MemberHomePage"
             android:exported="true" />
         <activity
             android:name=".admin.MemberTimeTable"
             android:exported="true"/>
         <activity
-            android:name=".admin.EditStaffMember"
+            android:name=".admin.StaffMember.EditStaffMember"
             android:exported="true"/>
         <activity
-            android:name=".admin.NewStaffMember"
+            android:name=".admin.StaffMember.NewStaffMember"
             android:exported="true"/>
         <activity
             android:name=".admin.NewTimeEntry"
@@ -39,7 +39,7 @@
             android:name=".admin.AdminProfile"
             android:exported="true" />
         <activity
-            android:name=".admin.StaffMemberList"
+            android:name=".admin.StaffMember.StaffMemberList"
             android:exported="true" />
         <activity
             android:name=".admin.AdminDashboard"

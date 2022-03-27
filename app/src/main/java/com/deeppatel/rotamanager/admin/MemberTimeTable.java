@@ -13,10 +13,11 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.MemberTimetableAdapter;
 import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import com.deeppatel.rotamanager.admin.StaffMember.EditStaffMember;
+import com.deeppatel.rotamanager.helpers.Navigate;
 
 public class MemberTimeTable extends AppCompatActivity {
     private ImageView back;
@@ -129,9 +132,9 @@ public class MemberTimeTable extends AppCompatActivity {
         });
 
         back = findViewById(R.id.backButtonToolbar);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 finish();
             }
         });
