@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -179,6 +180,9 @@ public class NewTimeEntry extends AppCompatActivity {
                 }
                 fromTimeStamp = new Timestamp(mcurrentTime.getTime());
                 toTimeStamp = new Timestamp(mcurrentTimeTo.getTime());
+                if(fromTimeStamp.getSeconds() > toTimeStamp.getSeconds()){
+                    return;
+                }
                 Map<String, Object> schedule = new HashMap<>();
                 schedule.put("date", dateTime);
                 schedule.put("from", fromTimeStamp);
@@ -193,6 +197,25 @@ public class NewTimeEntry extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Log.i("Inside", "Query Snapshot " + task.getResult().size());
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.i("Snapshot data", document.toString());
+                                        if(document.exists()){
+                                            db.collection("users").document(document.getId()).collection("Schedule").get()
+                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                            if(task.isSuccessful()){
+                                                                if(!task.getResult().isEmpty()){
+                                                                    for (QueryDocumentSnapshot subDoc : task.getResult()) {
+                                                                        if (!checkScheduleTime(fromTimeStamp, toTimeStamp, subDoc)) {
+                                                                            Toast.makeText(NewTimeEntry.this, "Time Slot Not Available for the selected users", Toast.LENGTH_SHORT).show();
+                                                                            continue;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                        }
                                         db.collection("users").document(document.getId()).collection("Schedule").document()
                                                 .set(schedule)
                                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -217,13 +240,17 @@ public class NewTimeEntry extends AppCompatActivity {
                         });
                 Log.e("AAAAAe!!!!!!!!!!", contactsSelected.get(0).getName());
                 Toast.makeText(NewTimeEntry.this, "weeeeeee", Toast.LENGTH_SHORT).show();
-                new RedirectToActivity().redirectActivityAfterFinish(NewTimeEntry.this, AdminScheduler.class);
+//                new RedirectToActivity().redirectActivityAfterFinish(NewTimeEntry.this, AdminScheduler.class);
             }
         });
     }
 
-    private void checkScheduleTime(){
-        Log.i("TO DO", "Check if the time slot exists");
+    private boolean checkScheduleTime(Timestamp from, Timestamp to, DocumentSnapshot doc){
+        Timestamp from_ = (Timestamp) doc.get("from");
+        Timestamp to_ = (Timestamp) doc.get("to");
+        if((from.getSeconds() < from_.getSeconds() || from.getSeconds() > from_.getSeconds()) && (to.getSeconds() > to_.getSeconds() || to.getSeconds() < to_.getSeconds()))
+            return true;
+        else return false;
     }
 
     private void updateLabel(){
