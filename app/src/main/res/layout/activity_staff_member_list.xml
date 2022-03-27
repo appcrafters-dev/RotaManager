@@ -41,7 +41,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_staff_members"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:divider="@color/dark_blue"
             android:dividerHeight="1px"
@@ -53,12 +53,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="120dp"
-        android:backgroundTint="@color/dark_blue"
+        android:backgroundTint="@color/white"
+        app:tint = "@color/dark_blue"
         android:layout_margin="30dp"
+        app:borderWidth="0dp"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_baseline_add_circle_24"
         app:fabCustomSize="65dp"
-        app:maxImageSize="65dp"
+        app:maxImageSize="70dp"
         app:rippleColor="@color/dark_blue"
         android:contentDescription="@string/new_staff_member" />
 </FrameLayout>

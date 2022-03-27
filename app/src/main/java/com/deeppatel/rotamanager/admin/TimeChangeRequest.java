@@ -9,7 +9,6 @@ import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.TimeChangeRequestChildModel;
 import com.deeppatel.rotamanager.helpers.TimeChangeRequestParentModel;
 import com.deeppatel.rotamanager.helpers.TimeChangeRequestParentAdapter;
-import com.deeppatel.rotamanager.helpers.Navigate;
 
 import android.app.Activity;
 import android.os.Build;

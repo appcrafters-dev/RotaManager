@@ -89,15 +89,6 @@
                     android:layout_marginTop="5dp"
                     android:textSize="15sp"/>
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/edit_option"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_baseline_edit_24" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

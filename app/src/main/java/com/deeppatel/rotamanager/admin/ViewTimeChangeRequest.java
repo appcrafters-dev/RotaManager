@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.Navigate;
 
 public class ViewTimeChangeRequest extends AppCompatActivity {
     private ImageView back;
