@@ -1,7 +1,4 @@
-package com.deeppatel.rotamanager.admin;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+package com.deeppatel.rotamanager.admin.StaffMember;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +10,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.deeppatel.rotamanager.LoginActivity;
-import com.deeppatel.rotamanager.helpers.AdminUser;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.deeppatel.rotamanager.R;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,18 +22,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.nio.ByteBuffer;
-import com.deeppatel.rotamanager.R;
 
 
 public class NewStaffMember extends AppCompatActivity {
-
     private Button submit;
     private ImageView back;
 
@@ -46,7 +42,7 @@ public class NewStaffMember extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_staff_member);
 
-        memberNameView = (EditText) findViewById(R.id.member_name);
+        memberNameView = findViewById(R.id.member_name);
         emailView = findViewById(R.id.member_email);
         phoneView = findViewById(R.id.member_phoneNum);
         designationView = findViewById(R.id.member_designation);
@@ -63,7 +59,7 @@ public class NewStaffMember extends AppCompatActivity {
                 String email = emailView.getText().toString();
                 String phone = phoneView.getText().toString();
                 String designation = designationView.getText().toString();
-                RadioButton genderButton = (RadioButton) findViewById(genderView.getCheckedRadioButtonId());
+                RadioButton genderButton = findViewById(genderView.getCheckedRadioButtonId());
                 String gender = genderButton.getText().toString();
                 FirebaseAuth mAuth;
                 mAuth = FirebaseAuth.getInstance();
@@ -86,7 +82,7 @@ public class NewStaffMember extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Log.d("FireBaseAuth", "User successfully written!");
                                     FirebaseUser userFireBase = mAuth.getCurrentUser();
                                     db.collection("users")
@@ -97,7 +93,7 @@ public class NewStaffMember extends AppCompatActivity {
                                                 public void onSuccess(Void unused) {
                                                     Log.d("FireStore", "DocumentSnapshot successfully written!");
                                                     mAuth.signOut();
-                                                    mAuth.signInWithEmailAndPassword(AdminUser.email_, AdminUser.password_);
+//                                                    mAuth.signInWithEmailAndPassword(AdminUser.email_, AdminUser.password_);
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -107,8 +103,7 @@ public class NewStaffMember extends AppCompatActivity {
                                                 }
                                             });
                                     Toast.makeText(NewStaffMember.this, "New User Created", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
+                                } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("AuthFailure", "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(NewStaffMember.this, "Authentication failed.",
@@ -116,15 +111,15 @@ public class NewStaffMember extends AppCompatActivity {
                                 }
                             }
                         });
-                new RedirectToActivity().redirectActivityAfterFinish(NewStaffMember.this, StaffMemberList.class);
+                Navigate.to(NewStaffMember.this, StaffMemberList.class);
             }
         });
 
         back = findViewById(R.id.backButtonToolbar);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                new RedirectToActivity().redirectActivityAfterFinish(NewStaffMember.this, StaffMemberList.class);
+            public void onClick(View view) {
+                finish();
             }
         });
     }

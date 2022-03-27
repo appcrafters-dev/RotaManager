@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Rota Manager</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="go_back">Go Back</string>
+
+    <!-- Staff Members -->
+    <string name="staff_members">Staff Members</string>
+    <string name="staff_member">Staff Member</string>
+    <string name="new_staff_member">New Staff Member</string>
 </resources>

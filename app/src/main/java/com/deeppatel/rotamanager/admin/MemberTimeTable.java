@@ -1,13 +1,14 @@
 package com.deeppatel.rotamanager.admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.admin.StaffMember.EditStaffMember;
+import com.deeppatel.rotamanager.helpers.Navigate;
 
 public class MemberTimeTable extends AppCompatActivity {
     private ImageView back;
@@ -18,10 +19,10 @@ public class MemberTimeTable extends AppCompatActivity {
         setContentView(R.layout.activity_member_time_table);
 
         back = findViewById(R.id.backButtonToolbar);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                new RedirectToActivity().redirectActivityAfterFinish(MemberTimeTable.this, EditStaffMember.class);
+            public void onClick(View view) {
+                finish();
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.members;
+package com.deeppatel.rotamanager.member;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

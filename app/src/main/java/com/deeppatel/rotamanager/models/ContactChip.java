@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.models;
 
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -8,7 +8,7 @@ import com.pchmn.materialchips.model.ChipInterface;
 public class ContactChip implements ChipInterface {
 
     private String id;
-//    private Uri avatarUri;
+    //    private Uri avatarUri;
     private String name;
     private String email;
 

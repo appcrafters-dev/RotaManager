@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.members;
+package com.deeppatel.rotamanager.member;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
