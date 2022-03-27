@@ -1,5 +1,8 @@
 package com.deeppatel.rotamanager.repositories.AuthRepository;
 
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.deeppatel.rotamanager.models.RepositoryResult;
@@ -18,6 +21,7 @@ import java.util.List;
 
 public class FirebaseAuthRepository extends FirebaseUserRepository implements AuthRepository {
     FirebaseAuth firebaseAuth;
+    static User currentUser;
 
     private static FirebaseAuthRepository instance;
     public static FirebaseAuthRepository getInstance() {
@@ -32,12 +36,29 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
     }
 
     public void getCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener) {
+        if (currentUser != null){
+            onCompleteListener.onComplete(new RepositoryResult<>(currentUser, null));
+            return;
+        }
+        fetchCurrentUser(onCompleteListener);
+    }
+
+    public void fetchCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener){
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser == null) {
             onCompleteListener.onComplete(new RepositoryResult<>());
             return;
         }
-        getUser(firebaseUser.getUid(), onCompleteListener);
+        getUser(firebaseUser.getUid(), new OnRepositoryTaskCompleteListener<User>() {
+            @Override
+            public void onComplete(@NonNull RepositoryResult<User> result) {
+                if(result.getResult() != null){
+                    currentUser = result.getResult();
+                }
+                onCompleteListener.onComplete(result);
+
+            }
+        });
     }
 
     @Override
@@ -69,5 +90,53 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
                         onCompleteListener.onComplete(result);
                     }
                 });
+    }
+
+    @Override
+    public void createNewUser(User user, OnRepositoryTaskCompleteListener<User> onCompleteListener) {
+        Log.d("createNewUser", "stop 1");
+
+        getCurrentUser(new OnRepositoryTaskCompleteListener<User>() {
+            @Override
+            public void onComplete(@NonNull RepositoryResult<User> result) {
+                Log.d("createNewUser", "currentUser" + currentUser.toString());
+
+                if (result.getResult() == null){
+                    Log.d("createNewUser", "stop 2: no current user");
+                    onCompleteListener.onComplete(new RepositoryResult<>(null, "You are not allowed to create a new member."));
+                    return;
+                }
+
+                firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getInviteCode()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(!task.isSuccessful()){
+                            Log.d("createNewUser", "Error");
+                            onCompleteListener.onComplete(new RepositoryResult<>(null, task.getException().getMessage()));
+                            return;
+                        }
+                        Log.d("createNewUser", "stop 3");
+                        firebaseAuth.signOut();
+                        Log.d("createNewUser", "stop 4");
+                        login(currentUser.getEmail(), currentUser.getInviteCode(), new OnRepositoryTaskCompleteListener<User>() {
+                            @Override
+                            public void onComplete(@NonNull RepositoryResult<User> result) {
+                                Log.d("createNewUser", "stop 5");
+
+                                if(result.getErrorMessage() != null){
+                                    Log.d("createNewUser", "stop 5.5");
+
+                                    result.setErrorMessage("Could not login back as admin: " + result.getErrorMessage());
+                                    onCompleteListener.onComplete(result);
+                                    return;
+                                }
+                                Log.d("createNewUser", "stop 6");
+                                addNewStaffMember(user, onCompleteListener);
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 }

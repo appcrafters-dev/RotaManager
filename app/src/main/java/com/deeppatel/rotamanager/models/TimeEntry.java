@@ -3,42 +3,9 @@ package com.deeppatel.rotamanager.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class TimeEntry extends Model implements Parcelable {
-    String uid;
-    String date;
-    String day;
-    String name;
-    String time;
-    String month;
+import java.util.HashMap;
 
-    public TimeEntry(String uid, String day, String date, String name, String time,String month){
-        this.uid = uid;
-        this.date = date;
-        this.day = day;
-        this.name = name;
-        this.time = time;
-        this.month = month;
-    }
-
-    protected TimeEntry(Parcel in) {
-        uid = in.readString();
-        date = in.readString();
-        day = in.readString();
-        name = in.readString();
-        time = in.readString();
-        month = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(uid);
-        parcel.writeString(date);
-        parcel.writeString(day);
-        parcel.writeString(name);
-        parcel.writeString(time);
-        parcel.writeString(month);
-    }
-
+public class TimeEntry extends Model {
     public static final Creator<TimeEntry> CREATOR = new Creator<TimeEntry>() {
         @Override
         public TimeEntry createFromParcel(Parcel in) {
@@ -50,9 +17,50 @@ public class TimeEntry extends Model implements Parcelable {
             return new TimeEntry[size];
         }
     };
+    String id;
+    String date;
+    String day;
+    String name;
+    String time;
+    String month;
 
-    public String getUid() {
-        return uid;
+    public TimeEntry(String id, String day, String date, String name, String time, String month) {
+        this.id = id;
+        this.date = date;
+        this.day = day;
+        this.name = name;
+        this.time = time;
+        this.month = month;
+    }
+
+    protected TimeEntry(Parcel in) {
+        id = in.readString();
+        date = in.readString();
+        day = in.readString();
+        name = in.readString();
+        time = in.readString();
+        month = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(date);
+        parcel.writeString(day);
+        parcel.writeString(name);
+        parcel.writeString(time);
+        parcel.writeString(month);
+    }
+
+    @Override
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("date",date);
+        hashMap.put("day",day);
+        hashMap.put("name",name);
+        hashMap.put("time",time);
+        hashMap.put("month",month);
+        return  hashMap;
     }
 
     public String getDate() {
@@ -75,9 +83,13 @@ public class TimeEntry extends Model implements Parcelable {
         return month;
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public void setId(String id) {
-        uid = id;
+        this.id = id;
     }
 
     @Override

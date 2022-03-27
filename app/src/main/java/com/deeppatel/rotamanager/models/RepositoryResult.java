@@ -1,7 +1,5 @@
 package com.deeppatel.rotamanager.models;
 
-import java.io.Serializable;
-
 public class RepositoryResult<T> {
     String errorMessage;
     T result;

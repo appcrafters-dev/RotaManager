@@ -11,6 +11,7 @@ import com.deeppatel.rotamanager.models.RepositoryResult;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -76,4 +77,20 @@ public class FirebaseRepository {
         });
     }
 
+    public <T extends Model> void addNewDocument(String collection, T data, OnRepositoryTaskCompleteListener<T> onCompleteListener){
+        firestore.collection(collection).add(data.toHashMap()).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                RepositoryResult<T> result = new RepositoryResult<>(null, String.format("Could not create new document for collection(%s)", collection));
+                if(task.isSuccessful()){
+                    DocumentReference documentReference = task.getResult();
+                    if(documentReference != null){
+                        data.setId(documentReference.getId());
+                        result.setResult(data);
+                    }
+                }
+                onCompleteListener.onComplete(result);
+            }
+        });
+    }
 }

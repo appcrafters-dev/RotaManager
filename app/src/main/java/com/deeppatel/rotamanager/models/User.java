@@ -3,7 +3,9 @@ package com.deeppatel.rotamanager.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User extends Model implements Parcelable {
+import java.util.HashMap;
+
+public class User extends Model {
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         public User createFromParcel(Parcel user) {
             return new User(user);
@@ -23,6 +25,20 @@ public class User extends Model implements Parcelable {
     private String role;
     private String inviteCode;
 
+    public User() {
+    }
+
+    public User(Parcel user) {
+        this.uid = user.readString();
+        this.name = user.readString();
+        this.email = user.readString();
+        this.phone = user.readString();
+        this.designation = user.readString();
+        this.gender = user.readString();
+        this.role = user.readString();
+        this.inviteCode = user.readString();
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -37,20 +53,6 @@ public class User extends Model implements Parcelable {
                 '}';
     }
 
-    public User() {}
-
-    public User(Parcel user) {
-        this.uid = user.readString();
-        this.name = user.readString();
-        this.email = user.readString();
-        this.phone = user.readString();
-        this.designation = user.readString();
-        this.gender = user.readString();
-        this.role = user.readString();
-        this.inviteCode = user.readString();
-    }
-
-
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(uid);
@@ -63,7 +65,20 @@ public class User extends Model implements Parcelable {
         parcel.writeString(inviteCode);
     }
 
-   @Override
+    @Override
+    public HashMap<String, Object> toHashMap() {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("name", name);
+        hashMap.put("email", email);
+        hashMap.put("phone", phone);
+        hashMap.put("designation", designation);
+        hashMap.put("gender", gender);
+        hashMap.put("role", role);
+        hashMap.put("inviteCode", inviteCode);
+        return hashMap;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }
