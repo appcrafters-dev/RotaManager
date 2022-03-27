@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.EditStaffMember;
 import com.deeppatel.rotamanager.admin.ViewTimeChangeRequest;
-import com.deeppatel.rotamanager.members.RequestTimeChangeRequest;
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class TimeChangeRequestChildAdapter extends RecyclerView.Adapter<TimeChan
             @Override
             public void onClick(View v) {
                 Log.e("!!!!!!!!!","aaaaaa");
-                new RedirectToActivity().redirectActivityAfterFinish(currentActivity, ViewTimeChangeRequest.class);
+                new Navigate().redirectActivityAfterFinish(currentActivity, ViewTimeChangeRequest.class);
             }
         });
     }

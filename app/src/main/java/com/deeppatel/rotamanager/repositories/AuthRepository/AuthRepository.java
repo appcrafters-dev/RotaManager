@@ -8,6 +8,7 @@ import com.deeppatel.rotamanager.repositories.UserRepository.UserRepository;
 public interface AuthRepository extends UserRepository {
     void getCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener);
     void login(String email, String inviteCode, OnRepositoryTaskCompleteListener<User> onCompleteListener);
+    void createNewUser(User user, OnRepositoryTaskCompleteListener<User> onCompleteListener);
 }
 
 

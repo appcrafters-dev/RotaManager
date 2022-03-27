@@ -9,23 +9,19 @@ import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.TimeChangeRequestChildModel;
 import com.deeppatel.rotamanager.helpers.TimeChangeRequestParentModel;
 import com.deeppatel.rotamanager.helpers.TimeChangeRequestParentAdapter;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
-import com.deeppatel.rotamanager.helpers.TimeEntryListModel;
+import com.deeppatel.rotamanager.helpers.Navigate;
 
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 public class TimeChangeRequest extends AppCompatActivity {
     private ImageView back;
@@ -40,7 +36,7 @@ public class TimeChangeRequest extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityAfterFinish(TimeChangeRequest.this, AdminDashboard.class);
+                new Navigate().redirectActivityAfterFinish(TimeChangeRequest.this, AdminDashboard.class);
             }
         });
 

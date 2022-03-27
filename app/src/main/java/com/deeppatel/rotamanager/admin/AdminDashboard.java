@@ -7,12 +7,13 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
-import com.deeppatel.rotamanager.members.MemberHomePage;
+import com.deeppatel.rotamanager.admin.StaffMember.StaffMemberList;
+import com.deeppatel.rotamanager.helpers.Navigate;
+import com.deeppatel.rotamanager.member.MemberHomePage;
 
 public class AdminDashboard extends AppCompatActivity {
 
-    private Button manageStaff, scheduler, timeChangeRequest, profile;
+    Button manageStaff, scheduler, timeChangeRequest, profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +29,28 @@ public class AdminDashboard extends AppCompatActivity {
         manageStaff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, StaffMemberList.class);
+                Navigate.to(AdminDashboard.this, StaffMemberList.class);
             }
         });
 
         scheduler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, AdminScheduler.class);
+                Navigate.to(AdminDashboard.this, AdminScheduler.class);
             }
         });
 
         timeChangeRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, TimeChangeRequest.class);
+                Navigate.to(AdminDashboard.this, TimeChangeRequest.class);
             }
         });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityOnly(AdminDashboard.this, MemberHomePage.class);
+                Navigate.to(AdminDashboard.this, MemberHomePage.class);
             }
         });
     }

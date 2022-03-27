@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.StaffMember;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.AdminUser;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,7 +31,6 @@ import java.util.UUID;
 
 
 public class NewStaffMember extends AppCompatActivity {
-
     private Button submit;
     private ImageView back;
 
@@ -95,7 +93,7 @@ public class NewStaffMember extends AppCompatActivity {
                                                 public void onSuccess(Void unused) {
                                                     Log.d("FireStore", "DocumentSnapshot successfully written!");
                                                     mAuth.signOut();
-                                                    mAuth.signInWithEmailAndPassword(AdminUser.email_, AdminUser.password_);
+//                                                    mAuth.signInWithEmailAndPassword(AdminUser.email_, AdminUser.password_);
                                                 }
                                             })
                                             .addOnFailureListener(new OnFailureListener() {
@@ -113,7 +111,7 @@ public class NewStaffMember extends AppCompatActivity {
                                 }
                             }
                         });
-                new RedirectToActivity().redirectActivityAfterFinish(NewStaffMember.this, StaffMemberList.class);
+                Navigate.to(NewStaffMember.this, StaffMemberList.class);
             }
         });
 
@@ -121,7 +119,7 @@ public class NewStaffMember extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityAfterFinish(NewStaffMember.this, StaffMemberList.class);
+                finish();
             }
         });
     }

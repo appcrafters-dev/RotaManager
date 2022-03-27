@@ -16,8 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.ContactChip;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.models.ContactChip;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -153,7 +153,7 @@ public class NewTimeEntry extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityAfterFinish(NewTimeEntry.this, AdminScheduler.class);
+               finish();
             }
         });
 
@@ -204,7 +204,7 @@ public class NewTimeEntry extends AppCompatActivity {
                         });
                 Log.e("AAAAAe!!!!!!!!!!", contactsSelected.get(0).getName());
                 Toast.makeText(NewTimeEntry.this, "weeeeeee", Toast.LENGTH_SHORT).show();
-                new RedirectToActivity().redirectActivityAfterFinish(NewTimeEntry.this, AdminScheduler.class);
+                finish();
             }
         });
     }

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.LoginActivity;
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,8 +48,6 @@ public class AdminProfile extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        Log.i("UID", currentUser.getUid());
-//        return;
         db.collection("users").document(currentUser.getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -67,7 +65,7 @@ public class AdminProfile extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityAfterFinish(AdminProfile.this, AdminDashboard.class);
+                finish();
             }
         });
 
@@ -110,7 +108,7 @@ public class AdminProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
-                new RedirectToActivity().redirectActivityOnly(AdminProfile.this, LoginActivity.class);
+                Navigate.replace(AdminProfile.this, LoginActivity.class);
             }
         });
     }

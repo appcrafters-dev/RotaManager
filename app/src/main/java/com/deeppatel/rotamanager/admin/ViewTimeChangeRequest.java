@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.helpers.Navigate;
 
 public class ViewTimeChangeRequest extends AppCompatActivity {
     private ImageView back;
@@ -20,7 +20,7 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                new RedirectToActivity().redirectActivityAfterFinish(ViewTimeChangeRequest.this, TimeChangeRequest.class);
+                finish();
             }
         });
     }

@@ -3,7 +3,7 @@ package com.deeppatel.rotamanager.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable {
+public class User extends Model implements Parcelable {
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         public User createFromParcel(Parcel user) {
             return new User(user);
@@ -81,7 +81,7 @@ public class User implements Parcelable {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setId(String uid) {
         this.uid = uid;
     }
 

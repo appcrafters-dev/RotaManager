@@ -14,10 +14,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.List;
+
 public class FirebaseAuthRepository extends FirebaseUserRepository implements AuthRepository {
     FirebaseAuth firebaseAuth;
-    private static FirebaseAuthRepository instance;
 
+    private static FirebaseAuthRepository instance;
     public static FirebaseAuthRepository getInstance() {
         if(instance == null) {
             instance = new FirebaseAuthRepository();

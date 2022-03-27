@@ -5,17 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.EditStaffMember;
-import com.deeppatel.rotamanager.admin.TimeChangeRequest;
-import com.deeppatel.rotamanager.members.RequestTimeChangeRequest;
+import com.deeppatel.rotamanager.member.RequestTimeChangeRequest;
 
 import java.util.List;
 
@@ -49,7 +44,7 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
             @Override
             public void onClick(View v) {
                 Log.e("!!!!!!!!!","aaaaaa");
-                new RedirectToActivity().redirectActivityAfterFinish(currentActivity, RequestTimeChangeRequest.class);
+                new Navigate().redirectActivityAfterFinish(currentActivity, RequestTimeChangeRequest.class);
             }
         });
     }

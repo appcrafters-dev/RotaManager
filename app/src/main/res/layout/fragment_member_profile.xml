@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".members.MemberProfileFragment">
+    tools:context=".member.MemberProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.Toolbar

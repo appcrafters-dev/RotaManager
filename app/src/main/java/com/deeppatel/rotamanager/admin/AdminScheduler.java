@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.helpers.TimeEntryListAdapter;
 import com.deeppatel.rotamanager.helpers.TimeEntryListModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,14 +38,14 @@ public class AdminScheduler extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new RedirectToActivity().redirectActivityAfterFinish(AdminScheduler.this, NewTimeEntry.class);
+                Navigate.to(AdminScheduler.this, NewTimeEntry.class);
             }
         });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new RedirectToActivity().redirectActivityAfterFinish(AdminScheduler.this, AdminDashboard.class);
+                finish();
             }
         });
 

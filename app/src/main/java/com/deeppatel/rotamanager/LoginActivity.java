@@ -1,38 +1,21 @@
 package com.deeppatel.rotamanager;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.deeppatel.rotamanager.admin.AdminDashboard;
 import com.deeppatel.rotamanager.helpers.AdminUser;
-import com.deeppatel.rotamanager.helpers.RedirectToActivity;
+import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.helpers.Utils;
-import com.deeppatel.rotamanager.members.MemberHomePage;
 import com.deeppatel.rotamanager.models.RepositoryResult;
 import com.deeppatel.rotamanager.models.User;
 import com.deeppatel.rotamanager.repositories.AuthRepository.AuthRepository;
 import com.deeppatel.rotamanager.repositories.AuthRepository.FirebaseAuthRepository;
 import com.deeppatel.rotamanager.repositories.OnRepositoryTaskCompleteListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
     AuthRepository authRepository;
@@ -72,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 User user = result.getResult();
                 String errorMessage = result.getErrorMessage();
                 if(user != null){
-                    RedirectToActivity.redirectBasedOnUser(LoginActivity.this, user);
+                    Navigate.redirectBasedOnUser(LoginActivity.this, user);
                 } else if (errorMessage != null) {
                     Utils.showToastMessage(LoginActivity.this, errorMessage);
                 }
