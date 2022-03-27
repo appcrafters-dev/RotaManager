@@ -23,6 +23,11 @@ public class FirebaseUserRepository extends FirebaseRepository implements UserRe
         getDocumentResult("users", uid, User.class, onCompleteListener);
     }
 
+    @Override
+    public void addNewStaffMember(User member, OnRepositoryTaskCompleteListener<User> onCompleteListener) {
+        addNewDocument("users", member, onCompleteListener);
+    }
+
     public void getStaffMembers(OnRepositoryTaskCompleteListener<List<User>> onCompleteListener) {
         getQueryResult(
                 getCollectionReference("users").whereNotEqualTo("role","admin"),
