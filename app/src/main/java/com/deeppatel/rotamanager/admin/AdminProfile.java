@@ -86,7 +86,7 @@ public class AdminProfile extends AppCompatActivity {
                 Log.i("Update To Be Values", userUpdate.toString());
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 db.collection("users").document(currentUser.getUid())
-                        .set(userUpdate)
+                        .update(userUpdate)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
