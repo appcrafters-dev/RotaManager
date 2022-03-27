@@ -2,6 +2,7 @@ package com.deeppatel.rotamanager.admin.StaffMember;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.admin.MemberTimeTable;
 import com.deeppatel.rotamanager.helpers.Navigate;
+import com.deeppatel.rotamanager.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,27 +38,28 @@ public class EditStaffMember extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_staff_member);
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        String email = intent.getStringExtra("email");
-        String phone = intent.getStringExtra("phone");
-        String designation = intent.getStringExtra("designation");
-        String gender = intent.getStringExtra("gender");
-        String photoURI = intent.getStringExtra("photoURI");
-        String uid = intent.getStringExtra("uid");
+        User user = intent.getExtras().getParcelable("member");
+        String name = user.getName();
+        String email = user.getEmail();
+        String phone = user.getPhone();
+        String designation = user.getDesignation();
+        String gender = user.getGender();
+        String uid = user.getUid();
 
         nameView = findViewById(R.id.member_name);
         emailView = findViewById(R.id.member_email);
+        emailView.setClickable(false);
+        emailView.setFocusable(false);
         phoneView = findViewById(R.id.member_phoneNum);
         designationView = findViewById(R.id.member_designation);
         memberDpView = findViewById(R.id.uploadDP);
         update = findViewById(R.id.member_submit);
-        Log.d("Intent", name + " " + email + " " + phone + " " + designation + " " + gender + " " + photoURI + " ");
+        Log.d("Intent", name + " " + email + " " + phone + " " + designation + " " + gender + " ");
 
         nameView.setText(name);
         emailView.setText(email);
         phoneView.setText(phone);
         designationView.setText(designation);
-        Picasso.get().load(photoURI).into(memberDpView);
 
         back = findViewById(R.id.backButtonToolbar);
         share = findViewById(R.id.memberSchedule);
@@ -93,7 +96,7 @@ public class EditStaffMember extends AppCompatActivity {
                             }
                         });
                 Toast.makeText(EditStaffMember.this, "User Updated", Toast.LENGTH_SHORT).show();
-
+                finish();
             }
         });
 
