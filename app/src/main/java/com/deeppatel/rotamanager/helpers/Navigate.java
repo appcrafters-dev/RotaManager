@@ -7,9 +7,10 @@ import android.os.Parcelable;
 import com.deeppatel.rotamanager.LoginActivity;
 import com.deeppatel.rotamanager.admin.AdminDashboard;
 import com.deeppatel.rotamanager.member.MemberHomePage;
+import com.deeppatel.rotamanager.models.User;
 
 public class Navigate {
-    public static <T extends Parcelable> void to(Activity fromContext, Class toContext, String key, T value) {
+    public static void to(Activity fromContext, Class toContext, String key, User value) {
         Intent intent = new Intent(fromContext, toContext);
         intent.putExtra(key, value);
         fromContext.startActivity(intent);
