@@ -11,7 +11,6 @@ public interface UserRepository {
     void getUser(String uid, OnRepositoryTaskCompleteListener<User> onCompleteListener);
 
     void getStaffMembers(OnRepositoryTaskCompleteListener<List<User>> onCompleteListener);
-    void createNewStaffMember(User user, OnRepositoryTaskCompleteListener<User> onCompleteListener);
 
     void getTimeEntries(String uid, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener);
 

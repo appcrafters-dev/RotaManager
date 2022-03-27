@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.deeppatel.rotamanager.helpers.AdminUser;
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.helpers.Utils;
 import com.deeppatel.rotamanager.models.RepositoryResult;

@@ -36,7 +36,7 @@ public class TimeChangeRequest extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Navigate().redirectActivityAfterFinish(TimeChangeRequest.this, AdminDashboard.class);
+                finish();
             }
         });
 

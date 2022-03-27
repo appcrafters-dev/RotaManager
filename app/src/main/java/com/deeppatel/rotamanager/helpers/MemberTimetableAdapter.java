@@ -44,7 +44,7 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
             @Override
             public void onClick(View v) {
                 Log.e("!!!!!!!!!","aaaaaa");
-                new Navigate().redirectActivityAfterFinish(currentActivity, RequestTimeChangeRequest.class);
+                new Navigate().replace(currentActivity, RequestTimeChangeRequest.class);
             }
         });
     }

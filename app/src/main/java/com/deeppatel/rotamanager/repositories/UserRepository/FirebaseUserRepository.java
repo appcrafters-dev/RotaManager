@@ -31,11 +31,6 @@ public class FirebaseUserRepository extends FirebaseRepository implements UserRe
         );
     }
 
-    @Override
-    public void createNewStaffMember(User user, OnRepositoryTaskCompleteListener<User> onCompleteListener) {
-
-    }
-
     public void getTimeEntries(String uid, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener) {
         getQueryResult(
                 getCollectionReference("users").document(uid).collection("Schedule"),

@@ -41,7 +41,7 @@ public class TimeChangeRequestChildAdapter extends RecyclerView.Adapter<TimeChan
             @Override
             public void onClick(View v) {
                 Log.e("!!!!!!!!!","aaaaaa");
-                new Navigate().redirectActivityAfterFinish(currentActivity, ViewTimeChangeRequest.class);
+                new Navigate().replace(currentActivity, ViewTimeChangeRequest.class);
             }
         });
     }
