@@ -38,16 +38,15 @@ import java.util.Locale;
 
 public class MemberScheduleFragment extends Fragment {
     static FragmentManager currentActivityFragment;
-    String myFormat = "MMMM, yyyy",monthFormatt = "MMMM",dayFormatt= "DD",yearFormatt= "yyyy",nummonFormatt= "mm";
-    SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US),monthFormat = new SimpleDateFormat(monthFormatt, Locale.US),week_dayFormat = new SimpleDateFormat(dayFormatt, Locale.US),week_monFormat = new SimpleDateFormat(nummonFormatt, Locale.US),week_yearFormat = new SimpleDateFormat(yearFormatt, Locale.US);
-    static CardView card;
-    final Calendar myCalendar= Calendar.getInstance();
+    String myFormat = "MMMM, yyyy", monthFormatt = "MMMM";
+    SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US), monthFormat = new SimpleDateFormat(monthFormatt, Locale.US);
+    final Calendar myCalendar = Calendar.getInstance(Locale.US);
+    Calendar calendar = Calendar.getInstance(Locale.US);
     private TextView dateView;
 
     List<MemberTimetableModel> myListData = new ArrayList<>();
     List<MemberTimetableModel> myListData2 = new ArrayList<>();
-    MemberTimetableAdapter adapter = new MemberTimetableAdapter(myListData2, getActivity());
-
+    MemberTimetableAdapter adapter;
 
     public MemberScheduleFragment() { }
 
@@ -63,31 +62,21 @@ public class MemberScheduleFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_member_schedule, container, false);
         currentActivityFragment = getActivity().getSupportFragmentManager();
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        adapter = new MemberTimetableAdapter(myListData2, getActivity());
 
-        dateView = rootView.findViewById(R.id.textViewToolbar);
-        dateView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateLabel();
-            }
-        });
-
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "January"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "February"));
         myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "3", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "5", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "7", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "9", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "11", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "13", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "15", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "17", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "19", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "23", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "25", "9:00 AM", "1:00 PM", "March"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "17", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "9", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "21", "9:00 AM", "1:00 PM", "April"));
-        myListData.add(new MemberTimetableModel("12", "Tue", "26", "9:00 AM", "1:00 PM", "March"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "April"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "May"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "June"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "July"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "August"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "September"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "October"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "31", "9:00 AM", "1:00 PM", "October"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "November"));
+        myListData.add(new MemberTimetableModel("12", "Tue", "1", "9:00 AM", "1:00 PM", "December"));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -98,113 +87,90 @@ public class MemberScheduleFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Week 2"));
         tabLayout.addTab(tabLayout.newTab().setText("Week 3"));
         tabLayout.addTab(tabLayout.newTab().setText("Week 4"));
+        tabLayout.addTab(tabLayout.newTab().setText("Week 5"));
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                switch (tab.getPosition()) {
-                    case 0:
-                        Log.e("!!!!!!!!","0");
-                        updateCard();
-//                        updateCardTab(tab.getPosition());
-
-                        break;
+                switch (tab.getPosition()+1) {
                     case 1:
-                        Log.e("!!!!!!!!","1");
-//                        updateCardTab(tab.getPosition());
-                        updateCard();
-
-                        break;
-
                     case 2:
-                        Log.e("!!!!!!!!","2");
-//                        updateCardTab(tab.getPosition());
-                        updateCard();
-                        break;
-
                     case 3:
-                        Log.e("!!!!!!!!","3");
-//                        updateCardTab(tab.getPosition());
-                        updateCard();
+                    case 4:
+                    case 5:
+                        updateCardTab(tab.getPosition());
                         break;
                 }
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) { }
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) { }
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        dateView = rootView.findViewById(R.id.textViewToolbar);
+        dateView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateLabel(tabLayout.getSelectedTabPosition());
+            }
         });
 
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH,month);
-                myCalendar.set(Calendar.DAY_OF_MONTH,day);
-                updateLabel();
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                updateLabel(tabLayout.getSelectedTabPosition());
             }
         };
 
         dateView = rootView.findViewById(R.id.textViewToolbar);
-        dateView.setText(Month.of(myCalendar.MONTH+1).name().toUpperCase() + ", "+ myCalendar.get(Calendar.YEAR));
-        updateCard();
+        dateView.setText(Month.of(myCalendar.MONTH + 1).name().toUpperCase() + ", " + myCalendar.get(Calendar.YEAR));
+
+        updateCardTab(tabLayout.getSelectedTabPosition());
 
         dateView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(getContext(),date,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(getContext(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
         return rootView;
     }
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void updateLabel() {
-        dateView.setText(dateFormat.format(myCalendar.getTime()));
-        updateCard();
+    private void updateLabel(int tabposition) {
+        dateView.setText(dateFormat.format(myCalendar.getTime()).toUpperCase());
+        updateCardTab(tabposition);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void updateCard(){
-//        Log.e("@@@@@@@@@@@11111111", dateFormat.format(myCalendar.getTime()));
-//        Log.e("@@@@@@@@@@@11111111", monthFormat.format(myCalendar.getTime()));
-        String selectedMonth = monthFormat.format(myCalendar.getTime()).toUpperCase();
+    private void updateCardTab(int tabPosition) {
+        String selectedMonth = dateView.getText().toString().toUpperCase();
+        String[] arrOfStr = selectedMonth.split(", ", 2);
 
         myListData2.clear();
-        for (MemberTimetableModel x : myListData){
-            Log.e("month: ", x.month);
-            myCalendar.set(2022,Month.valueOf(x.month.toUpperCase()).getValue(),Integer.valueOf(x.date));
-            int weekOfYear = myCalendar.get(Calendar.WEEK_OF_MONTH);
-            if (x.month.toUpperCase().equals(selectedMonth)){
-                Log.e("@@@@@@@@@@@", selectedMonth +" " +  weekOfYear + " " + " " + x.date + " " + x.month);
+        for (MemberTimetableModel x : myListData) {
+            calendar.set(2022, Month.valueOf(x.month.toUpperCase()).getValue()-1, Integer.valueOf(x.date));
+            int weekOfYear = calendar.get(Calendar.WEEK_OF_MONTH) - 1;
 
-                myListData2.add(new MemberTimetableModel(x.uid, x.day,x.date, x.from, x.to,x.month));
+            if (weekOfYear == 5) {
+                weekOfYear = 4;
             }
+            if (x.month.toUpperCase().equals(arrOfStr[0])) {
+                if (weekOfYear == tabPosition) {
+                    myListData2.add(new MemberTimetableModel(x.uid, x.day, x.date, x.from, x.to, x.month));
+                }
+            }
+            adapter.notifyDataSetChanged();
         }
-        adapter.notifyDataSetChanged();
     }
-
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    private void updateCardTab(int tabPosition){
-//        String selectedMonth = monthFormat.format(myCalendar.getTime()).toUpperCase();
-//
-//        myListData2.clear();
-//        for (MemberTimetableModel x : myListData){
-//            myCalendar.set(2022,Month.valueOf(x.month.toUpperCase()).getValue(),Integer.valueOf(x.date));
-//            int weekOfYear = myCalendar.get(Calendar.WEEK_OF_MONTH);
-//
-//
-//            if (x.month.toUpperCase().equals(selectedMonth)){
-////                if(weekOfYear == tabPosition){
-//            Log.e("@@@@@@@@@@@", selectedMonth +" " +  weekOfYear + " "+ tabPosition + " " + x.date + " " + x.month);
-//                    myListData2.add(new MemberTimetableModel(x.uid, x.day,x.date, x.from, x.to,x.month));
-////                }
-//            }
-//        }
-//        adapter.notifyDataSetChanged();
-//    }
 }

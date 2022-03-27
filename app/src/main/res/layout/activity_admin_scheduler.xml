@@ -28,6 +28,7 @@
             android:id="@+id/textViewToolbar"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:textColor="@color/white"
             android:gravity="center"
             android:text="Scheduler"
             android:textSize="18sp"
@@ -74,11 +75,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="120dp"
-        android:backgroundTint="@color/dark_blue"
+        android:backgroundTint="@color/white"
+        android:backgroundTintMode="@color/light_blue"
         android:layout_margin="30dp"
         android:layout_gravity="bottom|right"
         android:src="@drawable/ic_baseline_add_circle_24"
         app:fabCustomSize="65dp"
-        app:maxImageSize="65dp"
+        app:maxImageSize="75dp"
         app:rippleColor="@color/dark_blue" />
 </FrameLayout>

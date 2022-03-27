@@ -51,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="105dp"
             app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/light_blue"
             android:background="@drawable/rounded_corners_top"
             app:menu="@menu/selected_nav"
             />
@@ -58,7 +59,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:scrollbars="vertical"
             android:divider="@color/dark_blue"

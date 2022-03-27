@@ -102,19 +102,18 @@ public class MemberRequestsFragment extends Fragment {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void updateLabel() {
-        dateView.setText(dateFormat.format(myCalendar.getTime()));
+        dateView.setText(dateFormat.format(myCalendar.getTime()).toUpperCase());
         updateCard();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void updateCard(){
-        Log.e("@@@@@@@@@@@11111111", dateFormat.format(myCalendar.getTime()));
-        Log.e("@@@@@@@@@@@11111111", monthFormat.format(myCalendar.getTime()));
-        String selectedMonth = monthFormat.format(myCalendar.getTime()).toUpperCase();
+        String selectedMonth = dateView.getText().toString().toUpperCase();
+        String[] arrOfStr = selectedMonth.split(", ", 2);
 
         myListData2.clear();
         for (MemberTimeChangeRequestModel x : myListData){
-            if (x.month.toUpperCase().equals(selectedMonth)){
+            if (x.month.toUpperCase().equals(arrOfStr[0])){
                 myListData2.add(new MemberTimeChangeRequestModel(x.uid, x.day, x.status, x.date, x.time, x.month));
             }
         }

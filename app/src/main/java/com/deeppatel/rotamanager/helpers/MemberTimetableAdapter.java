@@ -48,12 +48,10 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("!!!!!!!!!","aaaaaa");
                 new RedirectToActivity().redirectActivityAfterFinish(currentActivity, RequestTimeChangeRequest.class);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {

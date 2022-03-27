@@ -55,7 +55,6 @@ public class AdminScheduler extends AppCompatActivity {
 
         List<TimeEntryListModel> myListData = new ArrayList<>();
         List<TimeEntryListModel> myListData2 = new ArrayList<>();
-//        myListData2 = myListData;
 
         myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
         myListData.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
@@ -72,13 +71,8 @@ public class AdminScheduler extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view,
-                    int year,
-                    int month,
-                    int dayOfMonth)
-            {
+            public void onSelectedDayChange(@NonNull CalendarView view,int year, int month, int dayOfMonth) {
                 String Date = dayOfMonth + "-" + Month.of(month + 1).name().toUpperCase();
-
                 myListData2.clear();
                 for (TimeEntryListModel x : myListData){
                     String fu = x.getDate() + "-" + x.getMonth().toUpperCase();
@@ -89,9 +83,5 @@ public class AdminScheduler extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
-
-
-
     }
 }

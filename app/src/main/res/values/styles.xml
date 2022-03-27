@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/light_blue</item>
-        <item name="colorPrimaryDark">@color/light_blue</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimaryDark">@color/dark_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light_blue</item>
+        <item name="colorSecondaryVariant">@color/light_blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/light_blue</item>
 
         <!-- Add these -->
         <item name="materialCalendarStyle">@style/Widget.MaterialComponents.MaterialCalendar</item>
@@ -16,29 +26,24 @@
         <item name="android:height">10dp</item>
     </style>
 
-    <style name="NoActionBarTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <!-- Status bar color. -->
-        <item name="colorPrimary">@color/light_blue</item>
-        <item name="colorPrimaryDark">@color/light_blue</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <!-- Customize your theme here. -->
-    </style>
 
-    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/text_input_box_stroke</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="android:textColorHint">@color/text_input_stroke</item>
+        <item name="hintTextColor">@color/text_input_stroke</item>
     </style>
 
     <style name="Widget.MyApp.Toolbar.Solid" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">@color/colorAccent</item>
         <item name="android:elevation" tools:ignore="NewApi">4dp</item>
+        <item name="textColor">@color/light_blue</item>
         <item name="titleTextAppearance">@color/colorAccent</item>
     </style>
 
     <style name="ThemeOverlay.MyApp.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
         <!-- Parent theme sets colorControlNormal to textColorPrimary. -->
+        <item name="textColor">@color/light_blue</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>
     </style>
 
