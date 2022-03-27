@@ -1,14 +1,14 @@
 package com.deeppatel.rotamanager.admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
@@ -37,19 +37,19 @@ public class StaffMemberList extends AppCompatActivity {
         mFab = findViewById(R.id.staff_members_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, NewStaffMember.class);
             }
         });
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 new RedirectToActivity().redirectActivityAfterFinish(StaffMemberList.this, AdminDashboard.class);
             }
         });
     }
 
-    private void getData(){
+    private void getData() {
         Log.d("List?", "are we even hereeeeeeeeeeeeeee");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<StaffMemberDataModel> staffList = new ArrayList<StaffMemberDataModel>();
@@ -64,7 +64,7 @@ public class StaffMemberList extends AppCompatActivity {
                     }
 
                     // Load UI
-                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                    RecyclerView recyclerView = findViewById(R.id.recyclerView);
                     StaffMemberDataAdapter adapter = new StaffMemberDataAdapter(staffList, StaffMemberList.this);
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(StaffMemberList.this));

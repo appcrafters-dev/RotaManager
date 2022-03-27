@@ -1,12 +1,19 @@
 package com.deeppatel.rotamanager.admin;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.LoginActivity;
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
-import com.deeppatel.rotamanager.helpers.StaffMemberDataModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,15 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,9 +64,9 @@ public class AdminProfile extends AppCompatActivity {
                 });
 
         back = findViewById(R.id.backButtonToolbar);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 new RedirectToActivity().redirectActivityAfterFinish(AdminProfile.this, AdminDashboard.class);
             }
         });
@@ -117,7 +115,7 @@ public class AdminProfile extends AppCompatActivity {
         });
     }
 
-    private void loadUI(DocumentSnapshot doc){
+    private void loadUI(DocumentSnapshot doc) {
         name.setText(doc.get("name").toString());
         email.setText(doc.get("email").toString());
         phone.setText(doc.get("phone").toString());

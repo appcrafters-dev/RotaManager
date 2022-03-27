@@ -1,8 +1,5 @@
 package com.deeppatel.rotamanager.admin;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.RedirectToActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.squareup.picasso.Picasso;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +25,7 @@ import java.util.Map;
 public class EditStaffMember extends AppCompatActivity {
     private ImageView back, memberDpView;
     private ImageView share;
-    private TextView nameView,emailView,designationView,phoneView;
+    private TextView nameView, emailView, designationView, phoneView;
     private Button update;
 
     //:TODO RadioButton loading
@@ -96,15 +96,15 @@ public class EditStaffMember extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 new RedirectToActivity().redirectActivityAfterFinish(EditStaffMember.this, StaffMemberList.class);
             }
         });
-        share.setOnClickListener(new View.OnClickListener(){
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 new RedirectToActivity().redirectActivityAfterFinish(EditStaffMember.this, MemberTimeTable.class);
             }
         });
