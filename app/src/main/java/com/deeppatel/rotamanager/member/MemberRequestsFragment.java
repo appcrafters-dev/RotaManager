@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter.MemberTimeChangeRequestAdapter;
+import com.deeppatel.rotamanager.helpers.dataLoad;
 import com.deeppatel.rotamanager.models.MemberTimeChangeRequestModel;
 
 import java.text.SimpleDateFormat;
@@ -58,14 +60,12 @@ public class MemberRequestsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_member_requests, container, false);
         currentActivityFragment = getActivity().getSupportFragmentManager();
+        Log.i("Request Member", dataLoad.memberTimeChangeRequestModel.get(0).getUid());
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-
-        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
-        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
-        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
-        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
-        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
-
+        myListData = dataLoad.memberTimeChangeRequestModel;
+        for(MemberTimeChangeRequestModel x: dataLoad.memberTimeChangeRequestModel){
+            Log.i("loader", x.toString());
+        }
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

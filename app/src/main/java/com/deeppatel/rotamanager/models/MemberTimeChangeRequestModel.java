@@ -94,4 +94,7 @@ public class MemberTimeChangeRequestModel {
         this.status = status;
     }
 
+    public String toString(){
+        return name + " " + uid +  " " + from +  " " + to +  " " + day +  " " + date +  " " + month +  " " + status;
+    }
 }

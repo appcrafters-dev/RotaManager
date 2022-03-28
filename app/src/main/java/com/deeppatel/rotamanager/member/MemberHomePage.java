@@ -8,9 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.deeppatel.rotamanager.R;
+import com.deeppatel.rotamanager.helpers.dataLoad;
 import com.deeppatel.rotamanager.member.MySchedule.MemberScheduleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,7 +30,7 @@ public class MemberHomePage extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         loadFragment(new MemberScheduleFragment());
         mContext = this;
-
+        dataLoad.makeRequestMember();
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
