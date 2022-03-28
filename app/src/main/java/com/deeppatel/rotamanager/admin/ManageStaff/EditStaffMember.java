@@ -1,5 +1,8 @@
 package com.deeppatel.rotamanager.admin.ManageStaff;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,10 +27,10 @@ import java.util.Map;
 
 public class EditStaffMember extends AppCompatActivity {
     private ImageView back, memberDpView;
-    private ImageView share;
+    private ImageView memberSchedule;
 
     private TextView nameView, emailView, designationView, phoneView,memberNameViewToolbar;
-    private Button update;
+    private Button update,share;
 
     //:TODO RadioButton loading
 
@@ -43,6 +46,7 @@ public class EditStaffMember extends AppCompatActivity {
         String designation = user.getDesignation();
         String gender = user.getGender();
         String uid = user.getUid();
+        String inviteCode = user.getInviteCode();
 
         nameView = findViewById(R.id.member_name);
         emailView = findViewById(R.id.member_email);
@@ -62,7 +66,8 @@ public class EditStaffMember extends AppCompatActivity {
         designationView.setText(designation);
 
         back = findViewById(R.id.backButtonToolbar);
-        share = findViewById(R.id.memberSchedule);
+        memberSchedule = findViewById(R.id.memberSchedule);
+        share = findViewById(R.id.member_share);
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,10 +112,20 @@ public class EditStaffMember extends AppCompatActivity {
                 finish();
             }
         });
-        share.setOnClickListener(new View.OnClickListener() {
+        memberSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                Navigate.to(EditStaffMember.this, MemberTimeTable.class, "user", user);
+            }
+        });
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                Toast.makeText(getApplicationContext(),"Invite code copied to clipboard.",Toast.LENGTH_SHORT).show();
+                ClipData clip = ClipData.newPlainText("Invite code", inviteCode);
+                clipboard.setPrimaryClip(clip);
             }
         });
 
