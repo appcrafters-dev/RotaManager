@@ -29,7 +29,7 @@ public class EditStaffMember extends AppCompatActivity {
     private ImageView back, memberDpView;
     private ImageView share;
 
-    private TextView nameView, emailView, designationView, phoneView;
+    private TextView nameView, emailView, designationView, phoneView,memberNameViewToolbar;
     private Button update;
 
     //:TODO RadioButton loading
@@ -49,6 +49,7 @@ public class EditStaffMember extends AppCompatActivity {
 
         nameView = findViewById(R.id.member_name);
         emailView = findViewById(R.id.member_email);
+        memberNameViewToolbar = findViewById(R.id.memberNameViewToolbar);
         emailView.setClickable(false);
         emailView.setFocusable(false);
         phoneView = findViewById(R.id.member_phoneNum);
@@ -60,6 +61,7 @@ public class EditStaffMember extends AppCompatActivity {
         nameView.setText(name);
         emailView.setText(email);
         phoneView.setText(phone);
+        memberNameViewToolbar.setText(name);
         designationView.setText(designation);
 
         back = findViewById(R.id.backButtonToolbar);
@@ -73,6 +75,7 @@ public class EditStaffMember extends AppCompatActivity {
                 String updatedEmail = emailView.getText().toString();
                 String updatedPhone = phoneView.getText().toString();
                 String updatedDesignation = designationView.getText().toString();
+
 
                 Map<String, Object> userUpdate = new HashMap<>();
                 userUpdate.put("name", updatedName);

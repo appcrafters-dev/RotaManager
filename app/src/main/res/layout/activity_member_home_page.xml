@@ -36,9 +36,10 @@
             android:background="@color/dark_blue"
             app:theme="@style/MyNavigationViewItemStyle"
             android:elevation="50dp"
+
             android:padding="6dp"
             app:backgroundTint="@color/dark_blue"
-            app:itemIconSize="30dp"
+            app:itemIconSize="24dp"
             app:itemIconTint="@menu/selected_nav"
             app:itemTextColor="@menu/selected_nav"
             app:menu="@menu/bottom_navigation_menu" />

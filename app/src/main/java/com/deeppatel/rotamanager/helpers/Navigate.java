@@ -9,6 +9,8 @@ import com.deeppatel.rotamanager.admin.AdminDashboard;
 import com.deeppatel.rotamanager.member.MemberHomePage;
 import com.deeppatel.rotamanager.models.User;
 
+import java.util.List;
+
 public class Navigate {
     public static <T extends Parcelable> void to(Activity fromContext, Class toContext, String key, T value) {
         Intent intent = new Intent(fromContext, toContext);
@@ -18,6 +20,20 @@ public class Navigate {
 
     public static void to(Activity fromContext, Class toContext) {
         Intent intent = new Intent(fromContext, toContext);
+        fromContext.startActivity(intent);
+    }
+
+
+    public static void toArguements(Activity fromContext, Class toContext, MemberTimetableModel listdata) {
+        Intent intent = new Intent(fromContext, toContext);
+        intent.putExtra("uid", listdata.getUid());
+        intent.putExtra("date", listdata.getDate());
+        intent.putExtra("day", listdata.getDay());
+        intent.putExtra("from", listdata.getFrom());
+        intent.putExtra("to", listdata.getTo());
+        intent.putExtra("month", listdata.getMonth());
+        intent.putExtra("scheduleID",listdata.getSchedid());
+
         fromContext.startActivity(intent);
     }
 

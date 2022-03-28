@@ -86,7 +86,10 @@ public class TimeChangeRequest extends AppCompatActivity {
         timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "17", "march", "John Doe", "9:30 AM to 1:00 PM"));
         timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "19", "march", "John Doe", "9:30 AM to 1:00 PM"));
         timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "21", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "23", "march", "John Doe", "9:30 AM to 1:00 PM"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "19", "march", "John Doe", "9:30 AM to 1:00 PM"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "17", "march", "John Doe", "9:30 AM to 1:00 PM"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "21", "march", "John Doe", "9:30 AM to 1:00 PM"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "19", "march", "John Doe", "9:30 AM to 1:00 PM"));
 
         return timeChangeRequestChildModelList;
     }
