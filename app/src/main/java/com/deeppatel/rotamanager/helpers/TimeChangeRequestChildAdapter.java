@@ -35,11 +35,11 @@ public class TimeChangeRequestChildAdapter extends RecyclerView.Adapter<TimeChan
         TimeChangeRequestChildModel timeChangeRequestChildModel = timeChangeRequestChildModelList.get(position);
         childViewHolder.cardDate.setText(timeChangeRequestChildModel.getDate());
         childViewHolder.cardDay.setText(timeChangeRequestChildModel.getDay());
-        childViewHolder.new_timing.setText(timeChangeRequestChildModel.getName() + " has requested for the time change: " + timeChangeRequestChildModel.getTime());
+        childViewHolder.new_timing.setText(timeChangeRequestChildModel.getName() + " has requested for the time change: " + timeChangeRequestChildModel.getFrom() + " to " + timeChangeRequestChildModel.getTo());
         childViewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Navigate().replace(currentActivity, ViewTimeChangeRequest.class);
+                new Navigate().toArguementsTime(currentActivity, ViewTimeChangeRequest.class,timeChangeRequestChildModel);
             }
         });
     }

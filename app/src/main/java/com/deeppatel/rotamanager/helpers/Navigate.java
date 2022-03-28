@@ -33,9 +33,21 @@ public class Navigate {
         intent.putExtra("to", listdata.getTo());
         intent.putExtra("month", listdata.getMonth());
         intent.putExtra("scheduleID",listdata.getSchedid());
-
         fromContext.startActivity(intent);
     }
+
+    public static void toArguementsTime(Activity fromContext, Class toContext, TimeChangeRequestChildModel listdata) {
+        Intent intent = new Intent(fromContext, toContext);
+        intent.putExtra("uid", listdata.getUid());
+        intent.putExtra("date", listdata.getDate());
+        intent.putExtra("day", listdata.getDay());
+        intent.putExtra("from", listdata.getFrom());
+        intent.putExtra("to", listdata.getTo());
+        intent.putExtra("month", listdata.getMonth());
+        intent.putExtra("scheduleID",listdata.getSchedid());
+        fromContext.startActivity(intent);
+    }
+
 
     public static void replace(Activity fromContext, Class toContext) {
         Intent intent = new Intent(fromContext, toContext);

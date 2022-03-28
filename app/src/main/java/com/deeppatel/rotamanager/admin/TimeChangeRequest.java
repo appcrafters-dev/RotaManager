@@ -82,14 +82,12 @@ public class TimeChangeRequest extends AppCompatActivity {
     private List<TimeChangeRequestChildModel> ChildItemList() {
         List<TimeChangeRequestChildModel> timeChangeRequestChildModelList = new ArrayList<>();
 
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "17", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "17", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "19", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "21", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "19", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "17", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "21", "march", "John Doe", "9:30 AM to 1:00 PM"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "19", "march", "John Doe", "9:30 AM to 1:00 PM"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "19 ","march"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "21 ","march"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "21 ","march"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march"));
 
         return timeChangeRequestChildModelList;
     }
