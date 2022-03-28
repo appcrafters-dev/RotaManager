@@ -66,28 +66,28 @@ public class TimeChangeRequest extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private List<TimeChangeRequestParentModel> ParentItemList() {
-        Dictionary idkidk = new Hashtable();
+        Dictionary TimeChangeRequestParentModelDict = new Hashtable();
 
         for (TimeChangeRequestChildModel x : ChildItemList()) {
             String key = x.getDate() + "-" + x.getMonth().toUpperCase();
 
-            List<TimeChangeRequestChildModel> lmao = new ArrayList<>();
-            if (idkidk.get(key) == null) {
-                lmao.add(x);
-                idkidk.put(key, lmao);
+            List<TimeChangeRequestChildModel> TimeChangeRequestParentModelDictValue = new ArrayList<>();
+            if (TimeChangeRequestParentModelDict.get(key) == null) {
+                TimeChangeRequestParentModelDictValue.add(x);
+                TimeChangeRequestParentModelDict.put(key, TimeChangeRequestParentModelDictValue);
             } else {
-                lmao = (List<TimeChangeRequestChildModel>) idkidk.get(key);
-                lmao.add(x);
-                idkidk.put(key, lmao);
+                TimeChangeRequestParentModelDictValue = (List<TimeChangeRequestChildModel>) TimeChangeRequestParentModelDict.get(key);
+                TimeChangeRequestParentModelDictValue.add(x);
+                TimeChangeRequestParentModelDict.put(key, TimeChangeRequestParentModelDictValue);
             }
         }
 
         List<TimeChangeRequestParentModel> itemList = new ArrayList<>();
 
-        Enumeration<String> e = idkidk.keys();
+        Enumeration<String> e = TimeChangeRequestParentModelDict.keys();
         while (e.hasMoreElements()) {
             String k = e.nextElement();
-            TimeChangeRequestParentModel item = new TimeChangeRequestParentModel(k, (List<TimeChangeRequestChildModel>) idkidk.get(k));
+            TimeChangeRequestParentModel item = new TimeChangeRequestParentModel(k, (List<TimeChangeRequestChildModel>) TimeChangeRequestParentModelDict.get(k));
             itemList.add(item);
         }
 
