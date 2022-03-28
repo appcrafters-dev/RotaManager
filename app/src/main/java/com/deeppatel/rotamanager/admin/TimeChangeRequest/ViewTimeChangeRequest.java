@@ -58,17 +58,34 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         reason= findViewById(R.id.reason);
 
         Date.setText(date + month.toUpperCase(Locale.ROOT));
-        Time.setText(oldFrom +"to " + oldTo);
+        Time.setText(oldFrom +" to " + oldTo);
 
         fromTime.setText(oldFrom);
         fromTime.setClickable(false);
         fromTime.setFocusable(false);
+        mcurrentTime.set(Calendar.DAY_OF_MONTH, Integer.valueOf(date));
+        String str = oldFrom;
+        String[] arrOfStr = str.split(":", -2);
+
+        mcurrentTime.set(Calendar.HOUR, Integer.valueOf(arrOfStr[0]));
+        String str2 = arrOfStr[1];
+        String[] arrOfStr2 = str2.split(" ", -2);
+        mcurrentTime.set(Calendar.MINUTE, Integer.valueOf(arrOfStr2[0]));
         // TODO: TimeStamps to be updated
         fromTimeStamp = new Timestamp(mcurrentTime.getTime());
 
         toTime.setText(oldTo);
         toTime.setClickable(false);
         toTime.setFocusable(false);
+        String str3 = oldTo;
+        String[] arrOfStr3 = str3.split(":", -2);
+
+        mcurrentTimeTo.set(Calendar.HOUR, Integer.valueOf(arrOfStr3[0]));
+        String str4 = arrOfStr3[1];
+        String[] arrOfStr4 = str4.split(" ", -2);
+        mcurrentTimeTo.set(Calendar.MINUTE, Integer.valueOf(arrOfStr4[0]));
+        // TODO: TimeStamps to be updated
+        toTimeStamp = new Timestamp(mcurrentTimeTo.getTime());
 
         reason.setClickable(false);
         reason.setFocusable(false);
@@ -79,7 +96,7 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 update.setStatus("Rejected");
-                makeRequest("txVYO4pjLioZQusSAhDy", update);
+                makeRequest("Ju3qU20n4xBtOTuRsVF5", update);
                 finish();
             }
         });
@@ -91,7 +108,7 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
                 update.setStatus("Approve");
                 Log.i("asd", update.toHashMap().toString());
                 Log.i("asd2", update.getStatus().toString() + " " + update.getUidUser() + " " + update.getUidSchedule());
-//                makeRequest("txVYO4pjLioZQusSAhDy", update);
+                makeRequest("Ju3qU20n4xBtOTuRsVF5", update);
                 finish();
             }
         });
@@ -116,13 +133,17 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
                             HashMap<String, Object> x = new HashMap<>();
                             x.put("from", updateStatus.getFrom());
                             x.put("to", updateStatus.getTo());
-
-                            db.collection("user").document(updateStatus.getUidUser()).collection("Schedule").document(updateStatus.getUidSchedule())
+                            Log.i("UID SCHED", updateStatus.getUidSchedule());
+                            db.collection("users").document(updateStatus.getUidUser()).collection("Schedule").document(updateStatus.getUidSchedule())
                                     .update(x)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            Log.i("Done", "Update");
+                                            if(task.isSuccessful()) {
+                                                Log.i("Done", "Update");
+                                            }else{
+                                                Log.i("Not Done", "Update");
+                                            }
                                         }
                                     });
                         }
