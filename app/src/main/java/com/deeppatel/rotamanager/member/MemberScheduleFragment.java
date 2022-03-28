@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -66,43 +68,58 @@ public class MemberScheduleFragment extends Fragment {
 
         String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        List<MemberTimetableModel> Schedule = new ArrayList<MemberTimetableModel>();
-        db.collection("users").document(Uid).collection("Schedule").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @SuppressLint("SimpleDateFormat")
+
+        db.collection("users").document(Uid).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for (QueryDocumentSnapshot doc : task.getResult()){
-                                Timestamp from, to;
-                                from = (Timestamp) doc.get("from");
-                                to = (Timestamp) doc.get("to");
-                                Date x = from.toDate();
-                                Date y = to.toDate();
-                                Calendar cal = Calendar.getInstance(Locale.US);
-                                Calendar cal2 = Calendar.getInstance(Locale.US);
-                                cal.setTime(x);
-                                cal2.setTime(y);
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot namew = task.getResult();
+                        String name = namew.get("name").toString();
 
-                                String day = new SimpleDateFormat("EE").format(x);
-                                String calenderDate = String.valueOf(cal.get(Calendar.DATE));
-                                int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
-                                int calenderFromMinute = cal.get(Calendar.MINUTE);
-                                int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
-                                int calenderToMinute = cal2.get(Calendar.MINUTE);
-                                String calenderMonth = Month.of(cal2.MONTH + 1).name();
+                        List<MemberTimetableModel> Schedule = new ArrayList<MemberTimetableModel>();
+                        db.collection("users").document(Uid).collection("Schedule").get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @SuppressLint("SimpleDateFormat")
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if(task.isSuccessful()) {
+                                            for (QueryDocumentSnapshot doc : task.getResult()){
+                                                Timestamp from, to;
+                                                from = (Timestamp) doc.get("from");
+                                                to = (Timestamp) doc.get("to");
+                                                Date x = from.toDate();
+                                                Date y = to.toDate();
+                                                Calendar cal = Calendar.getInstance(Locale.US);
+                                                Calendar cal2 = Calendar.getInstance(Locale.US);
+                                                cal.setTime(x);
+                                                cal2.setTime(y);
 
-                                boolean isPM = (calenderFromHour >= 12);
-                                String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
-                                boolean isPM2 = (calenderToHour >= 12);
-                                String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
 
-                                myListData.add(new MemberTimetableModel(Uid, doc.getId(),day,calenderDate,calenderFrom,calenderTo ,calenderMonth));
-                            }
-                        }
+                                                String day = new SimpleDateFormat("EE").format(x);
+                                                String calenderDate = String.valueOf(cal.get(Calendar.DATE));
+                                                int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
+                                                int calenderFromMinute = cal.get(Calendar.MINUTE);
+                                                int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
+                                                int calenderToMinute = cal2.get(Calendar.MINUTE);
+                                                String calenderMonth = Month.of(cal2.MONTH + 1).name();
+
+                                                boolean isPM = (calenderFromHour >= 12);
+                                                String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
+                                                boolean isPM2 = (calenderToHour >= 12);
+                                                String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
+
+                                                myListData.add(new MemberTimetableModel(Uid,name ,doc.getId(),day,calenderDate,calenderFrom,calenderTo ,calenderMonth));
+                                            }
+                                        }
+                                    }
+                                });
+
                     }
                 });
+
+
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         adapter = new MemberTimetableAdapter(myListData2, getActivity());
 
@@ -195,7 +212,7 @@ public class MemberScheduleFragment extends Fragment {
             }
             if (x.month.toUpperCase().equals(arrOfStr[0])) {
                 if (weekOfYear == tabPosition) {
-                    myListData2.add(new MemberTimetableModel(x.uid, x.getSchedid(), x.day, x.date, x.from, x.to, x.month));
+                    myListData2.add(new MemberTimetableModel(x.uid,x.name ,x.getSchedid(), x.day, x.date, x.from, x.to, x.month));
                 }
             }
             adapter.notifyDataSetChanged();

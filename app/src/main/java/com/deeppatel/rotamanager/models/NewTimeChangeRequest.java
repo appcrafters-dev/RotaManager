@@ -63,6 +63,7 @@ public class NewTimeChangeRequest {
         HashMap <String, Object> hashMap = new HashMap<>();
         hashMap.put("uidUser", uidUser);
         hashMap.put("uidSchedule", uidSchedule);
+        hashMap.put("uidName", uidName);
         hashMap.put("from", from);
         hashMap.put("to", to);
         hashMap.put("reason", reason);
@@ -71,14 +72,25 @@ public class NewTimeChangeRequest {
     }
 
     private String uidUser;
+
+    public String getUidName() {
+        return uidName;
+    }
+
+    public void setUidName(String uidName) {
+        this.uidName = uidName;
+    }
+
+    private String uidName;
     private String uidSchedule;
     private Timestamp from;
     private Timestamp to;
     private String reason;
     private String status;
 
-    public NewTimeChangeRequest(String uidUser, String uidSchedule, Timestamp from, Timestamp to, String status,String reason){
+    public NewTimeChangeRequest(String uidUser,String uidName ,String uidSchedule, Timestamp from, Timestamp to, String status,String reason){
         this.uidUser = uidUser;
+        this.uidName = uidName;
         this.uidSchedule = uidSchedule;
         this.from = from;
         this.to = to;

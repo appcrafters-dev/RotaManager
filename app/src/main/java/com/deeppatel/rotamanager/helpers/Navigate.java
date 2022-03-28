@@ -30,6 +30,7 @@ public class Navigate {
         intent.putExtra("date", listdata.getDate());
         intent.putExtra("day", listdata.getDay());
         intent.putExtra("from", listdata.getFrom());
+        intent.putExtra("name", listdata.getName());
         intent.putExtra("to", listdata.getTo());
         intent.putExtra("month", listdata.getMonth());
         intent.putExtra("scheduleID",listdata.getSchedid());
@@ -44,6 +45,7 @@ public class Navigate {
         intent.putExtra("from", listdata.getFrom());
         intent.putExtra("to", listdata.getTo());
         intent.putExtra("month", listdata.getMonth());
+        intent.putExtra("name", listdata.getName());
         intent.putExtra("scheduleID",listdata.getSchedid());
         fromContext.startActivity(intent);
     }

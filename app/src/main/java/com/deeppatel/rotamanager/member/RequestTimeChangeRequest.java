@@ -43,9 +43,10 @@ public class RequestTimeChangeRequest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_time_change_request);
 
-        String uid,date,day,month,oldFrom,oldTo,scheduleID;
+        String uid,date,day,month,oldFrom,oldTo,scheduleID,name;
         Bundle extras = getIntent().getExtras();
         scheduleID= extras.getString("scheduleID");
+        name = extras.getString("name");
         date= extras.getString("date");
         day= extras.getString("day");
         month= extras.getString("month");
@@ -53,8 +54,6 @@ public class RequestTimeChangeRequest extends AppCompatActivity {
         oldTo= extras.getString("to");
 
         uid= extras.getString("uid");
-
-        Log.e("@@@@@@@@@@@@@@@@@",scheduleID);
 
         Date = findViewById(R.id.Date);
         Time = findViewById(R.id.Time);
@@ -135,7 +134,7 @@ public class RequestTimeChangeRequest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 print(fromTimeStamp + " " + toTimeStamp);
-                NewTimeChangeRequest doc = new NewTimeChangeRequest(uid, scheduleID, fromTimeStamp, toTimeStamp, "Pending",reason.getText().toString());
+                NewTimeChangeRequest doc = new NewTimeChangeRequest(uid,name,scheduleID, fromTimeStamp, toTimeStamp, "Pending",reason.getText().toString());
                 makeRequest(uid,scheduleID, doc);
                 finish();
             }

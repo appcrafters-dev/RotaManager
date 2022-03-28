@@ -5,6 +5,16 @@ public class MemberTimetableModel {
     public String date;
     public String day;
     public String from;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String name;
     public String to;
     public String month;
 
@@ -18,9 +28,10 @@ public class MemberTimetableModel {
         this.schedid = schedid;
     }
 
-    public MemberTimetableModel(String uid, String schedid,String day, String date, String from, String to,String month){
+    public MemberTimetableModel(String uid,String name ,String schedid,String day, String date, String from, String to,String month){
         this.uid = uid;
         this.schedid = schedid;
+        this.name = name;
         this.date = date;
         this.day = day;
         this.to = to;
