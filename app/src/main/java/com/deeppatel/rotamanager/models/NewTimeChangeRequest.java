@@ -77,7 +77,7 @@ public class NewTimeChangeRequest {
     private String reason;
     private String status;
 
-    public NewTimeChangeRequest(String uidUser, String uidSchedule, Timestamp from, Timestamp to, String reason){
+    public NewTimeChangeRequest(String uidUser, String uidSchedule, Timestamp from, Timestamp to, String status,String reason){
         this.uidUser = uidUser;
         this.uidSchedule = uidSchedule;
         this.from = from;
