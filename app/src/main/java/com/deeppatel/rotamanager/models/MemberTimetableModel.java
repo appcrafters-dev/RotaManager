@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.models;
 
 public class MemberTimetableModel {
     public String uid;

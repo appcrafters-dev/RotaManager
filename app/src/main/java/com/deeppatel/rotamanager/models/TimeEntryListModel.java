@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.models;
 
 public class TimeEntryListModel {
     public String uid;

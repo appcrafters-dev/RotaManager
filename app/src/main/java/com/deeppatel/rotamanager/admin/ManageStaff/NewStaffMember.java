@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin.StaffMember;
+package com.deeppatel.rotamanager.admin.ManageStaff;
 
 import android.os.Bundle;
 import android.view.View;

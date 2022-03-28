@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin.StaffMember;
+package com.deeppatel.rotamanager.helpers.adapters.StaffMemberAdapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
+import com.deeppatel.rotamanager.admin.ManageStaff.EditStaffMember;
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.models.User;
 

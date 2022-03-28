@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.member;
+package com.deeppatel.rotamanager.member.MySchedule;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,9 +15,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.NewTimeEntry;
-import com.deeppatel.rotamanager.admin.TimeChangeRequest;
-import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.firebase.Timestamp;
 
 import java.util.Calendar;

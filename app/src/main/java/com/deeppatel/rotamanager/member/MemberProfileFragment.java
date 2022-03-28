@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.deeppatel.rotamanager.LoginActivity;
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.AdminProfile;
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

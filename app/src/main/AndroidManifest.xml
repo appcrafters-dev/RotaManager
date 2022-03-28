@@ -9,37 +9,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".member.RequestTimeChangeRequest"
+            android:name=".member.MySchedule.RequestTimeChangeRequest"
             android:exported="true" />
         <activity
-            android:name=".admin.ViewTimeChangeRequest"
+            android:name=".admin.TimeChangeRequest.ViewTimeChangeRequest"
             android:exported="true" />
         <activity
             android:name=".member.MemberHomePage"
             android:exported="true" />
         <activity
-            android:name=".admin.MemberTimeTable"
+            android:name=".admin.ManageStaff.MemberTimeTable"
             android:exported="true"/>
         <activity
-            android:name=".admin.StaffMember.EditStaffMember"
+            android:name=".admin.ManageStaff.EditStaffMember"
             android:exported="true"/>
         <activity
-            android:name=".admin.StaffMember.NewStaffMember"
+            android:name=".admin.ManageStaff.NewStaffMember"
             android:exported="true"/>
         <activity
-            android:name=".admin.NewTimeEntry"
+            android:name=".admin.Scheduler.NewTimeEntry"
             android:exported="true" />
         <activity
-            android:name=".admin.TimeChangeRequest"
+            android:name=".admin.TimeChangeRequest.TimeChangeRequest"
             android:exported="true" />
         <activity
-            android:name=".admin.AdminScheduler"
+            android:name=".admin.Scheduler.AdminScheduler"
             android:exported="true" />
         <activity
-            android:name=".admin.AdminProfile"
+            android:name=".admin.AdminProfile.AdminProfile"
             android:exported="true" />
         <activity
-            android:name=".admin.StaffMember.StaffMemberList"
+            android:name=".admin.ManageStaff.StaffMemberList"
             android:exported="true" />
         <activity
             android:name=".admin.AdminDashboard"

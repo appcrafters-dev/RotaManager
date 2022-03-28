@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.member;
+package com.deeppatel.rotamanager.member.MySchedule;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -20,8 +20,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.MemberTimetableAdapter;
-import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
+import com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter.MemberTimetableAdapter;
+import com.deeppatel.rotamanager.models.MemberTimetableModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;

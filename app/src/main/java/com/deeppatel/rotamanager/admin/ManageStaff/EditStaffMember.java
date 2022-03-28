@@ -1,8 +1,7 @@
-package com.deeppatel.rotamanager.admin.StaffMember;
+package com.deeppatel.rotamanager.admin.ManageStaff;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,13 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.MemberTimeTable;
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
