@@ -60,10 +60,11 @@ public class MemberRequestsFragment extends Fragment {
         currentActivityFragment = getActivity().getSupportFragmentManager();
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
 
-        myListData.add(new MemberTimeChangeRequestModel("12", "Tue", "Approved", "12", "9:30 AM to 1:00 PM", "March"));
-        myListData.add(new MemberTimeChangeRequestModel("12", "Tue", "Approved", "15", "9:30 AM to 1:00 PM", "March"));
-        myListData.add(new MemberTimeChangeRequestModel("12", "Tue", "Approved", "14", "9:30 AM to 1:00 PM", "January"));
-        myListData.add(new MemberTimeChangeRequestModel("12", "Tue", "Approved", "16", "9:30 AM to 1:00 PM", "April"));
+        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
+        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
+        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
+        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
+        myListData.add(new MemberTimeChangeRequestModel("12adadsad", "Denied", "John", "Tue", "9:30 AM","1:30 PM","12","March"));
 
 
         recyclerView.setHasFixedSize(true);
@@ -106,7 +107,7 @@ public class MemberRequestsFragment extends Fragment {
         myListData2.clear();
         for (MemberTimeChangeRequestModel x : myListData){
             if (x.month.toUpperCase().equals(arrOfStr[0])){
-                myListData2.add(new MemberTimeChangeRequestModel(x.uid, x.day, x.status, x.date, x.time, x.month));
+                myListData2.add(new MemberTimeChangeRequestModel(x.uid, x.status, x.name,x.day,x.from,x.to ,x.date, x.month));
             }
         }
         adapter.notifyDataSetChanged();

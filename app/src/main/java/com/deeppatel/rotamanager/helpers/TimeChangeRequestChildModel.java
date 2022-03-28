@@ -84,5 +84,4 @@ public class TimeChangeRequestChildModel {
         this.date = date;
         this.month = month;
     }
-
 }

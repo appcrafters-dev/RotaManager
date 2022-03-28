@@ -20,6 +20,7 @@ public class MemberTimeChangeRequestAdapter extends RecyclerView.Adapter<MemberT
         this.listdata = listdata;
         this.currentActivity = currentActivity;
     }
+
     @Override
     public MemberTimeChangeRequestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -34,7 +35,7 @@ public class MemberTimeChangeRequestAdapter extends RecyclerView.Adapter<MemberT
         holder.date.setText(listdata.get(position).getDate());
         holder.day.setText(listdata.get(position).getDay());
         holder.status.setText(listdata.get(position).getStatus());
-        holder.time.setText(listdata.get(position).getTime());
+        holder.time.setText(listdata.get(position).getFrom() + " to " + listdata.get(position).getTo());
     }
 
 

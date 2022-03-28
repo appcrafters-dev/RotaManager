@@ -61,6 +61,9 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         toTime.setClickable(false);
         toTime.setFocusable(false);
 
+        reason.setClickable(false);
+        reason.setFocusable(false);
+
         request_reject = findViewById(R.id.request_reject);
         request_reject.setOnClickListener(new View.OnClickListener(){
             @Override
