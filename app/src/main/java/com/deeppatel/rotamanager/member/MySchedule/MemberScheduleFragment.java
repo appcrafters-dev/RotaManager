@@ -46,6 +46,7 @@ public class MemberScheduleFragment extends Fragment {
     SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US), monthFormat = new SimpleDateFormat(monthFormatt, Locale.US);
     final Calendar myCalendar = Calendar.getInstance(Locale.US);
     Calendar calendar = Calendar.getInstance(Locale.US);
+    Calendar calendar2 = Calendar.getInstance(Locale.US);
     private TextView dateView;
 
     List<MemberTimetableModel> myListData = new ArrayList<>();
@@ -133,6 +134,11 @@ public class MemberScheduleFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Week 3"));
         tabLayout.addTab(tabLayout.newTab().setText("Week 4"));
         tabLayout.addTab(tabLayout.newTab().setText("Week 5"));
+
+        int weekofMonth = calendar2.get(Calendar.WEEK_OF_MONTH);
+        if (weekofMonth == 5) { weekofMonth = 4; }
+        TabLayout.Tab tab = tabLayout.getTabAt(weekofMonth);
+        tab.select();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
