@@ -73,7 +73,7 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         reason.setClickable(false);
         reason.setFocusable(false);
 
-        NewTimeChangeRequest update = new NewTimeChangeRequest(uid, scheduleID, fromTimeStamp, toTimeStamp, "Pending", reason.getText().toString());
+        NewTimeChangeRequest update = new NewTimeChangeRequest(uid, "name", scheduleID, fromTimeStamp, toTimeStamp, "Pending", reason.getText().toString());
         request_reject = findViewById(R.id.request_reject);
         request_reject.setOnClickListener(new View.OnClickListener(){
             @Override
