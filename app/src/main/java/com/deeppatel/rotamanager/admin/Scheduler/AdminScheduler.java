@@ -22,9 +22,14 @@ import com.deeppatel.rotamanager.models.User;
 import com.deeppatel.rotamanager.repositories.OnRepositoryTaskCompleteListener;
 import com.deeppatel.rotamanager.repositories.UserRepository.FirebaseUserRepository;
 import com.deeppatel.rotamanager.repositories.UserRepository.UserRepository;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -62,6 +67,7 @@ public class AdminScheduler extends AppCompatActivity {
         myListData2 = new ArrayList<>();
         userRepository = FirebaseUserRepository.getInstance();
 
+
         getAllSchedule();
 
 
@@ -79,11 +85,11 @@ public class AdminScheduler extends AppCompatActivity {
             }
         });
 
-        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
-        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 12:00 PM", "March"));
-        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "13", "John Doe", "9:00 AM to 14:00 PM", "March"));
-        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "14", "John Doe", "9:00 AM to 15:00 PM", "March"));
-        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "15", "John Doe", "9:00 AM to 15:00 PM", "March"));
+//        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 1:00 PM", "March"));
+//        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "12", "John Doe", "9:00 AM to 12:00 PM", "March"));
+//        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "13", "John Doe", "9:00 AM to 14:00 PM", "March"));
+//        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "14", "John Doe", "9:00 AM to 15:00 PM", "March"));
+//        allTimeEntries.add(new TimeEntryListModel("12", "Tue", "15", "John Doe", "9:00 AM to 15:00 PM", "March"));
 
 //        adapter = new TimeEntryListAdapter(myListData2, AdminScheduler.this);
 //        recyclerView.setHasFixedSize(true);
@@ -105,7 +111,7 @@ public class AdminScheduler extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    void updateTimeEntries(int month, int dayOfMonth){
+    void updateTimeEntries(int month, int dayOfMonth) {
         String Date = dayOfMonth + "-" + Month.of(month + 1).name().toUpperCase();
 
         myListData2.clear();
@@ -115,113 +121,144 @@ public class AdminScheduler extends AppCompatActivity {
             Log.d("onSelectedDayChange: fu", fu);
 
             if (fu.equals(Date)) {
-                myListData2.add(new TimeEntryListModel(x.uid,x.day, x.date, x.name, x.time, x.month));
+                myListData2.add(new TimeEntryListModel(x.uid, x.day, x.date, x.name, x.time, x.month));
             }
         }
         adapter.notifyDataSetChanged();
     }
 
-    private void getAllSchedule(){
-        userRepository.getUser("dvdsvsdv", new OnRepositoryTaskCompleteListener<User>() {
-            @Override
-            public void onComplete(@NonNull RepositoryResult<User> result) {
-                result.getErrorMessage();
-            }
-        });
+    private void getAllSchedule() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collectionGroup("Schedule").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
-                    Log.i("sched", doc.getId());
-                    Log.i("sched", doc.toString());
-                    Timestamp from, to;
-                    from = (Timestamp) doc.get("from");
-                    to = (Timestamp) doc.get("to");
-                    Date x = from.toDate();
-                    Date y = to.toDate();
-                    Calendar cal = Calendar.getInstance(Locale.US);
-                    Calendar cal2 = Calendar.getInstance(Locale.US);
-                    cal.setTime(x);
-                    cal2.setTime(y);
-
-                    String day = new SimpleDateFormat("EE").format(x);
-                    String calenderDate = String.valueOf(cal.get(Calendar.DATE));
-                    int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
-                    int calenderFromMinute = cal.get(Calendar.MINUTE);
-                    int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
-                    int calenderToMinute = cal2.get(Calendar.MINUTE);
-                    String calenderMonth = Month.of(cal2.MONTH + 1).name();
-
-                    boolean isPM = (calenderFromHour >= 12);
-                    String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
-                    boolean isPM2 = (calenderToHour >= 12);
-                    String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
-
-
-                    allTimeEntries.add(new TimeEntryListModel("2AMnInXgtgMeqWKiTTuf1spgkw13", day, calenderDate, "asd",calenderFrom + calenderTo, calenderMonth));
-
-                    Log.i("doc", calenderDate + " " + day + " " + "asd" + " " + calenderFrom + " " + calenderTo + " " + calenderMonth + " ");
-                }
-
-                adapter = new TimeEntryListAdapter(myListData2, AdminScheduler.this);
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(AdminScheduler.this));
-                recyclerView.setAdapter(adapter);
-                Date today = new Date();
-                Calendar cal = Calendar.getInstance(Locale.US);
-                cal.setTime(today);
-                updateTimeEntries(cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-            }
-        });
-//
 //        db.collection("users").get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
 //                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        for (QueryDocumentSnapshot doc: task.getResult()){
-//                            db.collection("users").document(doc.getId()).collection("Schedule").get()
-//                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                        @RequiresApi(api = Build.VERSION_CODES.O)
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                            for (QueryDocumentSnapshot subdoc: task.getResult()) {
-//                                                if(!task.getResult().isEmpty()) {
-//                                                    Timestamp from, to;
-//                                                    from = (Timestamp) subdoc.get("from");
-//                                                    to = (Timestamp) subdoc.get("to");
-//                                                    Date x = from.toDate();
-//                                                    Date y = to.toDate();
-//                                                    Calendar cal = Calendar.getInstance(Locale.US);
-//                                                    Calendar cal2 = Calendar.getInstance(Locale.US);
-//                                                    cal.setTime(x);
-//                                                    cal2.setTime(y);
+//                    public void onSuccess(@NonNull QuerySnapshot task) {
+////                        Log.e("sched", task.getResult().toString());
 //
-//                                                    String day = new SimpleDateFormat("EE").format(x);
-//                                                    String calenderDate = String.valueOf(cal.get(Calendar.DATE));
-//                                                    int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
-//                                                    int calenderFromMinute = cal.get(Calendar.MINUTE);
-//                                                    int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
-//                                                    int calenderToMinute = cal2.get(Calendar.MINUTE);
-//                                                    String calenderMonth = Month.of(cal2.MONTH + 1).name();
+////                        if (task.isSuccessful()) {
+////                            DocumentSnapshot document = task.getResult();
 //
-//                                                    boolean isPM = (calenderFromHour >= 12);
-//                                                    String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
-//                                                    boolean isPM2 = (calenderToHour >= 12);
-//                                                    String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
+//                            userRepository.getUser(uid, new OnRepositoryTaskCompleteListener<User>() {
+//                                @Override
+//                                public void onComplete(@NonNull RepositoryResult<User> result) {
+//                                    result.getErrorMessage();
+//                                }
+//                            });
 //
-//                                                    allTimeEntries.add(new TimeEntryListModel(doc.getId().toString(), day, calenderDate, doc.get("name").toString(), calenderFrom + calenderTo, calenderMonth));
 //
-//                                                    Log.i("doc", calenderDate + " " + day + " " + doc.get("name").toString() + " " + calenderFrom + " " + calenderTo + " " + calenderMonth + " ");
-//                                                }
+//                            db.collectionGroup("Schedule").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                                @RequiresApi(api = Build.VERSION_CODES.O)
+//                                @Override
+//                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                                    for(QueryDocumentSnapshot doc: queryDocumentSnapshots){
+//                                        String name = task.getDocuments().get(1).get("name").toString();
+////                    Log.i("sched", doc.getId());
+////                    Log.i("sched", doc.toString());
+//                                        Timestamp from, to;
+//                                        from = (Timestamp) doc.get("from");
+//                                        to = (Timestamp) doc.get("to");
+//                                        Date x = from.toDate();
+//                                        Date y = to.toDate();
+//                                        Calendar cal = Calendar.getInstance(Locale.US);
+//                                        Calendar cal2 = Calendar.getInstance(Locale.US);
+//                                        cal.setTime(x);
+//                                        cal2.setTime(y);
 //
-//                                            }
-//                                        }
-//                                    });
+//                                        String day = new SimpleDateFormat("EE").format(x);
+//                                        String calenderDate = String.valueOf(cal.get(Calendar.DATE));
+//                                        int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
+//                                        int calenderFromMinute = cal.get(Calendar.MINUTE);
+//                                        int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
+//                                        int calenderToMinute = cal2.get(Calendar.MINUTE);
+//                                        String calenderMonth = Month.of(cal2.MONTH + 1).name();
+//
+//                                        boolean isPM = (calenderFromHour >= 12);
+//                                        String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
+//                                        boolean isPM2 = (calenderToHour >= 12);
+//                                        String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
+//
+//
+//                                        allTimeEntries.add(new TimeEntryListModel(uid, day, calenderDate, name,calenderFrom +" to"  + calenderTo, calenderMonth));
+////                    Log.i("doc", calenderDate + " " + day + " " + "asd" + " " + calenderFrom + " " + calenderTo + " " + calenderMonth + " ");
+//                                    }
+//
+//                                    adapter = new TimeEntryListAdapter(myListData2, AdminScheduler.this);
+//                                    recyclerView.setHasFixedSize(true);
+//                                    recyclerView.setLayoutManager(new LinearLayoutManager(AdminScheduler.this));
+//                                    recyclerView.setAdapter(adapter);
+//                                    Date today = new Date();
+//                                    Calendar cal = Calendar.getInstance(Locale.US);
+//                                    cal.setTime(today);
+//                                    updateTimeEntries(cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+//                                }
+//                            });
 //                        }
-//                    }
+////                    }
+//
 //                });
+////
+
+
+        db.collection("users").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                            String name = doc.getString("name");
+                            String uid = doc.getId();
+//                            Log.e("!!!!!!",uid);
+
+                            db.collectionGroup("Schedule").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                @RequiresApi(api = Build.VERSION_CODES.O)
+                                @Override
+                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+//                    Log.i("sched", doc.getId());
+//                    Log.i("sched", doc.toString());
+                                        Timestamp from, to;
+                                        from = (Timestamp) doc.get("from");
+                                        to = (Timestamp) doc.get("to");
+                                        Date x = from.toDate();
+                                        Date y = to.toDate();
+                                        Calendar cal = Calendar.getInstance(Locale.US);
+                                        Calendar cal2 = Calendar.getInstance(Locale.US);
+                                        cal.setTime(x);
+                                        cal2.setTime(y);
+
+                                        String day = new SimpleDateFormat("EE").format(x);
+                                        String calenderDate = String.valueOf(cal.get(Calendar.DATE));
+                                        int calenderFromHour = cal.get(Calendar.HOUR_OF_DAY);
+                                        int calenderFromMinute = cal.get(Calendar.MINUTE);
+                                        int calenderToHour = cal2.get(Calendar.HOUR_OF_DAY);
+                                        int calenderToMinute = cal2.get(Calendar.MINUTE);
+                                        String calenderMonth = Month.of(cal2.MONTH + 1).name();
+
+                                        boolean isPM = (calenderFromHour >= 12);
+                                        String calenderFrom = String.format("%02d:%02d %s", (calenderFromHour == 12 || calenderFromHour == 0) ? 12 : calenderFromHour % 12, calenderFromMinute, isPM ? "PM" : "AM");
+                                        boolean isPM2 = (calenderToHour >= 12);
+                                        String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
+
+
+                                        allTimeEntries.add(new TimeEntryListModel(uid, day, calenderDate, name, calenderFrom + " to" + calenderTo, calenderMonth));
+//                    Log.i("doc", calenderDate + " " + day + " " + "asd" + " " + calenderFrom + " " + calenderTo + " " + calenderMonth + " ");
+                                    }
+
+                                    Date today = new Date();
+                                    Calendar cal = Calendar.getInstance(Locale.US);
+                                    cal.setTime(today);
+                                    updateTimeEntries(cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                                }
+                            });
+                        }
+                        Log.e("!!!!!!!!!!!!!!!!!!!",myListData2.toString());
+                        adapter = new TimeEntryListAdapter(myListData2, AdminScheduler.this);
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(AdminScheduler.this));
+                        recyclerView.setAdapter(adapter);
+                    }
+
+                });
     }
 }
