@@ -108,6 +108,7 @@ public class AdminProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
+                finish();
                 Navigate.replace(AdminProfile.this, LoginActivity.class);
             }
         });
