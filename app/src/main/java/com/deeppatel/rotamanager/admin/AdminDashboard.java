@@ -7,7 +7,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.StaffMember.StaffMemberList;
+import com.deeppatel.rotamanager.admin.AdminProfile.AdminProfile;
+import com.deeppatel.rotamanager.admin.Scheduler.AdminScheduler;
+import com.deeppatel.rotamanager.admin.ManageStaff.StaffMemberList;
+import com.deeppatel.rotamanager.admin.TimeChangeRequest.TimeChangeRequest;
 import com.deeppatel.rotamanager.helpers.Navigate;
 
 public class AdminDashboard extends AppCompatActivity {

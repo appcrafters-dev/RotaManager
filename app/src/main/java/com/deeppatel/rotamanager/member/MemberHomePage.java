@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.deeppatel.rotamanager.R;
+import com.deeppatel.rotamanager.member.MySchedule.MemberScheduleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MemberHomePage extends AppCompatActivity {

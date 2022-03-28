@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.ManageStaff;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -11,33 +11,27 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.MemberTimetableAdapter;
-import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
-import com.deeppatel.rotamanager.models.TimeEntry;
+import com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter.MemberTimetableAdapter;
+import com.deeppatel.rotamanager.models.MemberTimetableModel;
 import com.deeppatel.rotamanager.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import com.deeppatel.rotamanager.admin.StaffMember.EditStaffMember;
-import com.deeppatel.rotamanager.helpers.Navigate;
+
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

@@ -1,5 +1,6 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.TimeChangeRequest;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,11 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.deeppatel.rotamanager.R;
+import com.deeppatel.rotamanager.models.NewTimeChangeRequest;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class ViewTimeChangeRequest extends AppCompatActivity {
@@ -56,6 +63,8 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         fromTime.setText(oldFrom);
         fromTime.setClickable(false);
         fromTime.setFocusable(false);
+        // TODO: TimeStamps to be updated
+        fromTimeStamp = new Timestamp(mcurrentTime.getTime());
 
         toTime.setText(oldTo);
         toTime.setClickable(false);
@@ -64,10 +73,13 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         reason.setClickable(false);
         reason.setFocusable(false);
 
+        NewTimeChangeRequest update = new NewTimeChangeRequest(uid, scheduleID, fromTimeStamp, toTimeStamp, "Pending", reason.getText().toString());
         request_reject = findViewById(R.id.request_reject);
         request_reject.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                update.setStatus("Rejected");
+                makeRequest("txVYO4pjLioZQusSAhDy", update);
                 finish();
             }
         });
@@ -76,6 +88,10 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         request_approve.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                update.setStatus("Approve");
+                Log.i("asd", update.toHashMap().toString());
+                Log.i("asd2", update.getStatus().toString() + " " + update.getUidUser() + " " + update.getUidSchedule());
+//                makeRequest("txVYO4pjLioZQusSAhDy", update);
                 finish();
             }
         });
@@ -87,5 +103,32 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void makeRequest(String uidTime, NewTimeChangeRequest updateStatus){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("TimeRequest").document(uidTime).update("status", updateStatus.getStatus())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(updateStatus.getStatus() == "Approve"){
+
+                            HashMap<String, Object> x = new HashMap<>();
+                            x.put("from", updateStatus.getFrom());
+                            x.put("to", updateStatus.getTo());
+
+                            db.collection("user").document(updateStatus.getUidUser()).collection("Schedule").document(updateStatus.getUidSchedule())
+                                    .update(x)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Log.i("Done", "Update");
+                                        }
+                                    });
+                        }
+                        Toast.makeText(ViewTimeChangeRequest.this, "New Request Made", Toast.LENGTH_SHORT).show();
+                        Log.i("New", "Request made");
+                    }
+                });
     }
 }

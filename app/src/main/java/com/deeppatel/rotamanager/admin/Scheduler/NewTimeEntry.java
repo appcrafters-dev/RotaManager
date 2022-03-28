@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.Scheduler;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;

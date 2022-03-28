@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.Scheduler;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -14,20 +14,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.MemberTimetableModel;
 import com.deeppatel.rotamanager.helpers.Navigate;
-import com.deeppatel.rotamanager.helpers.TimeEntryListAdapter;
-import com.deeppatel.rotamanager.helpers.TimeEntryListModel;
+import com.deeppatel.rotamanager.helpers.adapters.AdminScheduleAdapter.TimeEntryListAdapter;
+import com.deeppatel.rotamanager.models.TimeEntryListModel;
 import com.deeppatel.rotamanager.models.RepositoryResult;
 import com.deeppatel.rotamanager.models.User;
 import com.deeppatel.rotamanager.repositories.OnRepositoryTaskCompleteListener;
 import com.deeppatel.rotamanager.repositories.UserRepository.FirebaseUserRepository;
 import com.deeppatel.rotamanager.repositories.UserRepository.UserRepository;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

@@ -1,16 +1,6 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.models;
 
-public class TimeChangeRequestChildModel {
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private String name;
-
+public class MemberTimeChangeRequestModel {
     public String getUid() {
         return uid;
     }
@@ -43,6 +33,14 @@ public class TimeChangeRequestChildModel {
         this.from = from;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getTo() {
         return to;
     }
@@ -59,14 +57,6 @@ public class TimeChangeRequestChildModel {
         this.month = month;
     }
 
-    public String uid;
-    public String date;
-    public String day;
-    public String from;
-    public String to;
-    public String month;
-    public String schedid;
-
     public String getSchedid() {
         return schedid;
     }
@@ -75,7 +65,25 @@ public class TimeChangeRequestChildModel {
         this.schedid = schedid;
     }
 
-    public TimeChangeRequestChildModel(String uid,String name,String day,String from,String to, String date, String month) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String uid;
+    public String date;
+    public String day;
+    public String from;
+    public String name;
+    public String to;
+    public String month;
+    public String schedid;
+    public String status;
+
+    public MemberTimeChangeRequestModel(String uid,String status,String name,String day,String from,String to, String date, String month){
         this.name = name;
         this.uid = uid;
         this.from = from;
@@ -83,5 +91,7 @@ public class TimeChangeRequestChildModel {
         this.day = day;
         this.date = date;
         this.month = month;
+        this.status = status;
     }
+
 }

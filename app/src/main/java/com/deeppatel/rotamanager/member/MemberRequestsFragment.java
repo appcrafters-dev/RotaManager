@@ -17,8 +17,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.MemberTimeChangeRequestAdapter;
-import com.deeppatel.rotamanager.helpers.MemberTimeChangeRequestModel;
+import com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter.MemberTimeChangeRequestAdapter;
+import com.deeppatel.rotamanager.models.MemberTimeChangeRequestModel;
 
 import java.text.SimpleDateFormat;
 import java.time.Month;

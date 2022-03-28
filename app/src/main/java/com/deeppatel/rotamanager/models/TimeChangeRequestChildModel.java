@@ -1,6 +1,16 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.models;
 
-public class MemberTimeChangeRequestModel {
+public class TimeChangeRequestChildModel {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private String name;
+
     public String getUid() {
         return uid;
     }
@@ -33,14 +43,6 @@ public class MemberTimeChangeRequestModel {
         this.from = from;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getTo() {
         return to;
     }
@@ -57,6 +59,14 @@ public class MemberTimeChangeRequestModel {
         this.month = month;
     }
 
+    public String uid;
+    public String date;
+    public String day;
+    public String from;
+    public String to;
+    public String month;
+    public String schedid;
+
     public String getSchedid() {
         return schedid;
     }
@@ -65,25 +75,7 @@ public class MemberTimeChangeRequestModel {
         this.schedid = schedid;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String uid;
-    public String date;
-    public String day;
-    public String from;
-    public String name;
-    public String to;
-    public String month;
-    public String schedid;
-    public String status;
-
-    public MemberTimeChangeRequestModel(String uid,String status,String name,String day,String from,String to, String date, String month){
+    public TimeChangeRequestChildModel(String uid,String name,String day,String from,String to, String date, String month, String schedid) {
         this.name = name;
         this.uid = uid;
         this.from = from;
@@ -91,7 +83,6 @@ public class MemberTimeChangeRequestModel {
         this.day = day;
         this.date = date;
         this.month = month;
-        this.status = status;
+        this.schedid = schedid;
     }
-
 }

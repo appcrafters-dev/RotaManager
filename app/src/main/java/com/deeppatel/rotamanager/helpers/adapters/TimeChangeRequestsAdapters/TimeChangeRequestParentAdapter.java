@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.helpers.adapters.TimeChangeRequestsAdapters;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.deeppatel.rotamanager.R;
+import com.deeppatel.rotamanager.models.TimeChangeRequestParentModel;
 
 import java.util.List;
 

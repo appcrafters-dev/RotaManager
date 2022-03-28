@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter;
 
 import android.app.Activity;
 import android.util.Log;
@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.member.RequestTimeChangeRequest;
+import com.deeppatel.rotamanager.models.MemberTimetableModel;
+import com.deeppatel.rotamanager.helpers.Navigate;
+import com.deeppatel.rotamanager.member.MySchedule.RequestTimeChangeRequest;
 
 import java.util.List;
 

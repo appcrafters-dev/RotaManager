@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.AdminProfile;
 
 import android.os.Bundle;
 import android.util.Log;

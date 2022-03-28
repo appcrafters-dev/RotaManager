@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin.StaffMember;
+package com.deeppatel.rotamanager.admin.ManageStaff;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.Navigate;
+import com.deeppatel.rotamanager.helpers.adapters.StaffMemberAdapter.StaffMemberDataAdapter;
 import com.deeppatel.rotamanager.helpers.Utils;
 import com.deeppatel.rotamanager.models.User;
 import com.deeppatel.rotamanager.models.RepositoryResult;

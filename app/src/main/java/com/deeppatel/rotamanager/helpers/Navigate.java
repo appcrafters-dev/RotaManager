@@ -3,13 +3,13 @@ package com.deeppatel.rotamanager.helpers;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.deeppatel.rotamanager.LoginActivity;
 import com.deeppatel.rotamanager.admin.AdminDashboard;
 import com.deeppatel.rotamanager.member.MemberHomePage;
-import com.deeppatel.rotamanager.models.User;
-
-import java.util.List;
+import com.deeppatel.rotamanager.models.MemberTimetableModel;
+import com.deeppatel.rotamanager.models.TimeChangeRequestChildModel;
 
 public class Navigate {
     public static <T extends Parcelable> void to(Activity fromContext, Class toContext, String key, T value) {
@@ -33,10 +33,12 @@ public class Navigate {
         intent.putExtra("to", listdata.getTo());
         intent.putExtra("month", listdata.getMonth());
         intent.putExtra("scheduleID",listdata.getSchedid());
+
         fromContext.startActivity(intent);
     }
 
     public static void toArguementsTime(Activity fromContext, Class toContext, TimeChangeRequestChildModel listdata) {
+        Log.i("listdata",listdata.getSchedid() + "asd");
         Intent intent = new Intent(fromContext, toContext);
         intent.putExtra("uid", listdata.getUid());
         intent.putExtra("date", listdata.getDate());

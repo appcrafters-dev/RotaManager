@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.helpers;
+package com.deeppatel.rotamanager.helpers.adapters.TimeChangeRequestsAdapters;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.ViewTimeChangeRequest;
+import com.deeppatel.rotamanager.admin.TimeChangeRequest.ViewTimeChangeRequest;
+import com.deeppatel.rotamanager.helpers.Navigate;
+import com.deeppatel.rotamanager.models.TimeChangeRequestChildModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.deeppatel.rotamanager.admin;
+package com.deeppatel.rotamanager.admin.TimeChangeRequest;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.helpers.TimeChangeRequestChildModel;
-import com.deeppatel.rotamanager.helpers.TimeChangeRequestParentModel;
-import com.deeppatel.rotamanager.helpers.TimeChangeRequestParentAdapter;
+import com.deeppatel.rotamanager.models.TimeChangeRequestChildModel;
+import com.deeppatel.rotamanager.models.TimeChangeRequestParentModel;
+import com.deeppatel.rotamanager.helpers.adapters.TimeChangeRequestsAdapters.TimeChangeRequestParentAdapter;
 
 import android.app.Activity;
 import android.os.Build;
@@ -82,12 +82,12 @@ public class TimeChangeRequest extends AppCompatActivity {
     private List<TimeChangeRequestChildModel> ChildItemList() {
         List<TimeChangeRequestChildModel> timeChangeRequestChildModelList = new ArrayList<>();
 
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "19 ","march"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "21 ","march"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "21 ","march"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march"));
-        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march"));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march", ""));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "19 ","march", ""));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "21 ","march", ""));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "21 ","march", ""));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march", ""));
+        timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel("Tue", "John Doe","Tue", "9:30 AM ","1:00 PM", "17 ","march", ""));
 
         return timeChangeRequestChildModelList;
     }
