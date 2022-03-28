@@ -8,8 +8,19 @@ public class MemberTimetableModel {
     public String to;
     public String month;
 
-    public MemberTimetableModel(String uid, String day, String date, String from, String to,String month){
+    public String getSchedid() {
+        return schedid;
+    }
+
+    public void setSchedid(String schedid) {
+        this.schedid = schedid;
+    }
+
+    public String schedid;
+
+    public MemberTimetableModel(String uid, String schedid,String day, String date, String from, String to,String month){
         this.uid = uid;
+        this.schedid = schedid;
         this.date = date;
         this.day = day;
         this.to = to;

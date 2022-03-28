@@ -98,7 +98,7 @@ public class MemberScheduleFragment extends Fragment {
                                 boolean isPM2 = (calenderToHour >= 12);
                                 String calenderTo = String.format("%02d:%02d %s", (calenderToHour == 12 || calenderToHour == 0) ? 12 : calenderToHour % 12, calenderToMinute, isPM2 ? "PM" : "AM");
 
-                                myListData.add(new MemberTimetableModel(Uid,day,calenderDate,calenderFrom,calenderTo ,calenderMonth));
+                                myListData.add(new MemberTimetableModel(Uid, doc.getId(),day,calenderDate,calenderFrom,calenderTo ,calenderMonth));
                             }
                         }
                     }
@@ -195,7 +195,7 @@ public class MemberScheduleFragment extends Fragment {
             }
             if (x.month.toUpperCase().equals(arrOfStr[0])) {
                 if (weekOfYear == tabPosition) {
-                    myListData2.add(new MemberTimetableModel(x.uid, x.day, x.date, x.from, x.to, x.month));
+                    myListData2.add(new MemberTimetableModel(x.uid, x.getSchedid(), x.day, x.date, x.from, x.to, x.month));
                 }
             }
             adapter.notifyDataSetChanged();
