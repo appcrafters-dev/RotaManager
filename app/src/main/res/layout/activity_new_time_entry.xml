@@ -61,7 +61,7 @@
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
-            android:focusableInTouchMode="false"
+            android:focusableInTouchMode="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

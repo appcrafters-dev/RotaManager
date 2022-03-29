@@ -38,7 +38,6 @@ import java.util.Locale;
 
 public class TimeChangeRequest extends AppCompatActivity {
     private ImageView back;
-    private Activity currentActivity;
     List<TimeChangeRequestChildModel> timeChangeRequestChildModelList;
     RecyclerView ParentRecyclerViewItem;
     TimeChangeRequestParentAdapter timeChangeRequestParentAdapter;

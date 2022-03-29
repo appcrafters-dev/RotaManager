@@ -1,6 +1,5 @@
 package com.deeppatel.rotamanager.repositories.AuthRepository;
 
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -17,33 +16,43 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.List;
-
 public class FirebaseAuthRepository extends FirebaseUserRepository implements AuthRepository {
-    FirebaseAuth firebaseAuth;
     static User currentUser;
-
     private static FirebaseAuthRepository instance;
-    public static FirebaseAuthRepository getInstance() {
-        if(instance == null) {
-            instance = new FirebaseAuthRepository();
-        }
-        return instance;
-    }
+    FirebaseAuth firebaseAuth;
 
     FirebaseAuthRepository() {
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
+    public static FirebaseAuthRepository getInstance() {
+        if (instance == null) {
+            instance = new FirebaseAuthRepository();
+        }
+        return instance;
+    }
+
+    public String getCurrentUserId() {
+        if (currentUser != null && currentUser.getUid() != null) {
+            return currentUser.getUid();
+        }
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if (firebaseUser != null) {
+            return firebaseUser.getUid();
+        }
+        return null;
+    }
+
     public void getCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener) {
-        if (currentUser != null){
+        if (currentUser != null) {
             onCompleteListener.onComplete(new RepositoryResult<>(currentUser, null));
             return;
         }
         fetchCurrentUser(onCompleteListener);
     }
 
-    public void fetchCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener){
+    public void fetchCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser == null) {
             onCompleteListener.onComplete(new RepositoryResult<>());
@@ -52,7 +61,7 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
         getUser(firebaseUser.getUid(), new OnRepositoryTaskCompleteListener<User>() {
             @Override
             public void onComplete(@NonNull RepositoryResult<User> result) {
-                if(result.getResult() != null){
+                if (result.getResult() != null) {
                     currentUser = result.getResult();
                 }
                 onCompleteListener.onComplete(result);
@@ -101,7 +110,7 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
             public void onComplete(@NonNull RepositoryResult<User> result) {
                 Log.d("createNewUser", "currentUser" + currentUser.toString());
 
-                if (result.getResult() == null){
+                if (result.getResult() == null) {
                     Log.d("createNewUser", "stop 2: no current user");
                     onCompleteListener.onComplete(new RepositoryResult<>(null, "You are not allowed to create a new member."));
                     return;
@@ -110,7 +119,7 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
                 firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getInviteCode()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
+                        if (!task.isSuccessful()) {
                             Log.d("createNewUser", "Error");
                             onCompleteListener.onComplete(new RepositoryResult<>(null, task.getException().getMessage()));
                             return;
@@ -123,7 +132,7 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
                             public void onComplete(@NonNull RepositoryResult<User> result) {
                                 Log.d("createNewUser", "stop 5");
 
-                                if(result.getErrorMessage() != null){
+                                if (result.getErrorMessage() != null) {
                                     Log.d("createNewUser", "stop 5.5");
 
                                     result.setErrorMessage("Could not login back as admin: " + result.getErrorMessage());

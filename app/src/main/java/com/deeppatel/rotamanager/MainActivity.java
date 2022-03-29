@@ -3,8 +3,11 @@ package com.deeppatel.rotamanager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.models.RepositoryResult;
@@ -21,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) actionBar.hide();
-
         authRepository = FirebaseAuthRepository.getInstance();
         authenticate();
     }

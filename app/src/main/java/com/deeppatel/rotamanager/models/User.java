@@ -96,8 +96,8 @@ public class User extends Model {
         return uid;
     }
 
-    public void setId(String uid) {
-        this.uid = uid;
+    public void setId(String id) {
+        this.uid = id;
     }
 
     public String getName() {

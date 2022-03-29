@@ -6,44 +6,25 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-        <activity
-            android:name=".member.MySchedule.RequestTimeChangeRequest"
-            android:exported="true" />
-        <activity
-            android:name=".admin.TimeChangeRequest.ViewTimeChangeRequest"
-            android:exported="true" />
-        <activity
-            android:name=".member.MemberHomePage"
-            android:exported="true" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".member.MySchedule.RequestTimeChangeRequest" />
+        <activity android:name=".admin.TimeChangeRequest.ViewTimeChangeRequest" />
+        <activity android:name=".member.MemberHomePage" />
         <activity
             android:name=".admin.ManageStaff.MemberTimeTable"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".admin.ManageStaff.EditStaffMember"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".admin.ManageStaff.NewStaffMember"
-            android:exported="true"/>
-        <activity
-            android:name=".admin.Scheduler.NewTimeEntry"
             android:exported="true" />
-        <activity
-            android:name=".admin.TimeChangeRequest.TimeChangeRequest"
-            android:exported="true" />
-        <activity
-            android:name=".admin.Scheduler.AdminScheduler"
-            android:exported="true" />
-        <activity
-            android:name=".admin.AdminProfile.AdminProfile"
-            android:exported="true" />
-        <activity
-            android:name=".admin.ManageStaff.StaffMemberList"
-            android:exported="true" />
-        <activity
-            android:name=".admin.AdminDashboard"
-            android:exported="true" />
+        <activity android:name=".admin.Scheduler.NewTimeEntry" />
+        <activity android:name=".admin.TimeChangeRequest.TimeChangeRequest" />
+        <activity android:name=".admin.Scheduler.AdminScheduler" />
+        <activity android:name=".admin.AdminProfile.AdminProfile" />
+        <activity android:name=".admin.ManageStaff.StaffMemberList" />
+        <activity android:name=".admin.AdminDashboard" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

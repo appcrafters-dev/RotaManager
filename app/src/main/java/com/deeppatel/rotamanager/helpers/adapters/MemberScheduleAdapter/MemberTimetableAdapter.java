@@ -7,23 +7,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.models.MemberTimetableModel;
+import com.deeppatel.rotamanager.helpers.Utils;
+import com.deeppatel.rotamanager.models.TimeEntry;
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.member.MySchedule.RequestTimeChangeRequest;
+
+import org.joda.time.DateTime;
 
 import java.util.List;
 
 public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetableAdapter.ViewHolder> {
-    private List<MemberTimetableModel> listdata;
-    private Activity currentActivity;
+    private final List<TimeEntry> timeEntries;
+    private final Activity activity;
 
-    public MemberTimetableAdapter(List<MemberTimetableModel> listdata, Activity currentActivity) {
-        this.listdata = listdata;
-        this.currentActivity = currentActivity;
+    public MemberTimetableAdapter(List<TimeEntry> timeEntries, Activity activity) {
+        this.timeEntries = timeEntries;
+        this.activity = activity;
     }
+
+    @NonNull
     @Override
     public MemberTimetableAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -34,26 +40,28 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
 
     @Override
     public void onBindViewHolder(MemberTimetableAdapter.ViewHolder holder, int position) {
-        final MemberTimetableModel myListData = listdata.get(position);
-        holder.date.setText(listdata.get(position).getDate());
-        holder.day.setText(listdata.get(position).getDay());
-        holder.from.setText(listdata.get(position).getFrom());
-        holder.to.setText(listdata.get(position).getTo());
+        final TimeEntry timeEntry = timeEntries.get(position);
+
+        DateTime date = timeEntry.getDate();
+
+        holder.day.setText(Utils.dateTimeToDayString(date));
+        holder.date.setText(String.valueOf(date.getDayOfMonth()));
+        holder.from.setText(String.format("From: %S", timeEntry.getFromString()));
+        holder.to.setText(String.format("To: %S",timeEntry.getToString()));
 
         holder.more.setVisibility(View.VISIBLE);
         holder.more.setClickable(true);
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("!!!!!!!!!","aaaaaa");
-                new Navigate().toArguements(currentActivity, RequestTimeChangeRequest.class,myListData);
+               Navigate.to(activity, RequestTimeChangeRequest.class, "time_entry", timeEntry);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return listdata.size();
+        return timeEntries.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

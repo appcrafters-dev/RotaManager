@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.deeppatel.rotamanager"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.google.android:flexbox:1.1.0'
     implementation 'com.github.pchmn:MaterialChipsInput:1.0.8'
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+    implementation 'net.danlew:android.joda:2.10.14'
 
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:29.2.1')

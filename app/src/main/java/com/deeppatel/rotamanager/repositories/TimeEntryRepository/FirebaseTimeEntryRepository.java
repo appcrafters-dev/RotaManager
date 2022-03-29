@@ -33,7 +33,7 @@ public class FirebaseTimeEntryRepository extends FirebaseRepository implements T
 
     @Override
     public void getTimeEntriesForUser(String userId, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener) {
-        getQueryResult(getCollectionReference(COLLECTION).whereEqualTo("userId", userId), TimeEntry.class, onCompleteListener);
+        getQueryResult(getCollectionReference(COLLECTION).whereEqualTo("user.uid", userId), TimeEntry.class, onCompleteListener);
     }
 
     @Override

@@ -7,42 +7,48 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.models.TimeEntryListModel;
+import com.deeppatel.rotamanager.helpers.Utils;
+import com.deeppatel.rotamanager.models.TimeEntry;
+
+import org.joda.time.DateTime;
 
 import java.util.List;
 
 public class TimeEntryListAdapter extends RecyclerView.Adapter<TimeEntryListAdapter.ViewHolder>{
-    private List<TimeEntryListModel> listdata;
-    private Activity currentActivity;
+    List<TimeEntry> timeEntries;
+    Activity activity;
 
-    public TimeEntryListAdapter(List<TimeEntryListModel> listdata, Activity currentActivity) {
-        this.listdata = listdata;
-        this.currentActivity = currentActivity;
+    public TimeEntryListAdapter(List<TimeEntry> timeEntries, Activity activity) {
+        this.timeEntries = timeEntries;
+        this.activity = activity;
     }
+
+    @NonNull
     @Override
     public TimeEntryListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.time_entry_list_card, parent, false);
-        TimeEntryListAdapter.ViewHolder viewHolder = new TimeEntryListAdapter.ViewHolder(listItem);
-        return viewHolder;
+        return new ViewHolder(listItem);
     }
 
     @Override
     public void onBindViewHolder(TimeEntryListAdapter.ViewHolder holder, int position) {
-        final TimeEntryListModel myListData = listdata.get(position);
-        holder.name.setText(listdata.get(position).getName());
-        holder.day.setText(listdata.get(position).getDay());
-        holder.date.setText(listdata.get(position).getDate());
-        holder.time.setText(listdata.get(position).getTime());
+        final TimeEntry timeEntry = timeEntries.get(position);
 
+        DateTime date = timeEntry.getDate();
+        holder.name.setText(timeEntry.getUser().getName());
+        holder.day.setText(Utils.dateTimeToDayString(date));
+        holder.date.setText(String.valueOf(date.getDayOfMonth()));
+        holder.time.setText(String.format("%S to %S", timeEntry.getFromString(), timeEntry.getToString()));
     }
 
     @Override
     public int getItemCount() {
-        return listdata.size();
+        return timeEntries.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

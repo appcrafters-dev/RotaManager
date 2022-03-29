@@ -17,6 +17,11 @@ public class Navigate {
         intent.putExtra(key, value);
         fromContext.startActivity(intent);
     }
+    public static void to(Activity fromContext, Class toContext, String key, String value) {
+        Intent intent = new Intent(fromContext, toContext);
+        intent.putExtra(key, value);
+        fromContext.startActivity(intent);
+    }
 
     public static void to(Activity fromContext, Class toContext) {
         Intent intent = new Intent(fromContext, toContext);
