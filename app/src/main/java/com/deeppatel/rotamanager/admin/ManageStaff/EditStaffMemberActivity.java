@@ -56,7 +56,7 @@ public class EditStaffMemberActivity extends AppCompatActivity {
         phoneView = findViewById(R.id.member_phoneNum);
         designationView = findViewById(R.id.member_designation);
         memberDpView = findViewById(R.id.uploadDP);
-        update = findViewById(R.id.member_submit);
+        update = findViewById(R.id.btn_submit);
         Log.d("Intent", name + " " + email + " " + phone + " " + designation + " " + gender + " ");
 
         nameView.setText(name);

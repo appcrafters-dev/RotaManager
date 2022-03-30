@@ -48,7 +48,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Date"
+            android:id="@+id/et_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -80,7 +80,7 @@
             style="@style/LoginTextInputLayoutStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fromTime"
+                android:id="@+id/ed_from_time"
                 android:layout_width="318dp"
                 android:layout_height="55dp"
                 android:hint="From: "
@@ -97,7 +97,7 @@
             style="@style/LoginTextInputLayoutStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/toTime"
+                android:id="@+id/ed_to_time"
                 android:layout_width="318dp"
                 android:layout_height="55dp"
                 android:hint="To: "
@@ -128,7 +128,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/member_submit"
+            android:id="@+id/btn_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

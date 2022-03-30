@@ -51,7 +51,7 @@ public class MemberProfileFragment extends Fragment {
         email = rootView.findViewById(R.id.member_email);
         phone = rootView.findViewById(R.id.member_phoneNum);
         designation = rootView.findViewById(R.id.member_designation);
-        update = rootView.findViewById(R.id.member_submit);
+        update = rootView.findViewById(R.id.btn_submit);
         nameToolbar = rootView.findViewById(R.id.textViewToolbar);
         logout = rootView.findViewById(R.id.member_logout);
 

@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.admin.AdminProfile.AdminProfile;
-import com.deeppatel.rotamanager.admin.Scheduler.AdminScheduler;
+import com.deeppatel.rotamanager.admin.Scheduler.AdminSchedulerActivity;
 import com.deeppatel.rotamanager.admin.ManageStaff.StaffMembersActivity;
 import com.deeppatel.rotamanager.admin.TimeChangeRequest.TimeChangeRequest;
 import com.deeppatel.rotamanager.helpers.Navigate;
@@ -40,7 +40,7 @@ public class AdminDashboard extends AppCompatActivity {
         scheduler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigate.to(AdminDashboard.this, AdminScheduler.class);
+                Navigate.to(AdminDashboard.this, AdminSchedulerActivity.class);
             }
         });
 

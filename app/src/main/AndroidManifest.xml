@@ -14,7 +14,7 @@
         <activity android:name=".admin.ManageStaff.NewStaffMemberActivity" />
         <activity android:name=".admin.Scheduler.NewTimeEntry" />
         <activity android:name=".admin.TimeChangeRequest.TimeChangeRequest" />
-        <activity android:name=".admin.Scheduler.AdminScheduler" />
+        <activity android:name=".admin.Scheduler.AdminSchedulerActivity" />
         <activity android:name=".admin.AdminProfile.AdminProfile" />
         <activity android:name=".admin.ManageStaff.StaffMembersActivity" />
         <activity android:name=".admin.AdminDashboard" />

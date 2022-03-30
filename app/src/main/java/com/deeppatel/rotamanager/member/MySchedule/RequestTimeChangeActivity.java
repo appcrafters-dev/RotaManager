@@ -46,10 +46,10 @@ public class RequestTimeChangeActivity extends AppCompatActivity {
         Intent intent = getIntent();
         TimeEntry timeEntry = intent.getParcelableExtra("time_entry");
 
-        dateTextVIew = findViewById(R.id.Date);
+        dateTextVIew = findViewById(R.id.et_date);
         timeTextView = findViewById(R.id.Time);
-        fromTimeEditText = findViewById(R.id.fromTime);
-        toTimeEditText = findViewById(R.id.toTime);
+        fromTimeEditText = findViewById(R.id.ed_from_time);
+        toTimeEditText = findViewById(R.id.ed_to_time);
         reasonEditText = findViewById(R.id.reason);
 
         DateTime date = timeEntry.getDate();
@@ -96,7 +96,7 @@ public class RequestTimeChangeActivity extends AppCompatActivity {
 
 
         back = findViewById(R.id.iv_back_button);
-        sbmitButton = findViewById(R.id.member_submit);
+        sbmitButton = findViewById(R.id.btn_submit);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

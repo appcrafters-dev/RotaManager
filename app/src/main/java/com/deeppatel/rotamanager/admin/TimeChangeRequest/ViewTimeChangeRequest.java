@@ -51,10 +51,10 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
 
 //        Log.e("@@@@@@@@@@@@@@@@@",scheduleID);
 
-        Date = findViewById(R.id.Date);
+        Date = findViewById(R.id.et_date);
         Time = findViewById(R.id.Time);
-        fromTime = findViewById(R.id.fromTime);
-        toTime= findViewById(R.id.toTime);
+        fromTime = findViewById(R.id.ed_from_time);
+        toTime= findViewById(R.id.ed_to_time);
         reason= findViewById(R.id.reason);
 
         Date.setText(date + month.toUpperCase(Locale.ROOT));

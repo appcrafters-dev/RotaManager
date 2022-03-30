@@ -23,7 +23,7 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminScheduler extends AppCompatActivity {
+public class AdminSchedulerActivity extends AppCompatActivity {
     private RecyclerView timeEntriesRecyclerView;
     private TimeEntryListAdapter timeEntriesAdapter;
 
@@ -44,7 +44,7 @@ public class AdminScheduler extends AppCompatActivity {
         CalendarView calendar = findViewById(R.id.cv_calendar);
 
         backButton.setOnClickListener(view -> finish());
-        addNewTimeEntryFAB.setOnClickListener(v -> Navigate.to(AdminScheduler.this, NewTimeEntry.class, "date", selectedDate.toString()));
+        addNewTimeEntryFAB.setOnClickListener(v -> Navigate.to(AdminSchedulerActivity.this, NewTimeEntry.class, "date", selectedDate.toString()));
         calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             selectedDate = new DateTime(year, month + 1, dayOfMonth, 0, 0);
             updateTimeEntries(selectedDate);
@@ -69,16 +69,16 @@ public class AdminScheduler extends AppCompatActivity {
     }
 
     void setupTimeEntriesAdapter() {
-        timeEntriesAdapter = new TimeEntryListAdapter(timeEntries, AdminScheduler.this);
+        timeEntriesAdapter = new TimeEntryListAdapter(timeEntries, AdminSchedulerActivity.this);
         timeEntriesRecyclerView.setHasFixedSize(true);
-        timeEntriesRecyclerView.setLayoutManager(new LinearLayoutManager(AdminScheduler.this));
+        timeEntriesRecyclerView.setLayoutManager(new LinearLayoutManager(AdminSchedulerActivity.this));
         timeEntriesRecyclerView.setAdapter(timeEntriesAdapter);
     }
 
     void getAllTimeEntries() {
         timeEntryRepository.getAllTimeEntries(result -> {
             if (result.getErrorMessage() != null) {
-                Utils.showToastMessage(AdminScheduler.this, result.getErrorMessage());
+                Utils.showToastMessage(AdminSchedulerActivity.this, result.getErrorMessage());
             } else if (result.getResult() != null) {
                 allTimeEntries = result.getResult();
                 setupTimeEntriesAdapter();

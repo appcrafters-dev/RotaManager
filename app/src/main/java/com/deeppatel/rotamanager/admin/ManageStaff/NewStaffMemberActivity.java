@@ -43,7 +43,7 @@ public class NewStaffMemberActivity extends AppCompatActivity {
         phoneView = findViewById(R.id.member_phoneNum);
         designationView = findViewById(R.id.member_designation);
         genderView = findViewById(R.id.radioGroup);
-        submit = findViewById(R.id.member_submit);
+        submit = findViewById(R.id.btn_submit);
         genderButton = findViewById(genderView.getCheckedRadioButtonId());
 
 
