@@ -69,19 +69,17 @@
     </LinearLayout>
 
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new_time_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="120dp"
-        android:backgroundTint="@color/white"
-        app:tint = "@color/dark_blue"
-        android:layout_margin="30dp"
-        app:borderWidth="0dp"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_baseline_add_circle_24"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/dark_blue"
+        android:contentDescription="Add New"
+        android:elevation="120dp"
+        android:src="@drawable/ic_add"
+        app:borderWidth="0dp"
         app:fabCustomSize="65dp"
-        app:maxImageSize="70dp"
-        app:rippleColor="@color/dark_blue" />
+        app:maxImageSize="40dp" />
 </FrameLayout>

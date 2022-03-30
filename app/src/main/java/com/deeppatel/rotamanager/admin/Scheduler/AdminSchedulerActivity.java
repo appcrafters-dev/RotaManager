@@ -44,7 +44,7 @@ public class AdminSchedulerActivity extends AppCompatActivity {
         CalendarView calendar = findViewById(R.id.cv_calendar);
 
         backButton.setOnClickListener(view -> finish());
-        addNewTimeEntryFAB.setOnClickListener(v -> Navigate.to(AdminSchedulerActivity.this, NewTimeEntry.class, "date", selectedDate.toString()));
+        addNewTimeEntryFAB.setOnClickListener(v -> Navigate.to(AdminSchedulerActivity.this, NewTimeEntryActivity.class, "date", selectedDate.toString()));
         calendar.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             selectedDate = new DateTime(year, month + 1, dayOfMonth, 0, 0);
             updateTimeEntries(selectedDate);

@@ -1,66 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FFF"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFF"
     tools:context=".admin.ManageStaff.StaffMembersActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="3dp"
         android:background="@color/dark_blue"
+        android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/white"
+        android:theme="?attr/actionBarTheme"
         app:titleMarginStart="@android:dimen/app_icon_size"
-        android:theme="?attr/actionBarTheme" >
+        app:titleTextColor="@color/white">
+
         <ImageView
             android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:contentDescription="@string/go_back"
             android:paddingStart="7dp"
             android:paddingEnd="5dp"
-            android:src="@drawable/ic_baseline_arrow_back_ios_24"
-            android:contentDescription="@string/go_back" />
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
 
         <TextView
             android:id="@+id/textViewToolbar"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textColor="@color/white"
             android:gravity="center"
             android:text="@string/staff_members"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_staff_members"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:divider="@color/dark_blue"
-            android:dividerHeight="1px"
-            android:layout_gravity="center_horizontal">
-        </androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_staff_members"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:divider="@color/dark_blue"
+        android:dividerHeight="1px"
+        android:scrollbars="vertical" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new_staff_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="120dp"
-        android:backgroundTint="@color/white"
-        app:tint = "@color/dark_blue"
-        android:layout_margin="30dp"
-        app:borderWidth="0dp"
         android:layout_gravity="bottom|end"
-        android:src="@drawable/ic_baseline_add_circle_24"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/dark_blue"
+        android:contentDescription="@string/new_staff_member"
+        android:elevation="120dp"
+        android:src="@drawable/ic_add"
+        app:borderWidth="0dp"
         app:fabCustomSize="65dp"
-        app:maxImageSize="70dp"
-        app:rippleColor="@color/dark_blue"
-        android:contentDescription="@string/new_staff_member" />
+        app:maxImageSize="40dp" />
 </FrameLayout>

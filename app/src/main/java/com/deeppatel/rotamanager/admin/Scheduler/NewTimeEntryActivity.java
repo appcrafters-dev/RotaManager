@@ -26,7 +26,7 @@ import org.joda.time.DateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NewTimeEntry extends AppCompatActivity {
+public class NewTimeEntryActivity extends AppCompatActivity {
     private ChipsInput selectMembersView;
     private EditText fromTimeEditText, toTimeEditText, dateEditText;
 
@@ -61,14 +61,14 @@ public class NewTimeEntry extends AppCompatActivity {
 
         backButton.setOnClickListener(view -> finish());
 
-        dateEditText.setOnClickListener(v -> new DatePickerDialog(NewTimeEntry.this, (view, year, month, day) -> {
+        dateEditText.setOnClickListener(v -> new DatePickerDialog(NewTimeEntryActivity.this, (view, year, month, day) -> {
             date = new DateTime(year, month, day, 0, 0);
             dateEditText.setText(Utils.dateTimeToDateString(date));
         }, date.getYear(), date.getMonthOfYear() - 1, date.getDayOfMonth()).show());
 
         fromTimeEditText.setOnClickListener(view -> {
             fromTime = new DateTime(date);
-            TimePickerDialog fromTimePicker = new TimePickerDialog(NewTimeEntry.this, new TimePickerDialog.OnTimeSetListener() {
+            TimePickerDialog fromTimePicker = new TimePickerDialog(NewTimeEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                     fromTime = new DateTime(fromTime).withTime(selectedHour, selectedMinute, 0, 0);
@@ -81,7 +81,7 @@ public class NewTimeEntry extends AppCompatActivity {
 
         toTimeEditText.setOnClickListener(view -> {
             toTime = new DateTime(date);
-            TimePickerDialog toTimePicker = new TimePickerDialog(NewTimeEntry.this, new TimePickerDialog.OnTimeSetListener() {
+            TimePickerDialog toTimePicker = new TimePickerDialog(NewTimeEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                     toTime = new DateTime(toTime).withTime(selectedHour, selectedMinute, 0, 0);
@@ -96,7 +96,7 @@ public class NewTimeEntry extends AppCompatActivity {
             @SuppressWarnings("unchecked")
             List<TimeEntryUser> selectedMembers = (List<TimeEntryUser>) selectMembersView.getSelectedChipList();
             if(selectedMembers.size() < 1) {
-                Utils.showToastMessage(NewTimeEntry.this, "At least one member should be selected");
+                Utils.showToastMessage(NewTimeEntryActivity.this, "At least one member should be selected");
                 return;
             }
             List<TimeEntry> timeEntries = selectedMembers
@@ -105,10 +105,10 @@ public class NewTimeEntry extends AppCompatActivity {
 
             timeEntryRepository.addNewTimeEntries(timeEntries, result -> {
                 if (result.getErrorMessage() != null) {
-                    Utils.showToastMessage(NewTimeEntry.this, result.getErrorMessage());
+                    Utils.showToastMessage(NewTimeEntryActivity.this, result.getErrorMessage());
                     return;
                 }
-                Utils.showToastMessage(NewTimeEntry.this, String.format("Added %s new Time Entries.", timeEntries.size()));
+                Utils.showToastMessage(NewTimeEntryActivity.this, String.format("Added %s new Time Entries.", timeEntries.size()));
                 finish();
             });
         });
@@ -122,7 +122,7 @@ public class NewTimeEntry extends AppCompatActivity {
     void fetchStaffMembers() {
         userRepository.getStaffMembers(result -> {
             if (result.getErrorMessage() != null) {
-                Utils.showToastMessage(NewTimeEntry.this, result.getErrorMessage());
+                Utils.showToastMessage(NewTimeEntryActivity.this, result.getErrorMessage());
             } else if (result.getResult() != null) {
                 List<TimeEntryUser> memberChips = result.getResult().stream().map(TimeEntryUser::fromUser).collect(Collectors.toList());
                 selectMembersView.setFilterableList(memberChips);

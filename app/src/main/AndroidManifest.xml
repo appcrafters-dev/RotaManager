@@ -12,7 +12,7 @@
         <activity android:name=".admin.ManageStaff.MemberTimeEntriesActivity" />
         <activity android:name=".admin.ManageStaff.EditStaffMemberActivity" />
         <activity android:name=".admin.ManageStaff.NewStaffMemberActivity" />
-        <activity android:name=".admin.Scheduler.NewTimeEntry" />
+        <activity android:name=".admin.Scheduler.NewTimeEntryActivity" />
         <activity android:name=".admin.TimeChangeRequest.TimeChangeRequest" />
         <activity android:name=".admin.Scheduler.AdminSchedulerActivity" />
         <activity android:name=".admin.AdminProfile.AdminProfile" />
