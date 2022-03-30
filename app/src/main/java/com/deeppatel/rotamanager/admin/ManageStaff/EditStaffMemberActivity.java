@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.Navigate;
-import com.deeppatel.rotamanager.member.MySchedule.MemberTimeEntriesFragment;
 import com.deeppatel.rotamanager.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -66,7 +65,7 @@ public class EditStaffMemberActivity extends AppCompatActivity {
         memberNameViewToolbar.setText(name);
         designationView.setText(designation);
 
-        back = findViewById(R.id.backButtonToolbar);
+        back = findViewById(R.id.iv_back_button);
         memberSchedule = findViewById(R.id.memberSchedule);
         share = findViewById(R.id.member_share);
 

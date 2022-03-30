@@ -76,7 +76,7 @@ public class NewStaffMemberActivity extends AppCompatActivity {
             }
         });
 
-        back = findViewById(R.id.backButtonToolbar);
+        back = findViewById(R.id.iv_back_button);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

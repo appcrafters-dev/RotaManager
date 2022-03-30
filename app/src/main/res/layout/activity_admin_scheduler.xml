@@ -17,7 +17,7 @@
         app:titleMarginStart="@android:dimen/app_icon_size"
         android:theme="?attr/actionBarTheme" >
         <ImageView
-            android:id="@+id/backButtonToolbar"
+            android:id="@+id/iv_back_button"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:paddingLeft="7dp"
@@ -42,7 +42,7 @@
         android:orientation="vertical">
 
         <CalendarView
-            android:id="@+id/calendar"
+            android:id="@+id/cv_calendar"
             android:layout_gravity="center|top"
             android:weekDayTextAppearance="@font/roboto_bold"
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rv_time_entries"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
@@ -71,7 +71,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/scheduler_fab"
+        android:id="@+id/fab_new_time_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="120dp"

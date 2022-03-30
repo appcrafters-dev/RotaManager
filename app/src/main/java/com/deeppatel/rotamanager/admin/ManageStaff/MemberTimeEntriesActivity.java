@@ -35,7 +35,7 @@ public class MemberTimeEntriesActivity extends AppCompatActivity {
         fragment.setArguments(fragmentBundle);
         loadFragment(fragment);
 
-        ImageView back = findViewById(R.id.backButtonToolbar);
+        ImageView back = findViewById(R.id.iv_back_button);
         back.setOnClickListener(view -> finish());
     }
 

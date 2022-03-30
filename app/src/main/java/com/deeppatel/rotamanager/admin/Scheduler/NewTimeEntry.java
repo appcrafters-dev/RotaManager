@@ -58,7 +58,7 @@ public class NewTimeEntry extends AppCompatActivity {
 
         chipsInput = findViewById(R.id.chips_input);
         submit = findViewById(R.id.member_submit);
-        back = findViewById(R.id.backButtonToolbar);
+        back = findViewById(R.id.iv_back_button);
         dateTextView = findViewById(R.id.Date);
         fromTimeTextView = findViewById(R.id.fromTime);
         toTimeTextView = findViewById(R.id.toTime);

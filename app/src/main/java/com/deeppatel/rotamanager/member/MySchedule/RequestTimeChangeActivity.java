@@ -95,7 +95,7 @@ public class RequestTimeChangeActivity extends AppCompatActivity {
         });
 
 
-        back = findViewById(R.id.backButtonToolbar);
+        back = findViewById(R.id.iv_back_button);
         sbmitButton = findViewById(R.id.member_submit);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -68,7 +68,7 @@ public class MemberTimeEntriesFragment extends Fragment {
             }
         }
 
-        timeEntriesRecyclerView = view.findViewById(R.id.recyclerView);
+        timeEntriesRecyclerView = view.findViewById(R.id.rv_time_entries);
         monthSelectTextView = view.findViewById(R.id.textViewToolbar);
         monthSelectTextView.setOnClickListener(new View.OnClickListener() {
             @Override
