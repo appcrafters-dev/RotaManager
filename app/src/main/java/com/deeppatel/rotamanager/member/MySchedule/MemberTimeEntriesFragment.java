@@ -3,7 +3,6 @@ package com.deeppatel.rotamanager.member.MySchedule;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.Utils;
-import com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter.MemberTimetableAdapter;
+import com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter.MemberTimeEntriesAdapter;
 import com.deeppatel.rotamanager.models.RepositoryResult;
 import com.deeppatel.rotamanager.models.TimeEntry;
+import com.deeppatel.rotamanager.models.User;
 import com.deeppatel.rotamanager.repositories.AuthRepository.AuthRepository;
 import com.deeppatel.rotamanager.repositories.AuthRepository.FirebaseAuthRepository;
 import com.deeppatel.rotamanager.repositories.OnRepositoryTaskCompleteListener;
@@ -33,25 +33,22 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberScheduleFragment extends Fragment {
-    List<TimeEntry> allTimeEntries = new ArrayList<>();
-    List<TimeEntry> timeEntries = new ArrayList<>();
-
-    private DateTime selectedMonth;
-    private int selectedWeek;
-
+public class MemberTimeEntriesFragment extends Fragment {
+    private final List<TimeEntry> timeEntries = new ArrayList<>();
+    private List<TimeEntry> allTimeEntries = new ArrayList<>();
     private FragmentActivity activity;
-    private View view;
     private RecyclerView timeEntriesRecyclerView;
-    private MemberTimetableAdapter timeEntriesAdapter;
+    private MemberTimeEntriesAdapter timeEntriesAdapter;
     private TabLayout tabLayout;
     private TextView monthSelectTextView;
 
+    private DateTime selectedMonth;
+    private int selectedWeek;
+    private User user;
+    private boolean isAdminView = false;
+
     private AuthRepository authRepository;
     private TimeEntryRepository timeEntryRepository;
-
-    public MemberScheduleFragment() {
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,8 +58,15 @@ public class MemberScheduleFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_member_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_member_schedule, container, false);
 
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            user = arguments.getParcelable("user");
+            if (user != null) {
+                isAdminView = true;
+            }
+        }
 
         timeEntriesRecyclerView = view.findViewById(R.id.recyclerView);
         monthSelectTextView = view.findViewById(R.id.textViewToolbar);
@@ -138,7 +142,7 @@ public class MemberScheduleFragment extends Fragment {
     }
 
     void setupTimeEntriesAdapter() {
-        timeEntriesAdapter = new MemberTimetableAdapter(timeEntries, activity);
+        timeEntriesAdapter = new MemberTimeEntriesAdapter(timeEntries, activity, isAdminView);
 
         timeEntriesRecyclerView.setHasFixedSize(true);
         timeEntriesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -146,9 +150,15 @@ public class MemberScheduleFragment extends Fragment {
     }
 
     void fetchTimeEntries() {
-        String uid = authRepository.getCurrentUserId();
+        String uid = null;
+        if (!isAdminView) {
+            uid = authRepository.getCurrentUserId();
+        } else if (user.getUid() != null) {
+            uid = user.getUid();
+        }
+
         if (uid == null) {
-//            TODO: redirect to login screen
+            Utils.showToastMessage(getContext(), "User is required to fetch Time Entries");
             return;
         }
 
@@ -162,7 +172,7 @@ public class MemberScheduleFragment extends Fragment {
                 allTimeEntries = result.getResult();
                 updateWeekView();
                 TabLayout.Tab tab = tabLayout.getTabAt(Utils.getWeekOfMonth(selectedMonth) - 1);
-                tab.select();
+                if (tab != null) tab.select();
             }
         });
 

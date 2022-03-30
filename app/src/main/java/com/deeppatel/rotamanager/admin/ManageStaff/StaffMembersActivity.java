@@ -1,5 +1,6 @@
 package com.deeppatel.rotamanager.admin.ManageStaff;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class StaffMemberList extends AppCompatActivity {
+public class StaffMembersActivity extends AppCompatActivity {
     ImageView backButton;
     FloatingActionButton addNewStaffMemberFloatingActionButton;
     RecyclerView staffMembersRecyclerView;
@@ -41,7 +42,7 @@ public class StaffMemberList extends AppCompatActivity {
         addNewStaffMemberFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigate.to(StaffMemberList.this, NewStaffMember.class);
+                Navigate.to(StaffMembersActivity.this, NewStaffMemberActivity.class);
             }
         });
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -57,18 +58,19 @@ public class StaffMemberList extends AppCompatActivity {
 
     void fetchStaffMembers(){
         userRepository.getStaffMembers(new OnRepositoryTaskCompleteListener<List<com.deeppatel.rotamanager.models.User>>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onComplete(@NonNull RepositoryResult<List<User>> result) {
                 List<User> members = result.getResult();
                 String errorMessage = result.getErrorMessage();
                 if (members != null){
-                    StaffMemberDataAdapter adapter = new StaffMemberDataAdapter(members, StaffMemberList.this);
+                    StaffMemberDataAdapter adapter = new StaffMemberDataAdapter(members, StaffMembersActivity.this);
                     staffMembersRecyclerView.setHasFixedSize(true);
-                    staffMembersRecyclerView.setLayoutManager(new LinearLayoutManager(StaffMemberList.this));
+                    staffMembersRecyclerView.setLayoutManager(new LinearLayoutManager(StaffMembersActivity.this));
                     staffMembersRecyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 } else if (errorMessage != null) {
-                    Utils.showToastMessage(StaffMemberList.this, errorMessage);
+                    Utils.showToastMessage(StaffMembersActivity.this, errorMessage);
                 }
             }
         });

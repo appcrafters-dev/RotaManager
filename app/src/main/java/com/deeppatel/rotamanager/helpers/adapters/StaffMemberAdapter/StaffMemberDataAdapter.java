@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.admin.ManageStaff.EditStaffMember;
+import com.deeppatel.rotamanager.admin.ManageStaff.EditStaffMemberActivity;
 import com.deeppatel.rotamanager.helpers.Navigate;
 import com.deeppatel.rotamanager.models.User;
 
@@ -48,7 +48,7 @@ public class StaffMemberDataAdapter extends RecyclerView.Adapter<StaffMemberData
         holder.staffMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigate.to(activity, EditStaffMember.class, "member", member);
+                Navigate.to(activity, EditStaffMemberActivity.class, "member", member);
             }
         });
     }

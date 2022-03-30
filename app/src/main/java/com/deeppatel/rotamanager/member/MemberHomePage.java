@@ -8,19 +8,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.dataLoad;
-import com.deeppatel.rotamanager.member.MySchedule.MemberScheduleFragment;
+import com.deeppatel.rotamanager.member.MySchedule.MemberTimeEntriesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MemberHomePage extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
-    private static Context mContext;
+    private BottomNavigationView bottomNavigationView;
+    private FragmentManager fragmentManager;
 
-    public static FragmentManager fragmentManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +26,7 @@ public class MemberHomePage extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         fragmentManager = getSupportFragmentManager();
-        loadFragment(new MemberScheduleFragment());
-        mContext = this;
+        loadFragment(new MemberTimeEntriesFragment());
         dataLoad.makeRequestMember();
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,7 +36,7 @@ public class MemberHomePage extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.schedule:
                                 item.setChecked(true);
-                                fragment = new MemberScheduleFragment();
+                                fragment = new MemberTimeEntriesFragment();
                                 loadFragment(fragment);
                                 break;
                             case R.id.requests:
@@ -59,7 +56,7 @@ public class MemberHomePage extends AppCompatActivity {
 
     }
 
-    static public void loadFragment(Fragment fragment) {
+    void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);

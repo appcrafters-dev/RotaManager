@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.deeppatel.rotamanager.R;
-import com.deeppatel.rotamanager.models.NewTimeChangeRequest;
+import com.deeppatel.rotamanager.models.TimeChangeRequest;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
@@ -90,7 +90,7 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         reason.setClickable(false);
         reason.setFocusable(false);
 
-        NewTimeChangeRequest update = new NewTimeChangeRequest(uid, "name", scheduleID, fromTimeStamp, toTimeStamp, "Pending", reason.getText().toString());
+        TimeChangeRequest update = new TimeChangeRequest(uid, "name", scheduleID, fromTimeStamp, toTimeStamp, "Pending", reason.getText().toString());
         request_reject = findViewById(R.id.request_reject);
         request_reject.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -122,7 +122,7 @@ public class ViewTimeChangeRequest extends AppCompatActivity {
         });
     }
 
-    private void makeRequest(String uidTime, NewTimeChangeRequest updateStatus){
+    private void makeRequest(String uidTime, TimeChangeRequest updateStatus){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("TimeRequest").document(uidTime).update("status", updateStatus.getStatus())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

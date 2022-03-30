@@ -1,7 +1,6 @@
 package com.deeppatel.rotamanager.helpers.adapters.MemberScheduleAdapter;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,32 +13,33 @@ import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.Utils;
 import com.deeppatel.rotamanager.models.TimeEntry;
 import com.deeppatel.rotamanager.helpers.Navigate;
-import com.deeppatel.rotamanager.member.MySchedule.RequestTimeChangeRequest;
+import com.deeppatel.rotamanager.member.MySchedule.RequestTimeChangeActivity;
 
 import org.joda.time.DateTime;
 
 import java.util.List;
 
-public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetableAdapter.ViewHolder> {
+public class MemberTimeEntriesAdapter extends RecyclerView.Adapter<MemberTimeEntriesAdapter.ViewHolder> {
     private final List<TimeEntry> timeEntries;
     private final Activity activity;
+    private final boolean isAdminView;
 
-    public MemberTimetableAdapter(List<TimeEntry> timeEntries, Activity activity) {
+    public MemberTimeEntriesAdapter(List<TimeEntry> timeEntries, Activity activity, boolean isAdminView) {
         this.timeEntries = timeEntries;
         this.activity = activity;
+        this.isAdminView = isAdminView;
     }
 
     @NonNull
     @Override
-    public MemberTimetableAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MemberTimeEntriesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.member_timetable_card, parent, false);
-        MemberTimetableAdapter.ViewHolder viewHolder = new MemberTimetableAdapter.ViewHolder(listItem);
-        return viewHolder;
+        return new ViewHolder(listItem);
     }
 
     @Override
-    public void onBindViewHolder(MemberTimetableAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(MemberTimeEntriesAdapter.ViewHolder holder, int position) {
         final TimeEntry timeEntry = timeEntries.get(position);
 
         DateTime date = timeEntry.getDate();
@@ -49,14 +49,17 @@ public class MemberTimetableAdapter extends RecyclerView.Adapter<MemberTimetable
         holder.from.setText(String.format("From: %S", timeEntry.getFromString()));
         holder.to.setText(String.format("To: %S",timeEntry.getToString()));
 
-        holder.more.setVisibility(View.VISIBLE);
-        holder.more.setClickable(true);
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               Navigate.to(activity, RequestTimeChangeRequest.class, "time_entry", timeEntry);
-            }
-        });
+        if (!isAdminView){
+            holder.more.setVisibility(View.VISIBLE);
+            holder.more.setClickable(true);
+            holder.card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigate.to(activity, RequestTimeChangeActivity.class, "time_entry", timeEntry);
+                }
+            });
+        }
+
     }
 
     @Override

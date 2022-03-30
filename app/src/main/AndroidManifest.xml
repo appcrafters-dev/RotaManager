@@ -3,27 +3,20 @@
     package="com.deeppatel.rotamanager">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".member.MySchedule.RequestTimeChangeRequest" />
-        <activity android:name=".admin.TimeChangeRequest.ViewTimeChangeRequest" />
+        <activity android:name=".member.MySchedule.RequestTimeChangeActivity" />
         <activity android:name=".member.MemberHomePage" />
-        <activity
-            android:name=".admin.ManageStaff.MemberTimeTable"
-            android:exported="true" />
-        <activity
-            android:name=".admin.ManageStaff.EditStaffMember"
-            android:exported="true" />
-        <activity
-            android:name=".admin.ManageStaff.NewStaffMember"
-            android:exported="true" />
+        <activity android:name=".admin.TimeChangeRequest.ViewTimeChangeRequest" />
+        <activity android:name=".admin.ManageStaff.MemberTimeEntriesActivity" />
+        <activity android:name=".admin.ManageStaff.EditStaffMemberActivity" />
+        <activity android:name=".admin.ManageStaff.NewStaffMemberActivity" />
         <activity android:name=".admin.Scheduler.NewTimeEntry" />
         <activity android:name=".admin.TimeChangeRequest.TimeChangeRequest" />
         <activity android:name=".admin.Scheduler.AdminScheduler" />
         <activity android:name=".admin.AdminProfile.AdminProfile" />
-        <activity android:name=".admin.ManageStaff.StaffMemberList" />
+        <activity android:name=".admin.ManageStaff.StaffMembersActivity" />
         <activity android:name=".admin.AdminDashboard" />
         <activity
             android:name=".MainActivity"

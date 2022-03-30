@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deeppatel.rotamanager.R;
 import com.deeppatel.rotamanager.helpers.Navigate;
+import com.deeppatel.rotamanager.member.MySchedule.MemberTimeEntriesFragment;
 import com.deeppatel.rotamanager.models.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditStaffMember extends AppCompatActivity {
+public class EditStaffMemberActivity extends AppCompatActivity {
     private ImageView back, memberDpView;
     private ImageView memberSchedule;
 
@@ -101,7 +102,7 @@ public class EditStaffMember extends AppCompatActivity {
                                 Log.d("Staff", "Error adding document", e);
                             }
                         });
-                Toast.makeText(EditStaffMember.this, "User Updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditStaffMemberActivity.this, "User Updated", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -115,7 +116,7 @@ public class EditStaffMember extends AppCompatActivity {
         memberSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Navigate.to(EditStaffMember.this, MemberTimeTable.class, "user", user);
+               Navigate.to(EditStaffMemberActivity.this, MemberTimeEntriesActivity.class, "user", user);
             }
         });
 

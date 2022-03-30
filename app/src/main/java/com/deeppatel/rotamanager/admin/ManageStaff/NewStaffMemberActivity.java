@@ -23,7 +23,7 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 
-public class NewStaffMember extends AppCompatActivity {
+public class NewStaffMemberActivity extends AppCompatActivity {
     Button submit;
     ImageView back;
 
@@ -66,10 +66,10 @@ public class NewStaffMember extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull RepositoryResult<User> result) {
                         if (result.getErrorMessage() != null){
-                            Utils.showToastMessage(NewStaffMember.this, result.getErrorMessage());
+                            Utils.showToastMessage(NewStaffMemberActivity.this, result.getErrorMessage());
                             return;
                         }
-                        Utils.showToastMessage(NewStaffMember.this, "Added new staff member successfully");
+                        Utils.showToastMessage(NewStaffMemberActivity.this, "Added new staff member successfully");
                         finish();
                     }
                 });

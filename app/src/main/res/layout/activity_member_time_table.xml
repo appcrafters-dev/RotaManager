@@ -1,119 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.ManageStaff.MemberTimeTable">
+    android:orientation="vertical"
+    android:paddingBottom="60dp">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:paddingBottom="60dp"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:background="@color/dark_blue"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/white"
-            app:titleMarginStart="@android:dimen/app_icon_size"
-            android:theme="?attr/actionBarTheme" >
-            <ImageView
-                android:id="@+id/backButtonToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:paddingLeft="7dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+        android:layout_height="wrap_content"
+        android:background="@color/dark_blue"
+        android:elevation="3dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:titleMarginStart="@android:dimen/app_icon_size"
+        app:titleTextColor="@color/white">
 
-            <TextView
-                android:id="@+id/scheduleToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textColor="@color/white"
+        <ImageView
+            android:id="@+id/backButtonToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingStart="7dp"
+            android:paddingEnd="5dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
 
-                android:gravity="center"
-                android:text="Schedule: "
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/scheduleToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
 
-            <TextView
-                android:id="@+id/memberNameViewToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textColor="@color/white"
+            android:text="Schedule: "
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-                android:gravity="center"
-                android:text="Name "
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/memberNameViewToolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
 
-            <ImageView
-                android:id="@+id/memberSchedule"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_baseline_share_24" />
-        </androidx.appcompat.widget.Toolbar>
+            android:text="Name "
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="3dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/white"
-            app:titleMarginStart="@android:dimen/app_icon_size"
-            android:theme="?attr/actionBarTheme" >
+        <ImageView
+            android:id="@+id/memberSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="end"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/ic_baseline_share_24" />
+    </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:id="@+id/textViewToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="Month, Year"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-            <ImageView
-                android:id="@+id/dropdownButtonToolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:paddingLeft="7dp"
-                android:paddingRight="5dp"
-                android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
-
-        </androidx.appcompat.widget.Toolbar>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="105dp"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/dark_blue"
-            app:tabIndicatorHeight="0dp"
-            app:tabBackground="@drawable/tab_color_selector"
-            app:menu="@menu/selected_nav"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:scrollbars="vertical"
-            android:divider="@color/dark_blue"
-            android:layout_gravity="center_horizontal">
-        </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".admin.ManageStaff.MemberTimeEntriesActivity" />
+</LinearLayout>

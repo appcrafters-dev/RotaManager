@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class NewTimeChangeRequest {
+public class TimeChangeRequest {
 
     public String getUidUser() {
         return uidUser;
@@ -88,7 +88,7 @@ public class NewTimeChangeRequest {
     private String reason;
     private String status;
 
-    public NewTimeChangeRequest(String uidUser,String name ,String uidSchedule, Timestamp from, Timestamp to, String status,String reason){
+    public TimeChangeRequest(String uidUser, String name , String uidSchedule, Timestamp from, Timestamp to, String status, String reason){
         this.uidUser = uidUser;
         this.name = name;
         this.uidSchedule = uidSchedule;
