@@ -1,6 +1,7 @@
 package com.deeppatel.rotamanager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -48,16 +49,14 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        authRepository.login(email, inviteCode, new OnRepositoryTaskCompleteListener<User>() {
-            @Override
-            public void onComplete(@NonNull RepositoryResult<User> result) {
-                User user = result.getResult();
-                String errorMessage = result.getErrorMessage();
-                if(user != null){
-                    Navigate.redirectBasedOnUser(LoginActivity.this, user);
-                } else if (errorMessage != null) {
-                    Utils.showToastMessage(LoginActivity.this, errorMessage);
-                }
+        authRepository.login(email, inviteCode, result -> {
+            User user = result.getResult();
+            String errorMessage1 = result.getErrorMessage();
+            if(user != null){
+                Utils.showToastMessage(LoginActivity.this, "Redirecting...");
+                Navigate.redirectBasedOnUser(LoginActivity.this, user);
+            } else if (errorMessage1 != null) {
+                Utils.showToastMessage(LoginActivity.this, errorMessage1);
             }
         });
     }

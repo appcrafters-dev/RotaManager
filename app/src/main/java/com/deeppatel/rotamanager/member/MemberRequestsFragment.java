@@ -60,7 +60,6 @@ public class MemberRequestsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_member_requests, container, false);
         currentActivityFragment = getActivity().getSupportFragmentManager();
-        Log.i("Request Member", dataLoad.memberTimeChangeRequestModel.get(0).getUid());
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_time_entries);
         myListData = dataLoad.memberTimeChangeRequestModel;
         for(MemberTimeChangeRequestModel x: dataLoad.memberTimeChangeRequestModel){

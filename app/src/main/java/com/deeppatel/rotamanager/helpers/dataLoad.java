@@ -72,7 +72,6 @@ public class dataLoad {
 
                                 memberTimeChangeRequestModel.add(new MemberTimeChangeRequestModel(uid, doc.get("status").toString(), name,day,calenderFrom,calenderTo, calenderDate,calenderMonth));
                             }
-                            Log.i("Request Member", memberTimeChangeRequestModel.get(0).getUid());
                         }
                     }
                 });
@@ -117,7 +116,6 @@ public class dataLoad {
 
                                 timeChangeRequestChildModelList.add(new TimeChangeRequestChildModel(uid, name,day,calenderFrom,calenderTo, calenderDate,calenderMonth, doc.get("uidSchedule").toString()));
                             }
-//                            Log.i("make request", timeChangeRequestChildModelList.get(2).getUid());
                         }
                     }
                 });

@@ -24,8 +24,8 @@ public class FirebaseUserRepository extends FirebaseRepository implements UserRe
     }
 
     @Override
-    public void addNewStaffMember(User member, OnRepositoryTaskCompleteListener<User> onCompleteListener) {
-        addNewDocument("users", member, onCompleteListener);
+    public void addNewStaffMember(User member, OnRepositoryTaskCompleteListener<Void> onCompleteListener) {
+        this.<User>updateDocument("users",member.getUid(), member, onCompleteListener);
     }
 
     public void getStaffMembers(OnRepositoryTaskCompleteListener<List<User>> onCompleteListener) {
@@ -33,7 +33,7 @@ public class FirebaseUserRepository extends FirebaseRepository implements UserRe
                 getCollectionReference("users").whereNotEqualTo("role","admin"),
                 User.class,
                 onCompleteListener
-        )   ;
+        );
     }
 
     public void getTimeEntries(String uid, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener) {

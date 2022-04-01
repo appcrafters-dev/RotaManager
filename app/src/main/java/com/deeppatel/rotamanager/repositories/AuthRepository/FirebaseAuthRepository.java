@@ -58,94 +58,70 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
             onCompleteListener.onComplete(new RepositoryResult<>());
             return;
         }
-        getUser(firebaseUser.getUid(), new OnRepositoryTaskCompleteListener<User>() {
-            @Override
-            public void onComplete(@NonNull RepositoryResult<User> result) {
-                if (result.getResult() != null) {
-                    currentUser = result.getResult();
-                }
-                onCompleteListener.onComplete(result);
-
+        getUser(firebaseUser.getUid(), result -> {
+            if (result.getResult() != null) {
+                currentUser = result.getResult();
             }
+            onCompleteListener.onComplete(result);
+
         });
     }
 
     @Override
     public void login(String email, String inviteCode, OnRepositoryTaskCompleteListener<User> onCompleteListener) {
         firebaseAuth.signInWithEmailAndPassword(email, inviteCode)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        RepositoryResult<User> result = new RepositoryResult<>(null, "Authentication failed");
-                        if (task.isSuccessful()) {
-                            FirebaseUser firebaseUser = task.getResult().getUser();
-                            if (firebaseUser != null) {
-                                getUser(firebaseUser.getUid(), onCompleteListener);
-                                return;
-                            }
+                .addOnCompleteListener(task -> {
+                    RepositoryResult<User> result = new RepositoryResult<>(null, "Authentication failed");
+                    if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = task.getResult().getUser();
+                        if (firebaseUser != null) {
+                            getUser(firebaseUser.getUid(), onCompleteListener);
+                            return;
                         }
-
-                        // if task fails
-                        Exception exception = task.getException();
-                        if (exception != null) {
-                            if (exception.getClass() == FirebaseAuthInvalidUserException.class) {
-                                result.setErrorMessage("User not found");
-                            } else if (exception.getClass() == FirebaseAuthInvalidCredentialsException.class) {
-                                result.setErrorMessage("Invalid credentials");
-                            }
-                        }
-
-                        onCompleteListener.onComplete(result);
                     }
+
+                    Exception exception = task.getException();
+                    if (exception != null) {
+                        if (exception.getClass() == FirebaseAuthInvalidUserException.class) {
+                            result.setErrorMessage("User not found");
+                        } else if (exception.getClass() == FirebaseAuthInvalidCredentialsException.class) {
+                            result.setErrorMessage("Invalid credentials");
+                        }
+                    }
+                    onCompleteListener.onComplete(result);
                 });
     }
 
     @Override
     public void createNewUser(User user, OnRepositoryTaskCompleteListener<User> onCompleteListener) {
-        Log.d("createNewUser", "stop 1");
+        getCurrentUser(result -> {
+            if (result.getResult() == null) {
+                onCompleteListener.onComplete(new RepositoryResult<>(null, "You are not allowed to create a new member."));
+                return;
+            }
 
-        getCurrentUser(new OnRepositoryTaskCompleteListener<User>() {
-            @Override
-            public void onComplete(@NonNull RepositoryResult<User> result) {
-                Log.d("createNewUser", "currentUser" + currentUser.toString());
-
-                if (result.getResult() == null) {
-                    Log.d("createNewUser", "stop 2: no current user");
-                    onCompleteListener.onComplete(new RepositoryResult<>(null, "You are not allowed to create a new member."));
+            firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getInviteCode()).addOnCompleteListener(task -> {
+                FirebaseUser firebaseUser = task.getResult().getUser();
+                if (!task.isSuccessful() || firebaseUser == null) {
+                    Exception exception = task.getException();
+                    String errorMessage = exception != null ? exception.getMessage() : "Something went wrong, please try again later";
+                    onCompleteListener.onComplete(new RepositoryResult<>(null, errorMessage));
                     return;
                 }
 
-                firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getInviteCode()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.d("createNewUser", "Error");
-                            onCompleteListener.onComplete(new RepositoryResult<>(null, task.getException().getMessage()));
-                            return;
-                        }
-                        Log.d("createNewUser", "stop 3");
-                        firebaseAuth.signOut();
-                        Log.d("createNewUser", "stop 4");
-                        login(currentUser.getEmail(), currentUser.getInviteCode(), new OnRepositoryTaskCompleteListener<User>() {
-                            @Override
-                            public void onComplete(@NonNull RepositoryResult<User> result) {
-                                Log.d("createNewUser", "stop 5");
-
-                                if (result.getErrorMessage() != null) {
-                                    Log.d("createNewUser", "stop 5.5");
-
-                                    result.setErrorMessage("Could not login back as admin: " + result.getErrorMessage());
-                                    onCompleteListener.onComplete(result);
-                                    return;
-                                }
-                                Log.d("createNewUser", "stop 6");
-                                addNewStaffMember(user, onCompleteListener);
-                            }
-                        });
+                user.setId(firebaseUser.getUid());
+                firebaseAuth.signOut();
+                login(currentUser.getEmail(), currentUser.getInviteCode(), loginResult -> {
+                    if (loginResult.getErrorMessage() != null) {
+                        loginResult.setErrorMessage("Could not login back as admin: " + loginResult.getErrorMessage());
+                        onCompleteListener.onComplete(loginResult);
+                        return;
                     }
+                    addNewStaffMember(user, result2 -> {
+                        onCompleteListener.onComplete(new RepositoryResult<>(null, result2.getErrorMessage()));
+                    });
                 });
-            }
+            });
         });
     }
 }

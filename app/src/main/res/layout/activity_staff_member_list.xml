@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
-    tools:context=".admin.ManageStaff.StaffMembersActivity">
+    tools:context=".admin.ManageStaff.StaffMembersActivity"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -38,7 +38,6 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_staff_members"
         android:layout_width="match_parent"
@@ -61,4 +60,4 @@
         app:borderWidth="0dp"
         app:fabCustomSize="65dp"
         app:maxImageSize="40dp" />
-</FrameLayout>
+</LinearLayout>

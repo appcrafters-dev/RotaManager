@@ -30,33 +30,12 @@ public class AdminDashboard extends AppCompatActivity {
         dataLoad.makeRequest();
 
 
-        manageStaff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigate.to(AdminDashboard.this, StaffMembersActivity.class);
-            }
-        });
+        manageStaff.setOnClickListener(view -> Navigate.to(AdminDashboard.this, StaffMembersActivity.class));
 
-        scheduler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigate.to(AdminDashboard.this, AdminSchedulerActivity.class);
-            }
-        });
+        scheduler.setOnClickListener(view -> Navigate.to(AdminDashboard.this, AdminSchedulerActivity.class));
 
-        timeChangeRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("check", dataLoad.timeChangeRequestChildModelList.get(0).getUid());
-                Navigate.to(AdminDashboard.this, TimeChangeRequest.class);
-            }
-        });
+        timeChangeRequest.setOnClickListener(view -> Navigate.to(AdminDashboard.this, TimeChangeRequest.class));
 
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigate.to(AdminDashboard.this, AdminProfile.class);
-            }
-        });
+        profile.setOnClickListener(view -> Navigate.to(AdminDashboard.this, AdminProfile.class));
     }
 }

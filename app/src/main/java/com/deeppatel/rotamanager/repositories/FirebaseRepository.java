@@ -14,6 +14,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.WriteBatch;
 
 import java.util.List;
@@ -35,10 +36,12 @@ public class FirebaseRepository {
 
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document != null) {
+                    Log.d("getDocumentResult", String.valueOf(document.exists()));
+                    if (document != null && document.exists()) {
                         T model = document.toObject(valueType);
-                        if (model == null) result.setResult(null);
-                        else model.setId(document.getId());
+                        Log.d("LOGIN:MODEL", model.toString());
+                        if (model != null) model.setId(document.getId());
+                        Log.d("LOGIN:MODEL2", model.toString());
                         result.setResult(model);
                     }
                 }
@@ -57,7 +60,6 @@ public class FirebaseRepository {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 RepositoryResult<List<T>> result = new RepositoryResult<>();
                 result.setErrorMessage("Couldn't fetch documents");
-
                 if (task.isSuccessful()) {
                     QuerySnapshot querySnapshot = task.getResult();
                     if (querySnapshot != null) {
@@ -67,11 +69,12 @@ public class FirebaseRepository {
                                     .stream()
                                     .map(document -> {
                                         T model = document.toObject(valueType);
-                                        if (model == null) return null;
-                                        model.setId(document.getId());
+                                        if (model != null) model.setId(document.getId());
                                         return model;
                                     })
                                     .collect(Collectors.toList()));
+                            Log.d("result", result.getResult().toString());
+                            Log.d("result size",String.valueOf(result.getResult().size()));
                         }catch (Exception e){
                             Log.e("getQueryResult", e.getMessage());
                             e.printStackTrace();
@@ -100,7 +103,15 @@ public class FirebaseRepository {
             }
         });
     }
-
+    public <T extends Model> void updateDocument(String collection, String documentId, T data, OnRepositoryTaskCompleteListener<Void> onCompleteListener) {
+        firestore.collection(collection).document(documentId).set(data.toHashMap(), SetOptions.merge()).addOnCompleteListener(task -> {
+            RepositoryResult<Void> result = new RepositoryResult<>(null, String.format("Could not create new document for collection(%s)", collection));
+            if (task.isSuccessful()) {
+                result.setResult(null);
+            }
+            onCompleteListener.onComplete(result);
+        });
+    }
     public <T extends Model> void addNewDocuments(String collection, List<T> listData, OnRepositoryTaskCompleteListener<Void> onCompleteListener) {
         WriteBatch writeBatch = firestore.batch();
         CollectionReference collectionRef = firestore.collection("time_entries");
