@@ -12,8 +12,11 @@ public interface UserRepository {
 
     void addNewStaffMember(User member, OnRepositoryTaskCompleteListener<Void> onCompleteListener);
 
+    void updateUser(User user, OnRepositoryTaskCompleteListener<Void> onCompleteListener);
+
     void getStaffMembers(OnRepositoryTaskCompleteListener<List<User>> onCompleteListener);
 
     void getTimeEntries(String uid, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener);
+
 
 }

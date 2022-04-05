@@ -1,5 +1,6 @@
 package com.deeppatel.rotamanager.repositories.TimeEntryRepository;
 
+import com.deeppatel.rotamanager.models.TimeChangeRequest;
 import com.deeppatel.rotamanager.models.TimeEntry;
 import com.deeppatel.rotamanager.repositories.OnRepositoryTaskCompleteListener;
 
@@ -13,4 +14,6 @@ public interface TimeEntryRepository {
     void getTimeEntriesForUser(String userId, OnRepositoryTaskCompleteListener<List<TimeEntry>> onCompleteListener);
 
     void addNewTimeEntries(List<TimeEntry> timeEntries, OnRepositoryTaskCompleteListener<Void> onCompleteListener);
+
+    void updateTimeEntry(TimeChangeRequest timeChangeRequest,  OnRepositoryTaskCompleteListener<Void> onCompleteListener);
 }

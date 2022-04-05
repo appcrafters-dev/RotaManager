@@ -25,12 +25,17 @@ public class FirebaseUserRepository extends FirebaseRepository implements UserRe
 
     @Override
     public void addNewStaffMember(User member, OnRepositoryTaskCompleteListener<Void> onCompleteListener) {
-        this.<User>updateDocument("users",member.getUid(), member, onCompleteListener);
+        updateDocument("users",member.getUid(), member, onCompleteListener);
+    }
+
+    @Override
+    public void updateUser(User user, OnRepositoryTaskCompleteListener<Void> onCompleteListener) {
+        updateDocument("users",user.getUid(), user, onCompleteListener);
     }
 
     public void getStaffMembers(OnRepositoryTaskCompleteListener<List<User>> onCompleteListener) {
         getQueryResult(
-                getCollectionReference("users").whereNotEqualTo("role","admin"),
+                getCollectionReference("users"),
                 User.class,
                 onCompleteListener
         );

@@ -25,6 +25,18 @@ public class User extends Model {
     private String role;
     private String inviteCode;
 
+    public User(String uid, String name, String email, String designation, String phone, String gender, String role,
+                String inviteCode) {
+        this.uid = uid;
+        this.name = name;
+        this.email = email;
+        this.designation = designation;
+        this.phone = phone;
+        this.gender = gender;
+        this.role = role;
+        this.inviteCode = inviteCode;
+    }
+
     public User() {
     }
 

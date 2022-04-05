@@ -52,6 +52,10 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
         fetchCurrentUser(onCompleteListener);
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public void fetchCurrentUser(OnRepositoryTaskCompleteListener<User> onCompleteListener) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser == null) {
@@ -75,7 +79,7 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
                     if (task.isSuccessful()) {
                         FirebaseUser firebaseUser = task.getResult().getUser();
                         if (firebaseUser != null) {
-                            getUser(firebaseUser.getUid(), onCompleteListener);
+                            fetchCurrentUser(onCompleteListener);
                             return;
                         }
                     }
@@ -90,6 +94,12 @@ public class FirebaseAuthRepository extends FirebaseUserRepository implements Au
                     }
                     onCompleteListener.onComplete(result);
                 });
+    }
+
+    @Override
+    public void logout() {
+        firebaseAuth.signOut();
+        currentUser = null;
     }
 
     @Override

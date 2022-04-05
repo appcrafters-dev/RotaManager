@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void authenticate() {
-        authRepository.getCurrentUser(new OnRepositoryTaskCompleteListener<User>() {
-            @Override
-            public void onComplete(@NonNull RepositoryResult<User> userResult) {
-                Navigate.redirectBasedOnUser(MainActivity.this, userResult.getResult());
-            }
-        });
+        authRepository.getCurrentUser(userResult -> Navigate.redirectBasedOnUser(MainActivity.this, userResult.getResult()));
     }
 }

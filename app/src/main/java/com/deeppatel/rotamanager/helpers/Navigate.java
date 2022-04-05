@@ -3,13 +3,10 @@ package com.deeppatel.rotamanager.helpers;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Parcelable;
-import android.util.Log;
 
 import com.deeppatel.rotamanager.LoginActivity;
-import com.deeppatel.rotamanager.admin.AdminDashboard;
-import com.deeppatel.rotamanager.member.MemberHomePage;
-import com.deeppatel.rotamanager.models.MemberTimetableModel;
-import com.deeppatel.rotamanager.models.TimeChangeRequestChildModel;
+import com.deeppatel.rotamanager.presentation.admin.AdminDashboard;
+import com.deeppatel.rotamanager.presentation.member.MemberHomeActivity;
 
 public class Navigate {
     public static <T extends Parcelable> void to(Activity fromContext, Class toContext, String key, T value) {
@@ -29,35 +26,6 @@ public class Navigate {
     }
 
 
-    public static void toArguements(Activity fromContext, Class toContext, MemberTimetableModel listdata) {
-        Intent intent = new Intent(fromContext, toContext);
-        intent.putExtra("uid", listdata.getUid());
-        intent.putExtra("date", listdata.getDate());
-        intent.putExtra("day", listdata.getDay());
-        intent.putExtra("from", listdata.getFrom());
-        intent.putExtra("name", listdata.getName());
-        intent.putExtra("to", listdata.getTo());
-        intent.putExtra("month", listdata.getMonth());
-        intent.putExtra("scheduleID",listdata.getSchedid());
-
-        fromContext.startActivity(intent);
-    }
-
-    public static void toArguementsTime(Activity fromContext, Class toContext, TimeChangeRequestChildModel listdata) {
-        Log.i("listdata",listdata.getSchedid() + "asd");
-        Intent intent = new Intent(fromContext, toContext);
-        intent.putExtra("uid", listdata.getUid());
-        intent.putExtra("date", listdata.getDate());
-        intent.putExtra("day", listdata.getDay());
-        intent.putExtra("from", listdata.getFrom());
-        intent.putExtra("to", listdata.getTo());
-        intent.putExtra("month", listdata.getMonth());
-        intent.putExtra("name", listdata.getName());
-        intent.putExtra("scheduleID",listdata.getSchedid());
-        fromContext.startActivity(intent);
-    }
-
-
     public static void replace(Activity fromContext, Class toContext) {
         Intent intent = new Intent(fromContext, toContext);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
@@ -71,7 +39,7 @@ public class Navigate {
         } else if (user.getRole() != null && user.getRole().equals("admin")) {
             Navigate.replace(context, AdminDashboard.class);
         } else {
-            Navigate.replace(context, MemberHomePage.class);
+            Navigate.replace(context, MemberHomeActivity.class);
         }
     }
 }

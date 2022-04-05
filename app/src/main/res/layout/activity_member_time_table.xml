@@ -62,5 +62,5 @@
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".admin.ManageStaff.MemberTimeEntriesActivity" />
+        tools:context=".presentation.admin.ManageStaff.MemberTimeEntriesActivity" />
 </LinearLayout>

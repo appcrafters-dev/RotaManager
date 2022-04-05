@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.AdminProfile.AdminProfile">
+    tools:context=".presentation.admin.AdminProfile.AdminProfile">
 
 
     <LinearLayout

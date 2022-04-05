@@ -21,20 +21,20 @@ public class TimeEntry extends Model {
         }
     };
     String id;
-    TimeEntryUser user;
+    ChildUser user;
     DateTime date;
     DateTime from;
     DateTime to;
 
     protected TimeEntry(Parcel in) {
         id = in.readString();
-        user = in.readParcelable(TimeEntryUser.class.getClassLoader());
+        user = in.readParcelable(ChildUser.class.getClassLoader());
         date = DateTime.parse(in.readString());
         from = DateTime.parse(in.readString());
         to = DateTime.parse(in.readString());
     }
 
-    public TimeEntry(String id, TimeEntryUser user, DateTime date, DateTime from, DateTime to) {
+    public TimeEntry(String id, ChildUser user, DateTime date, DateTime from, DateTime to) {
         this.id = id;
         this.user = user;
         this.date = date;
@@ -54,11 +54,11 @@ public class TimeEntry extends Model {
         this.id = id;
     }
 
-    public TimeEntryUser getUser() {
+    public ChildUser getUser() {
         return user;
     }
 
-    public void setUser(TimeEntryUser user) {
+    public void setUser(ChildUser user) {
         this.user = user;
     }
 
@@ -88,12 +88,18 @@ public class TimeEntry extends Model {
 
     @Override
     public HashMap<String, Object> toHashMap() {
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("user", user.toHashMap());
-        hashMap.put("date", date.toString());
-        hashMap.put("from", from.toString());
-        hashMap.put("to", to.toString());
-        return hashMap;
+        return new HashMap<String, Object>(){{
+            put("user", user.toHashMap());
+            put("date", date.toString());
+            put("from", from.toString());
+            put("to", to.toString());
+        }};
+    }
+
+    public HashMap<String, Object> toHashMapWithId() {
+        return new HashMap<String, Object>(toHashMap()){{
+            put("id", id);
+        }};
     }
 
     @Override

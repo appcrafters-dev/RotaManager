@@ -5,7 +5,7 @@
     android:background="#FFF"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.TimeChangeRequest.ViewTimeChangeRequest">
+    tools:context=".presentation.admin.TimeChangeRequest.ViewTimeChangeRequest">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -44,7 +44,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/et_date"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,7 +58,7 @@
             android:textSize="22sp"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/Time"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -110,7 +110,7 @@
             style="@style/LoginTextInputLayoutStyle">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/reason"
+                android:id="@+id/et_reason"
                 android:layout_width="318dp"
                 android:gravity="top"
 
@@ -125,7 +125,7 @@
 
 
         <Button
-            android:id="@+id/request_approve"
+            android:id="@+id/btn_request_approve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -137,7 +137,7 @@
             app:backgroundTint="#16DA70" />
 
         <Button
-            android:id="@+id/request_reject"
+            android:id="@+id/btn_request_reject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"

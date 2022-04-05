@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     android:orientation="vertical"
-    tools:context=".admin.AdminProfile.AdminProfile">
+    tools:context=".presentation.admin.AdminProfile.AdminProfile">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
